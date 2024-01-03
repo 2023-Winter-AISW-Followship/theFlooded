@@ -3,74 +3,128 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharController_Motor : MonoBehaviour {
+public class CharController_Motor : MonoBehaviour
+{
 
-	private float speed = 10.0f;
-	private float sensitivity = 400.0f;
-	private float WaterHeight = 15.5f;
-	CharacterController character;
-	public GameObject cam;
-	float moveFB, moveLR, moveUD = 0f;
-	float rotX, rotY;
-	public bool webGLRightClickRotation = true;
-	float gravity = -9.8f;
+    private float speed = 5.0f;
+    private float walkSpeed = 5.0f;
+    private float runSpeed = 5.0f;
+    private float sitSpeed = 2.5f;
+    private float sensitivity = 400.0f;
+    private float WaterHeight = 15.5f;
+    CharacterController character;
+    public GameObject cam;
+    float moveFB, moveLR, moveUD = 0f;
+    float rotX, rotY;
+    public bool webGLRightClickRotation = false;
 
-
-	void Start(){
-		//LockCursor ();
-		character = GetComponent<CharacterController> ();
-		if (Application.isEditor) {
-			webGLRightClickRotation = false;
-			sensitivity = sensitivity * 1.5f;
-		}
-	}
+    public AudioClip walkSound;
 
 
-	void CheckForWaterHeight(){
-		if (transform.position.y < WaterHeight) {
-			gravity = 0f;
-		} else {
-			gravity = -9.8f;
-		}
-	}
-
-
-
-	void Update(){
-		moveFB = Input.GetAxis ("Horizontal") * speed;
-		moveLR = Input.GetAxis ("Vertical") * speed;
-
-		rotX = Input.GetAxis ("Mouse X") * sensitivity;
-		rotY = Input.GetAxis ("Mouse Y") * sensitivity;
-
-		//rotX = Input.GetKey (KeyCode.Joystick1Button4);
-		//rotY = Input.GetKey (KeyCode.Joystick1Button5);
-
-		if(Input.GetKeyDown (KeyCode.Space))
-		{
-            moveUD = 7.5f;
+    void Start()
+    {
+        //LockCursor ();
+        character = GetComponent<CharacterController>();
+        if (Application.isEditor)
+        {
+            webGLRightClickRotation = false;
+            sensitivity = sensitivity * 1.5f;
         }
-
-		moveUD += gravity * Time.deltaTime;
-
-        Vector3 movement = new Vector3 (moveFB, moveUD, moveLR);
-
-        if (webGLRightClickRotation) {
-			if (Input.GetKey (KeyCode.Mouse0)) {
-				CameraRotation (cam, rotX, rotY);
-			}
-		} else if (!webGLRightClickRotation) {
-			CameraRotation (cam, rotX, rotY);
-		}
-
-		
-		movement = transform.rotation * movement;
-		character.Move (movement * Time.deltaTime);
     }
 
+    void Update()
+    {
+        moveControll();
 
-	void CameraRotation(GameObject cam, float rotX, float rotY){		
-		transform.Rotate (0, rotX * Time.deltaTime, 0);
-		cam.transform.Rotate (-rotY * Time.deltaTime, 0, 0);
-	}
+        rotX = Input.GetAxis("Mouse X") * sensitivity;
+        rotY = Input.GetAxis("Mouse Y") * sensitivity;
+
+        Vector3 movement = new Vector3(moveLR, moveUD, moveFB);
+
+
+        CameraRotation(cam, rotX, rotY);
+
+
+        movement = transform.rotation * movement;
+        character.Move(movement * Time.deltaTime);
+        Debug.Log(moveUD);
+    }
+
+    void moveControll()
+    {
+        // sit
+        if (Input.GetKeyDown(KeySetting.key[KeyAction.SIT]))
+        {
+            speed -= sitSpeed;
+        }
+        else if (Input.GetKeyUp(KeySetting.key[KeyAction.SIT]))
+        {
+            speed += sitSpeed;
+        }
+
+        // run
+        if (Input.GetKeyDown(KeySetting.key[KeyAction.RUN]))
+        {
+            speed += runSpeed;
+        }
+        else if (Input.GetKeyUp(KeySetting.key[KeyAction.RUN]))
+        {
+            speed -= runSpeed;
+        }
+
+        // left, right
+        if (Input.GetKey(KeySetting.key[KeyAction.LEFT]))
+        {
+            moveLR = -speed;
+        }
+        else if (Input.GetKey(KeySetting.key[KeyAction.RIGHT]))
+        {
+            moveLR = speed;
+        }
+        else
+        {
+            moveLR = 0f;
+        }
+
+        // front, back
+        if (Input.GetKey(KeySetting.key[KeyAction.UP]))
+        {
+            moveFB = speed;
+        }
+        else if (Input.GetKey(KeySetting.key[KeyAction.DOWN]))
+        {
+            moveFB = -speed;
+        }
+        else
+        {
+            moveFB = 0f;
+        }
+
+        // jump
+        if (character.isGrounded)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                moveUD = 6f;
+            }
+        }
+        else
+        {
+            moveUD += Physics.gravity.y * Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("ground"))
+        {
+            moveUD = 0;
+        }
+    }
+
+    void CameraRotation(GameObject cam, float rotX, float rotY)
+    {
+        transform.Rotate(0, rotX * Time.deltaTime, 0);
+        cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
+    }
 }
