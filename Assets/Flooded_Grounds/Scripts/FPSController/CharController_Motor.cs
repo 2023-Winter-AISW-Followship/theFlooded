@@ -5,31 +5,24 @@ using UnityEngine;
 
 public class CharController_Motor : MonoBehaviour
 {
-
-    private float speed = 5.0f;
-    private float walkSpeed = 5.0f;
-    private float runSpeed = 5.0f;
-    private float sitSpeed = 2.5f;
-    private float sensitivity = 400.0f;
-    private float WaterHeight = 15.5f;
-    CharacterController character;
     public GameObject cam;
-    float moveFB, moveLR, moveUD = 0f;
-    float rotX, rotY;
-    public bool webGLRightClickRotation = false;
-
     public AudioClip walkSound;
 
+    
+    private float walkSpeed = 6.0f;
+    private float runSpeed = 6.0f;
+    private float sitSpeed = 3f;
+    
+    private float speed;
+    private float sensitivity = 400.0f;
+    CharacterController character;
+    float moveFB, moveLR, moveUD = 0f;
+    float rotX, rotY;
 
     void Start()
     {
-        //LockCursor ();
         character = GetComponent<CharacterController>();
-        if (Application.isEditor)
-        {
-            webGLRightClickRotation = false;
-            sensitivity = sensitivity * 1.5f;
-        }
+        speed = walkSpeed;
     }
 
     void Update()
@@ -41,13 +34,10 @@ public class CharController_Motor : MonoBehaviour
 
         Vector3 movement = new Vector3(moveLR, moveUD, moveFB);
 
-
         CameraRotation(cam, rotX, rotY);
-
 
         movement = transform.rotation * movement;
         character.Move(movement * Time.deltaTime);
-        Debug.Log(moveUD);
     }
 
     void moveControll()
