@@ -10,6 +10,8 @@ public class Temp : MonoBehaviour
     {
         point.SetActive(true);
         spot.SetActive(false);
+        RenderSettings.fog = true;
+        RenderSettings.ambientLight = Color.black;
     }
 
     // Update is called once per frame
