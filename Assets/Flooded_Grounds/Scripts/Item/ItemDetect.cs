@@ -29,6 +29,10 @@ public class ItemDetect : MonoBehaviour
                 hitObject.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
                 if (Input.GetKeyDown(KeySetting.key[KeyAction.INTERACTION]))
                 {
+                    if(Camera.main.transform.childCount != 0)
+                    {
+                        return;
+                    }
                     GameObject temp = hitObject.transform.GetChild(0).gameObject;
                     temp.transform.parent = Camera.main.transform;
                     temp.transform.localPosition = new Vector3(1, -0.7f, 1);
