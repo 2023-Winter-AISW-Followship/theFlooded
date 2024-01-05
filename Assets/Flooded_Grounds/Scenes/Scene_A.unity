@@ -6845,10 +6845,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FpsController
       objectReference: {fileID: 0}
-    - target: {fileID: 1666093525517832, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4711414338243884, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
       propertyPath: m_LocalPosition.x
       value: 256.87
@@ -7022,6 +7018,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 282002474}
   - {fileID: 1993332655}
   - {fileID: 806199262}
   - {fileID: 157013456}
@@ -7032,6 +7029,5 @@ SceneRoots:
   - {fileID: 1455962737}
   - {fileID: 1835574139}
   - {fileID: 350880815}
-  - {fileID: 282002474}
   - {fileID: 608404836}
   - {fileID: 1785971850}
