@@ -29,6 +29,11 @@ public class ItemDetect : MonoBehaviour
                 hitObject.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
                 if (Input.GetKeyDown(KeySetting.key[KeyAction.INTERACTION]))
                 {
+                    GameObject temp = hitObject.transform.GetChild(0).gameObject;
+                    temp.transform.parent = Camera.main.transform;
+                    temp.transform.localPosition = new Vector3(1, -0.7f, 1);
+                    temp.transform.localEulerAngles = new Vector3(0, 0, 0);
+                    temp.GetComponent<Rigidbody>().useGravity = false;
                     Destroy(hitObject.gameObject);
                 }
             }

@@ -7,6 +7,18 @@ public class Bottle : MonoBehaviour
     [SerializeField] GameObject brokenBottlePrefab;
     bool playerThrow = false;
 
+    private void Update()
+    {
+        if (this.transform.parent == Camera.main.transform && Input.GetMouseButtonDown(0))
+        {
+            playerThrow = true;
+            this.GetComponent<Rigidbody>().useGravity = true;
+            Vector3 speed = new Vector3(0, 1000f, 8000f);
+            this.GetComponent<Rigidbody>().AddRelativeForce(speed);
+            this.transform.parent = null;
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (playerThrow)
