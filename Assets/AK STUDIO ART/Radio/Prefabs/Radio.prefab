@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3132588478132163456}
   - component: {fileID: 4375428725713276674}
   - component: {fileID: 7789921382530165238}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Radio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5730937523676790872}
   - component: {fileID: 6621121557987418981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RadioSound
   m_TagString: radio
   m_Icon: {fileID: 0}

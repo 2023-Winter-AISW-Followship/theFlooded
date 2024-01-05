@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,14 +8,13 @@ public class CharController_Motor : MonoBehaviour
 {
     public GameObject cam;
     public AudioClip walkSound;
-
     
     private float walkSpeed = 6.0f;
     private float runSpeed = 6.0f;
     private float sitSpeed = 3f;
     
     private float speed;
-    private float sensitivity = 400.0f;
+    private float sensitivity = 8f;
     CharacterController character;
     float moveFB, moveLR, moveUD = 0f;
     float rotX, rotY;
@@ -29,12 +29,10 @@ public class CharController_Motor : MonoBehaviour
     {
         moveControll();
 
-        rotX = Input.GetAxis("Mouse X") * sensitivity;
-        rotY = Input.GetAxis("Mouse Y") * sensitivity;
+        rotX += Input.GetAxis("Mouse X") * sensitivity;
+        this.transform.localEulerAngles = new Vector3(0, rotX, 0);
 
         Vector3 movement = new Vector3(moveLR, moveUD, moveFB);
-
-        CameraRotation(cam, rotX, rotY);
 
         movement = transform.rotation * movement;
         character.Move(movement * Time.deltaTime);
@@ -110,11 +108,5 @@ public class CharController_Motor : MonoBehaviour
         {
             moveUD = 0;
         }
-    }
-
-    void CameraRotation(GameObject cam, float rotX, float rotY)
-    {
-        transform.Rotate(0, rotX * Time.deltaTime, 0);
-        cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
     }
 }

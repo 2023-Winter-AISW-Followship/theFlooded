@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 20216315665865056}
   - component: {fileID: 114817242949399776}
   - component: {fileID: 6219884963829033898}
+  - component: {fileID: 2614152869631538722}
+  - component: {fileID: 7270385563574813812}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +108,31 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198389065402468}
   m_Enabled: 1
+--- !u!114 &2614152869631538722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198389065402468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0fa7b3e409fd6469e23cd79ea887bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7270385563574813812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198389065402468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa609053846d9043b59fa85965e0508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSpeed: 8
 --- !u!1 &1666093525517832
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +374,10 @@ PrefabInstance:
     - target: {fileID: 5031127729159936380, guid: 7ac6d0e4d6bef7e429cd4064e6fd3c25, type: 3}
       propertyPath: m_Name
       value: flashlight point
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031127729159936380, guid: 7ac6d0e4d6bef7e429cd4064e6fd3c25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
