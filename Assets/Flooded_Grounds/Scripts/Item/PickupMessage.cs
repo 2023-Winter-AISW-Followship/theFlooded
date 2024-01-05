@@ -5,22 +5,28 @@ using UnityEngine;
 public class PickupMessage : MonoBehaviour
 {
     GameObject cam;
-
-    Vector3 startScale;
-    public float distance = 5f;
+    bool isDetected;
 
     private void Start()
     {
         cam = Camera.main.gameObject;
-        startScale = transform.localScale;
+        isDetected = false;
+        this.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        float dist = Vector3.Distance(cam.transform.position, transform.position);
-        Vector3 newScale = startScale * dist / distance;
-        transform.localScale = newScale;
-
+        if (!isDetected)
+        {
+            this.gameObject.SetActive(false);
+        }
         transform.parent.rotation = cam.transform.rotation;
+        isDetected = false;
+    }
+
+    public void detected()
+    {
+        isDetected = true;
+        this.gameObject.SetActive(true);
     }
 }

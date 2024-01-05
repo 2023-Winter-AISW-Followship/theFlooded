@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class ItemDetect : MonoBehaviour
 {
     public float raycastDistance = 5f; //인식할 수 있는 범위
+    StringBuilder path = new StringBuilder();
 
     RaycastHit hit;
     Ray ray;
@@ -19,9 +21,16 @@ public class PlayerController : MonoBehaviour
         {
             GameObject hitObject = hit.collider.gameObject; //주변 물체의 정보를 가져옵니다.
 
-            if (hitObject != null) //물체가 있을 경우
-            {
-                Debug.Log(hitObject.name);
+            if (hitObject.layer == 6)
+            {   
+                path.Clear();
+                path.Append(hitObject.transform.GetChild(0).name);
+                path.Append("/Axis/Pickup");
+                hitObject.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
+                if (Input.GetKeyDown(KeySetting.key[KeyAction.INTERACTION]))
+                {
+                    Destroy(hitObject.gameObject);
+                }
             }
         }
     }
