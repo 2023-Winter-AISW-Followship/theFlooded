@@ -12,7 +12,7 @@ public class Radio : MonoBehaviour
 
     void Start()
     {
-        point = GameObject.Find("GameObject").transform.GetChild(0).gameObject;
+        point = GameObject.Find("EventSystem").transform.GetChild(0).gameObject;
     }
 
     void Update()

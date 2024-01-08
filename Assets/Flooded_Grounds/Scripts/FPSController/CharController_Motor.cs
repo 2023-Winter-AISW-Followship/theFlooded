@@ -14,10 +14,8 @@ public class CharController_Motor : MonoBehaviour
     private float sitSpeed = 3f;
     
     private float speed;
-    private float sensitivity = 8f;
     CharacterController character;
     float moveFB, moveLR, moveUD = 0f;
-    float rotX, rotY;
 
     void Start()
     {
@@ -28,10 +26,10 @@ public class CharController_Motor : MonoBehaviour
     void Update()
     {
         moveControll();
+    }
 
-        rotX += Input.GetAxis("Mouse X") * sensitivity;
-        this.transform.localEulerAngles = new Vector3(0, rotX, 0);
-
+    private void FixedUpdate()
+    {
         Vector3 movement = new Vector3(moveLR, moveUD, moveFB);
 
         movement = transform.rotation * movement;
