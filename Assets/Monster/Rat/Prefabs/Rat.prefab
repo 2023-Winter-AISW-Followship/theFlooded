@@ -1880,6 +1880,7 @@ GameObject:
   - component: {fileID: 3673758696173849395}
   - component: {fileID: 7119682516807468316}
   - component: {fileID: 6185307888058919631}
+  - component: {fileID: 7767890172398988555}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Untagged
@@ -1914,7 +1915,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8544984228907667653}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 07d6a5f36b87dfc499168fa4516dd3c1, type: 3}
   m_Controller: {fileID: 9100000, guid: 4a5579333de9b654c99a47418f4117cc, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1953,6 +1954,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7767890172398988555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544984228907667653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0804b4691ff5f8468aa3ef360b16b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8610566978980172109
 GameObject:
   m_ObjectHideFlags: 0

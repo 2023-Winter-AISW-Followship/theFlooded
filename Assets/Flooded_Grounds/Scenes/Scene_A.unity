@@ -1349,6 +1349,7 @@ GameObject:
   - component: {fileID: 487206577}
   - component: {fileID: 487206576}
   - component: {fileID: 487206573}
+  - component: {fileID: 487206579}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1368,8 +1369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45558972f5b0f7a4e964dd4564df1bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  point: {fileID: 1617874699}
-  spot: {fileID: 1194532580}
   audioMixer: {fileID: 24100000, guid: 08d4676c8e9f5224186df90f8d19352c, type: 2}
 --- !u!114 &487206576
 MonoBehaviour:
@@ -1422,6 +1421,18 @@ Transform:
   - {fileID: 1184214940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487206579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487206572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533a5ca6817591c449b03db4c1421246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &524433564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4212,11 +4223,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1315170347145498804, guid: 3e0baca569aaae844a3e16d60fe1e4e6, type: 3}
   m_PrefabInstance: {fileID: 1184774165}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1194532580 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4040177565070234400, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
-  m_PrefabInstance: {fileID: 1993332655}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1194554255
 GameObject:
   m_ObjectHideFlags: 0
@@ -5844,16 +5850,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[1] point light
+  m_text: '[1] light on/off
 
-    [2] spot light
+    [2] sound on/off
 
-    [3] sound on/off
-
-    [4] fog
-    on/off
-
-    [click] light on/off'
+    [3] fog on/off'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6177,11 +6178,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4849512036368400640, guid: bd7ae68511c5d044b8bdfc8d3e63ddbd, type: 3}
   m_PrefabInstance: {fileID: 134499391}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1617874699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3140578690676824247, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
-  m_PrefabInstance: {fileID: 1993332655}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1619358571
 PrefabInstance:
@@ -6911,7 +6907,6 @@ GameObject:
   - component: {fileID: 1759552047}
   - component: {fileID: 1759552046}
   - component: {fileID: 1759552045}
-  - component: {fileID: 1759552050}
   - component: {fileID: 1759552049}
   - component: {fileID: 1759552051}
   m_Layer: 5
@@ -7019,18 +7014,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyState: []
---- !u!114 &1759552050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759552044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533a5ca6817591c449b03db4c1421246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1759552051
 MonoBehaviour:
   m_ObjectHideFlags: 0

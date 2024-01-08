@@ -26,7 +26,7 @@ public class ItemDetect : MonoBehaviour
                 hit.collider.gameObject.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
                 if (Input.GetKeyDown(KeySetting.key[KeyAction.INTERACTION]))
                 {
-                    if(Camera.main.transform.childCount != 0)
+                    if(Camera.main.transform.childCount != 1)
                     {
                         return;
                     }
