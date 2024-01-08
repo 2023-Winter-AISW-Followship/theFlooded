@@ -17,6 +17,8 @@ public class Temp : MonoBehaviour
         RenderSettings.fog = true;
         RenderSettings.ambientLight = Color.black;
         audioMixer.SetFloat("item", sound);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

@@ -35,6 +35,7 @@ public class ItemDetect : MonoBehaviour
                     temp.transform.localPosition = new Vector3(1, -0.7f, 1);
                     temp.transform.localEulerAngles = new Vector3(0, 0, 0);
                     temp.GetComponent<Rigidbody>().useGravity = false;
+                    temp.GetComponent<Collider>().enabled = false;
                     Destroy(hit.collider.gameObject.gameObject);
                 }
             }

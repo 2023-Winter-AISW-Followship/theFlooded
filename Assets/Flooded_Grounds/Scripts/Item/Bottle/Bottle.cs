@@ -15,6 +15,7 @@ public class Bottle : MonoBehaviour
             this.GetComponent<Rigidbody>().useGravity = true;
             Vector3 speed = new Vector3(0, 1000f, 8000f);
             this.GetComponent<Rigidbody>().AddRelativeForce(speed);
+            this.GetComponent<Collider>().enabled = true;
             this.transform.parent = null;
         }
     }

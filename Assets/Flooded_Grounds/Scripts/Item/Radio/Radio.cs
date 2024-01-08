@@ -12,13 +12,13 @@ public class Radio : MonoBehaviour
 
     void Start()
     {
-        this.GetComponentInChildren<AudioSource>().enabled = false;
         point = GameObject.Find("GameObject").transform.GetChild(0).gameObject;
     }
 
     void Update()
     {
-        if (Camera.main.transform.Find("Radio(Clone)") != null)
+        point.SetActive(false);
+        if (transform.parent == Camera.main.transform)
         {
             ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
@@ -28,16 +28,17 @@ public class Radio : MonoBehaviour
                 {
                     point.transform.position = hit.point;
                     point.SetActive(true);
-                    Debug.Log("right");
-                }
-                else
-                {
-                    point.SetActive(false);
                 }
             }
-            else
+
+            if(Input.GetMouseButtonDown(0))
             {
-                point.SetActive(false);
+                transform.parent = null;
+                transform.position = hit.point;
+                transform.rotation = point.transform.rotation;
+                GetComponentInChildren<AudioSource>().Play();
+                GetComponent<Rigidbody>().useGravity = true;
+                GetComponent<Collider>().enabled = true;
             }
         }
     }
