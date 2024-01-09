@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum KeyType
-{
-    PRESSED,
-    DOWN,
-    UP,
-    NONE,
-}
-
 public enum KeyAction
 {
     UP,
     DOWN,
     LEFT,
     RIGHT,
+    JUMP,
     RUN,
     SIT,
     INTERACTION,
@@ -35,6 +28,7 @@ public class CharController_Command : MonoBehaviour
         KeyCode.S,
         KeyCode.A,
         KeyCode.D,
+        KeyCode.Space,
         KeyCode.LeftShift,
         KeyCode.LeftControl,
         KeyCode.E,

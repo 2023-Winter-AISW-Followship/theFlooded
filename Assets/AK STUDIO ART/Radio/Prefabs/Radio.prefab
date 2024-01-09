@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4375428725713276674}
   - component: {fileID: 7789921382530165238}
   - component: {fileID: -4268766496453071611}
+  - component: {fileID: 3154212947728452802}
   m_Layer: 0
   m_Name: Radio
   m_TagString: radio
@@ -66,7 +67,6 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5730937523676790872}
   - {fileID: 5574712594315181812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,45 +182,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastDistance: 5
---- !u!1 &4044366491757633755
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5730937523676790872}
-  - component: {fileID: 6621121557987418981}
-  m_Layer: 0
-  m_Name: RadioSound
-  m_TagString: radio
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5730937523676790872
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4044366491757633755}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4265502871271991535}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &6621121557987418981
+--- !u!82 &3154212947728452802
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4044366491757633755}
+  m_GameObject: {fileID: 3493048315491332693}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3933833434350837246, guid: 08d4676c8e9f5224186df90f8d19352c, type: 2}
@@ -234,7 +202,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5
+  MinDistance: 10
   MaxDistance: 40
   Pan2D: 0
   rolloffMode: 1

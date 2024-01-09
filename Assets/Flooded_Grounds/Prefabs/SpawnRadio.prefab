@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2779707303600158845}
   m_Layer: 6
   m_Name: SpawnRadio
-  m_TagString: Untagged
+  m_TagString: Radio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

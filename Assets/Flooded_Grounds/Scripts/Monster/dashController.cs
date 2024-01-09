@@ -12,14 +12,6 @@ public class dashController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
-        {
-
-        }
-    }
-
     void recognize()
     {
         animator.SetBool("recognize", true);

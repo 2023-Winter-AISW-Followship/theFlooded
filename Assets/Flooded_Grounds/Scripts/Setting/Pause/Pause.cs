@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
@@ -8,30 +10,21 @@ public class Pause : MonoBehaviour
     public GameObject PauseMenu;
     public static bool GameIsPaused = false;
 
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale != 0)
-            {
-                Time.timeScale = 0;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                PauseMenu.SetActive(true);
-            } 
-            else
-            {
-                Play();
-            }
-        }
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetKeyDown(KeyCode.Escape))
+            .Subscribe(_ => GameState());
     }
 
-    public void Play()
+    public void GameState()
     {
-        Time.timeScale = 1;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        PauseMenu.SetActive(false);
+
+        GameIsPaused = !GameIsPaused;
+        Time.timeScale = (Time.timeScale + 1) % 2;
+        Cursor.visible = GameIsPaused;
+        Cursor.lockState = (CursorLockMode)(((int)Cursor.lockState + 1) % 2);
+        PauseMenu.SetActive(GameIsPaused);
     }
 
     public void Setting()
