@@ -19,7 +19,7 @@ public class CameraRot : PlayerData
         mouseY += Input.GetAxis("Mouse Y") * mouseSpeed;
         mouseX += Input.GetAxis("Mouse X") * mouseSpeed;
 
-        mouseY = Mathf.Clamp(mouseY, -50f, 30f);
+        mouseY = Mathf.Clamp(mouseY, -30f, 30f);
 
         Com.root.localEulerAngles = new Vector3(0, mouseX, 0);
         Com.cam.localEulerAngles = new Vector3(-mouseY, 0, 0);
