@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 114817242949399776}
   - component: {fileID: 6219884963829033898}
   - component: {fileID: 2614152869631538722}
-  - component: {fileID: 7270385563574813812}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -123,19 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastDistance: 5
---- !u!114 &7270385563574813812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198389065402468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fa609053846d9043b59fa85965e0508, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSpeed: 8
 --- !u!1 &1666093525517832
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +136,8 @@ GameObject:
   - component: {fileID: 114384212370659330}
   - component: {fileID: 8366343153282949426}
   - component: {fileID: 1376476688282559010}
+  - component: {fileID: 5141489188277940779}
+  - component: {fileID: 3775223421806525672}
   m_Layer: 0
   m_Name: FpsController
   m_TagString: Player
@@ -274,6 +262,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9e35bfae5ac2e48838e403065a0105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5141489188277940779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666093525517832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa609053846d9043b59fa85965e0508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSpeed: 8
+--- !u!136 &3775223421806525672
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666093525517832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4179458194665321079
 PrefabInstance:
   m_ObjectHideFlags: 0
