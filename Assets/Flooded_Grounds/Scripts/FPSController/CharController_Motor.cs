@@ -16,7 +16,7 @@ public class CharController_Motor : PlayerData
         // 키보드 입력
         this.UpdateAsObservable()
             .Where(_ => !Pause.GameIsPaused 
-                && !State.isJumping)
+                && State.isGrounded)
             .Subscribe(_ => InputKey());
 
         Observable.EveryUpdate()
@@ -124,8 +124,6 @@ public class CharController_Motor : PlayerData
         {
             Value.gravity += Time.deltaTime * Movement.gravity;
         }
-
-        Debug.Log(Value.gravity);
 
         Com.rBody.velocity = Value.horizontalVelocity + Vector3.up * Value.gravity;
     }

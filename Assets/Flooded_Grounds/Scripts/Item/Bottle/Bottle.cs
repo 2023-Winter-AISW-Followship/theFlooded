@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UniRx.Triggers;
+using Unity.Linq;
 using UnityEngine;
 
 public class Bottle : MonoBehaviour, ItemState
@@ -10,9 +11,21 @@ public class Bottle : MonoBehaviour, ItemState
     bool playerThrow = false;
 
     public bool picked { get; set; }
+    public GameObject ItemArm {  get; set; }
+    public GameObject DefaultArm { get; set; }
+
+    public void ChangeArm()
+    {
+        ItemArm.SetActive(picked);
+        DefaultArm.SetActive(!picked);
+    }
+
 
     private void Start()
     {
+        DefaultArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithNone").gameObject;
+        ItemArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithBottle").gameObject;
+
         this.UpdateAsObservable()
             .Where(_ => picked
                 && Input.GetMouseButtonDown(0))
@@ -21,6 +34,9 @@ public class Bottle : MonoBehaviour, ItemState
         this.OnCollisionEnterAsObservable()
             .Where(_ => playerThrow)
             .Subscribe(_ => Explode());
+
+        this.ObserveEveryValueChanged(x => picked)
+            .Subscribe(_ => ChangeArm());
     }
 
     void Throw()

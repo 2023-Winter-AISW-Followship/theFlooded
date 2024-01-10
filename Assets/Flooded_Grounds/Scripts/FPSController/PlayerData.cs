@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    protected class Components
+    public class Components
     {
         public Transform root;
         public Transform cam;
@@ -16,13 +16,13 @@ public class PlayerData : MonoBehaviour
         public AudioClip walkSound;
     }
 
-    protected class CheckOption
+    public class CheckOption
     {
         [Tooltip("지면으로 체크할 레이어 설정")]
         public LayerMask groundLayerMask = ~(1<<4 | 1<<6);
 
         [Range(0.01f, 0.5f), Tooltip("전방 감지 거리")]
-        public float forwardCheckDistance = 0.1f;
+        public float forwardCheckDistance;
 
         [Range(0.1f, 10.0f), Tooltip("지면 감지 거리")]
         public float groundCheckDistance = 2.0f;
@@ -31,7 +31,7 @@ public class PlayerData : MonoBehaviour
         public float groundCheckThreshold = 0.01f;
     }
 
-    protected class MovementOption
+    public class MovementOption
     {
         [Range(1f, 10f), Tooltip("이동속도")]
         public float speed = 12f;
@@ -56,19 +56,20 @@ public class PlayerData : MonoBehaviour
         public float gravity = -9.81f;
     }
 
-    protected class CurrentState
+    public class CurrentState
     {
         public bool isMoving;
         public bool isSitting;
         public bool isRunning;
-        public bool isGrounded;
+        public bool isGrounded { get; set; }
         public bool isOnSteepSlope;   // 등반 불가능한 경사로에 올라와 있음
         public bool isJumping;
         public bool isForwardBlocked; // 전방에 장애물 존재
-        public bool isOutOfControl;   // 제어 불가 상태
+        public bool isOutOfControl;
+        public bool isWater;
     }
 
-    protected class CurrentValue
+    public class CurrentValue
     {
         public Vector3 worldMoveDir;
         public Vector3 groundNormal;
@@ -93,16 +94,16 @@ public class PlayerData : MonoBehaviour
     private CurrentState _state;
     private CurrentValue _value;
 
-    protected float _castRadius;
-    protected Vector3 CapsuleTopCenterPoint
+    public float _castRadius;
+    public Vector3 CapsuleTopCenterPoint
        => new Vector3(transform.position.x, transform.position.y + (Com.capsule.height / 2) - Com.capsule.radius, transform.position.z);
-    protected Vector3 CapsuleBottomCenterPoint
-        => new Vector3(transform.position.x, transform.position.y - (Com.capsule.height / 2) + Com.capsule.radius, transform.position.z);
-    protected Vector3 moveDestination;
-    protected Vector3 _moveDir;
-    protected Vector3 _worldMove;
-    protected float _capsuleRadiusDiff;
-    protected float moveFB, moveLR;
+    public Vector3 CapsuleBottomCenterPoint
+        => new Vector3(transform.position.x, transform.position.y - Com.capsule.height / 2, transform.position.z);
+    public Vector3 moveDestination;
+    public Vector3 _moveDir;
+    public Vector3 _worldMove;
+    public float _capsuleRadiusDiff;
+    public float moveFB, moveLR;
 
     private void Awake()
     {
@@ -123,6 +124,8 @@ public class PlayerData : MonoBehaviour
             _castRadius = Com.capsule.radius * 0.9f;
             _capsuleRadiusDiff = Com.capsule.radius - _castRadius + 0.05f;
 
+            data._check.groundCheckDistance = Com.capsule.radius;
+
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -130,9 +133,9 @@ public class PlayerData : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    protected Components Com { get { if (data == null) { return null; } return _component; } set { _component = value; } }
-    protected CheckOption Check { get { if (data == null) { return null; } return _check; } set { _check = value; } }
-    protected MovementOption Movement { get { if (data == null) { return null; } return _movement; } set { _movement = value; } }
-    protected CurrentState State { get { if (data == null) { return null; } return _state; } set { _state = value; } }
-    protected CurrentValue Value { get { if (data == null) { return null; } return _value; } set { _value = value; } }
+    public Components Com { get { if (data == null) { return null; } return _component; } set { _component = value; } }
+    public CheckOption Check { get { if (data == null) { return null; } return _check; } set { _check = value; } }
+    public MovementOption Movement { get { if (data == null) { return null; } return _movement; } set { _movement = value; } }
+    public CurrentState State { get { if (data == null) { return null; } return _state; } set { _state = value; } }
+    public CurrentValue Value { get { if (data == null) { return null; } return _value ; } set { _value = value; } }
 }

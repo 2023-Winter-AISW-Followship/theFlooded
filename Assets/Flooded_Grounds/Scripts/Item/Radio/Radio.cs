@@ -13,10 +13,22 @@ public class Radio : MonoBehaviour, ItemState
     GameObject point;
 
     public bool picked { get; set; }
+    public GameObject ItemArm { get; set; }
+    public GameObject DefaultArm { get; set; }
+
+    public void ChangeArm()
+    {
+        ItemArm.SetActive(picked);
+        DefaultArm.SetActive(!picked);
+    }
+
     bool isGround = false;
 
     void Start()
     {
+        DefaultArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithNone").gameObject;
+        ItemArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithBottle").gameObject;
+
         point = GameObject.Find("EventSystem").transform.GetChild(0).gameObject;
 
         this.UpdateAsObservable()
@@ -26,6 +38,9 @@ public class Radio : MonoBehaviour, ItemState
         this.UpdateAsObservable()
             .Where(_ => picked && isGround && Input.GetMouseButtonDown(0))
             .Subscribe(_ => Setup());
+
+        this.ObserveEveryValueChanged(x => picked)
+            .Subscribe(_ => ChangeArm());
     }
 
     void RadioGuide()

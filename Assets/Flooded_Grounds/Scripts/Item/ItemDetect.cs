@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ItemDetect : MonoBehaviour
 {
-    public float raycastDistance = 5f; //인식할 수 있는 범위
+    public float raycastDistance = 7f; //인식할 수 있는 범위
     StringBuilder path = new StringBuilder();
     bool detected = false;
 
@@ -19,7 +19,7 @@ public class ItemDetect : MonoBehaviour
         this.UpdateAsObservable()
             .Where(_ => detected
                 && Input.GetKeyDown(KeySetting.key[KeyAction.INTERACTION])
-                && Camera.main.transform.childCount == 2)
+                && Camera.main.transform.childCount == 1)
             .Subscribe(_ => Pickup());
     }
 
@@ -49,6 +49,5 @@ public class ItemDetect : MonoBehaviour
         temp.GetComponent<Rigidbody>().useGravity = false;
         temp.GetComponent<Collider>().enabled = false;
         temp.GetComponent<ItemState>().picked = true;
-        Destroy(hit.collider.gameObject);
     }
 }
