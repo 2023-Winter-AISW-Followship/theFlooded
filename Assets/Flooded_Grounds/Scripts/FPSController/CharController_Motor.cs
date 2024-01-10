@@ -63,15 +63,20 @@ public class CharController_Motor : PlayerData
             Sit();
         }
 
-        CalMove();
 
-        
+        if (!State.isMoving)
+        {
+            Value.worldMoveDir = Vector3.zero;
+            State.isRunning = false;
+        }
+
+        CalMove();
     }
 
     void CalMove()
     {
         Value.horizontalVelocity = Value.worldMoveDir
-            * Movement.speed
+            * (State.isMoving ? Movement.speed : 0)
             * (State.isRunning ? Movement.runningCoef : 1)
             * (State.isSitting ? Movement.sittingCoef : 1);
 

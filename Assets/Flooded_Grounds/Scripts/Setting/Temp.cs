@@ -11,7 +11,7 @@ public class Temp : MonoBehaviour
     void Start()
     {
         RenderSettings.fog = true;
-        RenderSettings.ambientLight = Color.black;
+        RenderSettings.ambientLight = new Color(0.6f, 0.6f, 0.6f);
         audioMixer.SetFloat("item", sound);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -42,7 +42,7 @@ public class Temp : MonoBehaviour
             else
             {
                 RenderSettings.fog = true;
-                RenderSettings.ambientLight = Color.black;
+                RenderSettings.ambientLight = new Color(0.6f, 0.6f, 0.6f);
             }
         }
     }

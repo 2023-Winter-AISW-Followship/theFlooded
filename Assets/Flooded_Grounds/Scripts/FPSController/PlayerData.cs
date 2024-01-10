@@ -34,7 +34,7 @@ public class PlayerData : MonoBehaviour
     public class MovementOption
     {
         [Range(1f, 10f), Tooltip("이동속도")]
-        public float speed = 12f;
+        public float speed = 9f;
 
         [Range(1f, 3f), Tooltip("달리기 이동속도 증가 계수")]
         public float runningCoef = 2f;
