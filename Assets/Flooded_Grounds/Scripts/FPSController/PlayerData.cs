@@ -22,7 +22,7 @@ public class PlayerData : MonoBehaviour
         public LayerMask groundLayerMask = ~(1<<4 | 1<<6);
 
         [Range(0.01f, 0.5f), Tooltip("전방 감지 거리")]
-        public float forwardCheckDistance;
+        public float forwardCheckDistance = 1.7f;
 
         [Range(0.1f, 10.0f), Tooltip("지면 감지 거리")]
         public float groundCheckDistance = 2.0f;

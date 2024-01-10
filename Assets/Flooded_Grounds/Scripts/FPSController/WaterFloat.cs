@@ -7,6 +7,6 @@ public class WaterFloat : PlayerData
 	
 	void Update ()
 	{
-		Debug.Log(State.isWater);
+		//Debug.Log(State.isWater);
 	}
 }

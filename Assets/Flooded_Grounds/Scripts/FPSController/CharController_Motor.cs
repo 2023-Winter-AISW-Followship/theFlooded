@@ -10,7 +10,12 @@ public class CharController_Motor : PlayerData
         //이동
         Observable.EveryUpdate()
             .Where(_ => !Pause.GameIsPaused)
-            .Subscribe(_ => Move())
+            .Subscribe(_ =>
+            {
+                CheckGround();
+                CheckForward();
+                Move();
+            })
             .AddTo(gameObject);
 
         // 키보드 입력
@@ -18,17 +23,31 @@ public class CharController_Motor : PlayerData
             .Where(_ => !Pause.GameIsPaused 
                 && State.isGrounded)
             .Subscribe(_ => InputKey());
-
-        Observable.EveryUpdate()
-            .Where(_ => !Pause.GameIsPaused)
-            .Subscribe(_ => CheckGround())
-            .AddTo(gameObject);
     }
 
     void InputKey()
     {
         moveFB = 0f;
         moveLR = 0f;
+
+        // 점프
+        if (Input.GetKey(KeySetting.key[KeyAction.JUMP]))
+        {
+            Jump();
+        }
+
+        State.isRunning = false;
+        // 달리기
+        if (Input.GetKey(KeySetting.key[KeyAction.RUN]))
+        {
+            Run();
+        }
+
+        // 앉기
+        if (Input.GetKeyDown(KeySetting.key[KeyAction.SIT]))
+        {
+            Sit();
+        }
 
         // left, right
         if (Input.GetKey(KeySetting.key[KeyAction.LEFT])) moveLR -= 1f;
@@ -44,26 +63,6 @@ public class CharController_Motor : PlayerData
 
         State.isMoving = _moveDir.sqrMagnitude > 0.01f;
 
-        State.isRunning = false;
-        // 달리기
-        if (Input.GetKey(KeySetting.key[KeyAction.JUMP]))
-        {
-            Jump();
-        }
-
-        // 달리기
-        if (Input.GetKey(KeySetting.key[KeyAction.RUN]))
-        {
-            Run();
-        }
-
-        // 앉기
-        if (Input.GetKeyDown(KeySetting.key[KeyAction.SIT]))
-        {
-            Sit();
-        }
-
-
         if (!State.isMoving)
         {
             Value.worldMoveDir = Vector3.zero;
@@ -75,10 +74,18 @@ public class CharController_Motor : PlayerData
 
     void CalMove()
     {
-        Value.horizontalVelocity = Value.worldMoveDir
-            * (State.isMoving ? Movement.speed : 0)
-            * (State.isRunning ? Movement.runningCoef : 1)
-            * (State.isSitting ? Movement.sittingCoef : 1);
+        if(State.isForwardBlocked && !State.isGrounded || State.isJumping && State.isGrounded)
+        {
+            Value.horizontalVelocity = Vector3.zero;
+            _moveDir = Vector3.zero;
+        }
+        else
+        {
+            Value.horizontalVelocity = Value.worldMoveDir
+                * (!State.isMoving ? 0 : Movement.speed
+                    * (State.isRunning ? Movement.runningCoef : 1)
+                    * (State.isSitting ? Movement.sittingCoef : 1));
+        }
 
         if (State.isGrounded || Value.groundDistance < Check.groundCheckDistance && !State.isJumping)
         {
@@ -146,8 +153,8 @@ public class CharController_Motor : PlayerData
             -transform.up,
             out var hit,
             Check.groundCheckDistance,
-            Check.groundLayerMask);
-        _gzGroundTouch = hit.point;
+            Check.groundLayerMask,
+            QueryTriggerInteraction.Ignore);
 
         State.isGrounded = false;
 
@@ -166,12 +173,41 @@ public class CharController_Motor : PlayerData
 
             State.isGrounded =
                 (Value.groundDistance <= 0.0001f) && !State.isOnSteepSlope;
+
+            _gzGroundTouch = hit.point;
         }
 
         // 월드 이동벡터 회전축
         Value.groundCross = Vector3.Cross(Value.groundNormal, Vector3.up);
     }
+
+    void CheckForward()
+    {
+        bool cast = Physics.CapsuleCast(
+            CapsuleBottomCenterPoint,
+            CapsuleTopCenterPoint,
+            _castRadius,
+            transform.forward,
+            out var hit,
+            Check.forwardCheckDistance,
+            -1,
+            QueryTriggerInteraction.Ignore);
+
+        State.isForwardBlocked = false;
+        if (cast)
+        {
+            float forwardObstacleAngle = Vector3.Angle(hit.normal, Vector3.up);
+            State.isForwardBlocked = forwardObstacleAngle >= Movement.maxSlopeAngle;
+
+            _gzForwardTouch = hit.point;
+        }
+
+        Debug.Log(State.isForwardBlocked);
+    }
+
+
     private Vector3 _gzGroundTouch;
+    private Vector3 _gzForwardTouch;
 
     void OnDrawGizmos()
     {
@@ -180,10 +216,20 @@ public class CharController_Motor : PlayerData
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(_gzGroundTouch, _gizmoRadius);
 
+        if (State.isForwardBlocked)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(_gzForwardTouch, _gizmoRadius);
+        }
+
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(CapsuleBottomCenterPoint, -transform.up * Check.groundCheckDistance);
 
+        Gizmos.color = Color.black;
+        Gizmos.DrawRay(CapsuleTopCenterPoint, transform.forward * Check.forwardCheckDistance);
+
         Gizmos.color = new Color(0.5f, 1.0f, 0.8f, 0.8f);
+        Gizmos.DrawWireSphere(CapsuleTopCenterPoint, _castRadius);
         Gizmos.DrawWireSphere(CapsuleBottomCenterPoint, _castRadius);
     }
 }
