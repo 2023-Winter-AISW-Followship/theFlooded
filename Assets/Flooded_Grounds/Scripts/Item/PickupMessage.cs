@@ -20,7 +20,8 @@ public class PickupMessage : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-        transform.parent.rotation = cam.transform.rotation;
+        transform.parent.LookAt(cam.transform);
+        transform.parent.Rotate(0, 180, 0);
         isDetected = false;
     }
 
