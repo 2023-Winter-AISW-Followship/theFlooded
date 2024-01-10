@@ -25,7 +25,7 @@ public class PlayerData : MonoBehaviour
         public float forwardCheckDistance = 1.7f;
 
         [Range(0.1f, 10.0f), Tooltip("지면 감지 거리")]
-        public float groundCheckDistance = 2.0f;
+        public float groundCheckDistance = 3.5f;
 
         [Range(0.0f, 0.1f), Tooltip("지면 인식 허용 거리")]
         public float groundCheckThreshold = 0.01f;

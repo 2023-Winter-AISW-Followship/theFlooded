@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CharController_Motor : PlayerData
 {
+    const float waterHeight = 9.5f;
+
     void Start()
     {
         //이동
@@ -173,8 +175,19 @@ public class CharController_Motor : PlayerData
 
             State.isGrounded =
                 (Value.groundDistance <= 0.0001f) && !State.isOnSteepSlope;
-
+            
             _gzGroundTouch = hit.point;
+        }
+        else
+        {
+            //Value.horizontalVelocity = Vector3.zero;
+            Debug.Log("바운더리");
+        }
+        State.isWater = transform.position.y <= waterHeight;
+        if (State.isWater)
+        {
+            transform.position = new Vector3(transform.position.x, waterHeight, transform.position.z);
+            State.isGrounded = true;
         }
 
         // 월드 이동벡터 회전축
