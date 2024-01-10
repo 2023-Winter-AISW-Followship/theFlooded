@@ -51,6 +51,8 @@ public class PlayerData : MonoBehaviour
         [Range(1f, 70f), Tooltip("등반 가능한 경사각")]
         public float maxSlopeAngle = 45f;
 
+        [Range(0f, 2f), Tooltip("앉을 때 yPos 감소")]
+        public float sittingPos = 0.5f;
 
         [Range(-9.81f, 0f), Tooltip("중력")]
         public float gravity = -9.81f;

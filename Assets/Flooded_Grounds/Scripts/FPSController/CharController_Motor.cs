@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UniRx;
 using UniRx.Triggers;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharController_Motor : PlayerData
 {
     const float waterHeight = 9.5f;
-
+   
     void Start()
     {
         //이동
@@ -109,6 +110,7 @@ public class CharController_Motor : PlayerData
                     Quaternion.AngleAxis(-Value.groundSlopeAngle, Value.groundCross) * Value.horizontalVelocity;
             }
         }
+
     }
 
     void Jump()
@@ -120,6 +122,19 @@ public class CharController_Motor : PlayerData
     void Sit()
     {
         State.isSitting = !State.isSitting;
+
+        if (State.isSitting)
+        {
+            Vector3 sitDownPos = Camera.main.transform.position;
+            sitDownPos.y -= Movement.sittingPos;
+            Camera.main.transform.position = sitDownPos;
+        }
+        else if (!State.isSitting)
+        {
+            Vector3 standUpPos = Camera.main.transform.position;
+            standUpPos.y += Movement.sittingPos;
+            Camera.main.transform.position = standUpPos;
+        }
     }
 
     void Run()
