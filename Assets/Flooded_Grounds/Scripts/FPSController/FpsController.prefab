@@ -308,9 +308,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 553001025359180909, guid: d2bcdd9d90f6fd2489300a9ba3008eb7, type: 3}
       propertyPath: m_Name
-      value: HandsNormal
+      value: Hands
       objectReference: {fileID: 0}
     - target: {fileID: 1234799666451274056, guid: d2bcdd9d90f6fd2489300a9ba3008eb7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078436735483919929, guid: d2bcdd9d90f6fd2489300a9ba3008eb7, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
