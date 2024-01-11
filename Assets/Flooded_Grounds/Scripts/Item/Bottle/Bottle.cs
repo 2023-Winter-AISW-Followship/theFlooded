@@ -23,8 +23,8 @@ public class Bottle : MonoBehaviour, ItemState
 
     private void Start()
     {
-        DefaultArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithNone").gameObject;
-        ItemArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithBottle").gameObject;
+        DefaultArm = Camera.main.transform.Find("Hands/hand_right/HandWithNone").gameObject;
+        ItemArm = Camera.main.transform.Find("Hands/hand_right/HandWithBottle").gameObject;
 
         this.UpdateAsObservable()
             .Where(_ => picked

@@ -26,8 +26,8 @@ public class Radio : MonoBehaviour, ItemState
 
     void Start()
     {
-        DefaultArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithNone").gameObject;
-        ItemArm = Camera.main.transform.Find("HandsNormal/hand_right/HandWithBottle").gameObject;
+        DefaultArm = Camera.main.transform.Find("Hands/hand_right/HandWithNone").gameObject;
+        ItemArm = Camera.main.transform.Find("Hands/hand_right/HandWithRadio").gameObject;
 
         point = GameObject.Find("EventSystem").transform.GetChild(0).gameObject;
 

@@ -26,6 +26,11 @@ public class CharController_Motor : PlayerData
             .Where(_ => !Pause.GameIsPaused 
                 && State.isGrounded)
             .Subscribe(_ => InputKey());
+
+        this.OnCollisionEnterAsObservable()
+            .Select(x => x.gameObject)
+            .Where(x => x.CompareTag("enemy"))
+            .Subscribe(_ => Debug.Log("game over"));
     }
 
     void InputKey()

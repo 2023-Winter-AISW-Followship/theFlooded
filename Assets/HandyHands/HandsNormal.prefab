@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandWithNone
       objectReference: {fileID: 0}
+    - target: {fileID: 7882579784348464454, guid: 1a470b73a9afb884daacef7a1a6fee09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7882579784348494182, guid: 1a470b73a9afb884daacef7a1a6fee09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -205,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7882579784348464454, guid: 409b66eee9f062843a884ed27e3cb328, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7882579784348494182, guid: 409b66eee9f062843a884ed27e3cb328, type: 3}
       propertyPath: m_LocalPosition.x
