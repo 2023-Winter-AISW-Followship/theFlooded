@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.09411766, g: 0.08297215, b: 0.068111464, a: 0.6}
   m_AmbientIntensity: 0
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.32726946, g: 0.38950536, b: 0.5471698, a: 1}
+  m_SubtractiveShadowColor: {r: 0.24846919, g: 0.30318552, b: 0.4433962, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 2869c66e822baa941bb52b0e6ec3dfdf, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000002, guid: b2096a5c2235a0a48a9af9a3a42f4b87, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: b2096a5c2235a0a48a9af9a3a42f4b87, type: 2}
   m_LightingSettings: {fileID: 1412588154}
 --- !u!196 &5
 NavMeshSettings:
@@ -4244,7 +4244,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 3e-45, z: 5.4066e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5674,6 +5674,26 @@ PrefabInstance:
     - target: {fileID: 5144755251539965607, guid: 5e1f1e4eda7b3f84a95afae22bd7c87e, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302899041567830742, guid: 5e1f1e4eda7b3f84a95afae22bd7c87e, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 3.083e-42
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302899042612005655, guid: 5e1f1e4eda7b3f84a95afae22bd7c87e, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 2.196506e-37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302899042612005655, guid: 5e1f1e4eda7b3f84a95afae22bd7c87e, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 5.44e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302899042612005655, guid: 5e1f1e4eda7b3f84a95afae22bd7c87e, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.6008288e-38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302899042612005655, guid: 5e1f1e4eda7b3f84a95afae22bd7c87e, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 5.44e-43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8469,6 +8489,38 @@ PrefabInstance:
     - target: {fileID: 4311902011690804868, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 18.967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Range
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Color.b
+      value: 0.80566037
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9345904
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509295659102671631, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5628385309245031113, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
       propertyPath: m_LocalRotation.w
