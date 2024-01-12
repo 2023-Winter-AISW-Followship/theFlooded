@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UniRx.Triggers;
 using Unity.Linq;
@@ -13,6 +14,8 @@ public class Bottle : MonoBehaviour, ItemState
     public bool picked { get; set; }
     public GameObject ItemArm {  get; set; }
     public GameObject DefaultArm { get; set; }
+    
+    GameObject temp;
 
     public void ChangeArm()
     {
@@ -25,6 +28,7 @@ public class Bottle : MonoBehaviour, ItemState
     {
         DefaultArm = Camera.main.transform.Find("Hands/hand_right/HandWithNone").gameObject;
         ItemArm = Camera.main.transform.Find("Hands/hand_right/HandWithBottle").gameObject;
+        temp = Camera.main.gameObject.Descendants().Where(x => x.name.Equals("Bottle")).FirstOrDefault().gameObject;
 
         this.UpdateAsObservable()
             .Where(_ => picked
@@ -41,8 +45,10 @@ public class Bottle : MonoBehaviour, ItemState
 
     void Throw()
     {
+        transform.position = temp.transform.position;
+        transform.rotation = Camera.main.transform.rotation;
         GetComponent<Rigidbody>().useGravity = true;
-        Vector3 speed = new Vector3(0, 1000f, 8000f);
+        Vector3 speed = -Vector3.forward * 8000f;
         GetComponent<Rigidbody>().AddRelativeForce(speed);
         GetComponent<Collider>().enabled = true;
         transform.parent = null;
