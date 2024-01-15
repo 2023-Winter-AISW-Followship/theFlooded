@@ -48,8 +48,8 @@ public class Bottle : MonoBehaviour, ItemState
         transform.position = temp.transform.position;
         transform.rotation = Camera.main.transform.rotation;
         GetComponent<Rigidbody>().useGravity = true;
-        Vector3 speed = -Vector3.forward * 8000f;
-        GetComponent<Rigidbody>().AddRelativeForce(speed);
+        Vector3 speed = Vector3.forward * 15000f + Vector3.up * 10000f;
+        GetComponent<Rigidbody>().AddForce(Camera.main.transform.TransformDirection(speed));
         GetComponent<Collider>().enabled = true;
         transform.parent = null;
         playerThrow = true;

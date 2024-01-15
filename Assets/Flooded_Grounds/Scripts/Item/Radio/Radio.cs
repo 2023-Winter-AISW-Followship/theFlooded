@@ -64,8 +64,8 @@ public class Radio : MonoBehaviour, ItemState
     void Setup()
     {
         picked = false;
-        transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         transform.parent = null;
+        transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         transform.SetPositionAndRotation(hit.point, point.transform.rotation);
         GetComponent<AudioSource>().Play();
         GetComponent<Rigidbody>().useGravity = true;

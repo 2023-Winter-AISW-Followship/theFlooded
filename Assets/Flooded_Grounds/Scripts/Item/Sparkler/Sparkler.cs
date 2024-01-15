@@ -16,6 +16,9 @@ public class Sparkler : MonoBehaviour, ItemState
     public GameObject ItemArm { get; set; }
     public GameObject DefaultArm { get; set; }
 
+    [SerializeField]
+    private ParticleSystem[] particles;
+
     public void ChangeArm()
     {
         ItemArm.SetActive(picked);
@@ -30,6 +33,11 @@ public class Sparkler : MonoBehaviour, ItemState
         ItemArm = Camera.main.transform.Find("Hands/hand_right/HandWithSparkler").gameObject;
 
         point = GameObject.Find("EventSystem").transform.GetChild(1).gameObject;
+
+        for (int i = 0; i < particles.Length; i++)
+        {
+            particles[i].Stop();
+        }
 
         this.UpdateAsObservable()
             .Where(_ => picked)
@@ -51,7 +59,7 @@ public class Sparkler : MonoBehaviour, ItemState
         {
             if (hit.collider.gameObject.layer == 3)
             {
-                point.transform.position = hit.point + Vector3.up * 0.5f;
+                point.transform.position = hit.point + Vector3.up * 0.2f;
                 point.SetActive(true);
                 isGround = true;
                 return;
@@ -64,9 +72,13 @@ public class Sparkler : MonoBehaviour, ItemState
     void Setup()
     {
         picked = false;
-        transform.localScale = new Vector3(0.016f, 0.13f, 0.016f);
         transform.parent = null;
-        transform.SetPositionAndRotation(hit.point + Vector3.up * 0.5f, point.transform.rotation);
+        transform.localScale = new Vector3(0.02f, 0.2f, 0.02f);
+        transform.SetPositionAndRotation(hit.point + Vector3.up * 0.2f, point.transform.rotation);
+        for (int i = 0; i < particles.Length; i++)
+        {
+            particles[i].Play();
+        }
         GetComponent<AudioSource>().Play();
         GetComponent<Collider>().enabled = true;
     }
