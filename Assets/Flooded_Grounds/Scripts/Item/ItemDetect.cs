@@ -45,7 +45,6 @@ public class ItemDetect : MonoBehaviour
         GameObject temp = hit.collider.gameObject.transform.GetChild(0).gameObject;
         temp.transform.parent = Camera.main.transform;
         temp.transform.position = new Vector3(0, -100, 0);
-        temp.GetComponent<Rigidbody>().useGravity = false;
         temp.GetComponent<Collider>().enabled = false;
         temp.GetComponent<ItemState>().picked = true;
     }

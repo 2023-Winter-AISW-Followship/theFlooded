@@ -51,7 +51,7 @@ public class Sparkler : MonoBehaviour, ItemState
         {
             if (hit.collider.gameObject.layer == 3)
             {
-                point.transform.position = hit.point;
+                point.transform.position = hit.point + Vector3.up * 0.5f;
                 point.SetActive(true);
                 isGround = true;
                 return;
@@ -64,11 +64,10 @@ public class Sparkler : MonoBehaviour, ItemState
     void Setup()
     {
         picked = false;
-        transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+        transform.localScale = new Vector3(0.016f, 0.13f, 0.016f);
         transform.parent = null;
-        transform.SetPositionAndRotation(hit.point, point.transform.rotation);
+        transform.SetPositionAndRotation(hit.point + Vector3.up * 0.5f, point.transform.rotation);
         GetComponent<AudioSource>().Play();
-        GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Collider>().enabled = true;
     }
 }
