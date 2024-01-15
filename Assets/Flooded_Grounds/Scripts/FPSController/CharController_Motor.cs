@@ -7,9 +7,12 @@ using UnityEngine;
 public class CharController_Motor : PlayerData
 {
     const float waterHeight = 9.5f;
+    CharacterController controller;
    
     void Start()
     {
+        controller = GetComponent<CharacterController>();
+
         //이동
         Observable.EveryUpdate()
             .Where(_ => !Pause.GameIsPaused)
@@ -159,7 +162,7 @@ public class CharController_Motor : PlayerData
             Value.gravity += Time.deltaTime * Movement.gravity;
         }
 
-        Com.rBody.velocity = Value.horizontalVelocity + Vector3.up * Value.gravity;
+        controller.Move((Value.horizontalVelocity + Vector3.up * Value.gravity) * Time.deltaTime);
     }
 
     void CheckGround()
@@ -194,7 +197,7 @@ public class CharController_Motor : PlayerData
             Value.groundDistance = Mathf.Max(hit.distance - _capsuleRadiusDiff - Check.groundCheckThreshold, 0f);
 
             State.isGrounded =
-                (Value.groundDistance <= 0.0001f) && !State.isOnSteepSlope;
+                (Value.groundDistance <= 0.1f) && !State.isOnSteepSlope;
             
             _gzGroundTouch = hit.point;
         }
@@ -234,8 +237,6 @@ public class CharController_Motor : PlayerData
 
             _gzForwardTouch = hit.point;
         }
-
-        Debug.Log(State.isForwardBlocked);
     }
 
 

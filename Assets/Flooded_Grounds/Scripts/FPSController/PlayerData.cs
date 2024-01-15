@@ -10,7 +10,6 @@ public class PlayerData : MonoBehaviour
         public Transform cam;
 
         public CapsuleCollider capsule;
-        public Rigidbody rBody;
         public Animator anim;
 
         public AudioClip walkSound;
@@ -119,7 +118,6 @@ public class PlayerData : MonoBehaviour
             data._value = new CurrentValue();
 
             data._component.capsule = gameObject.GetComponent<CapsuleCollider>();
-            data._component.rBody = gameObject.GetComponent<Rigidbody>();
             data._component.cam = Camera.main.gameObject.transform;
             data._component.root = transform;
 
