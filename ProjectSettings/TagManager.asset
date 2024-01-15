@@ -7,8 +7,10 @@ TagManager:
   - enemy
   - Bottle
   - Radio
-  - radio
+  - FxTemporaire
+  - Sparkler
   - bottle
+  - radio
   layers:
   - Default
   - TransparentFX
