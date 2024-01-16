@@ -66,9 +66,9 @@ public class Radio : MonoBehaviour, ItemState
         picked = false;
         transform.parent = null;
         transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-        transform.SetPositionAndRotation(hit.point, point.transform.rotation);
+        transform.SetPositionAndRotation(hit.point , point.transform.rotation); ;
         GetComponent<AudioSource>().Play();
-        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Collider>().enabled = true;
     }
 }
