@@ -164,7 +164,6 @@ public class CharController_Motor : PlayerData
             Value.gravity += Time.deltaTime * Movement.gravity;
         }
 
-        AudioSource.PlayClipAtPoint(footstep, transform.position);
         controller.Move((Value.horizontalVelocity + Vector3.up * Value.gravity) * Time.deltaTime);
     }
 
