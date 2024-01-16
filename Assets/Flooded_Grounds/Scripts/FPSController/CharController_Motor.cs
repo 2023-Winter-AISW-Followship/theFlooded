@@ -8,12 +8,14 @@ public class CharController_Motor : PlayerData
 {
     const float waterHeight = 9.5f;
     CharacterController controller;
+    AudioSource sound;
 
-    public AudioClip footstep;
+    public AudioClip[] footsteps;
    
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        sound = GetComponent<AudioSource>();
 
         //이동
         Observable.EveryUpdate()
@@ -25,6 +27,8 @@ public class CharController_Motor : PlayerData
                 Move();
             })
             .AddTo(gameObject);
+
+        StartCoroutine(Step());
 
         // 키보드 입력
         this.UpdateAsObservable()
@@ -152,6 +156,9 @@ public class CharController_Motor : PlayerData
         State.isRunning = true;
     }
 
+    float nextStep;
+    int stepRate = 5;
+
     void Move()
     {
         if (State.isGrounded)
@@ -163,8 +170,25 @@ public class CharController_Motor : PlayerData
         {
             Value.gravity += Time.deltaTime * Movement.gravity;
         }
-
+        
         controller.Move((Value.horizontalVelocity + Vector3.up * Value.gravity) * Time.deltaTime);
+    }
+
+    IEnumerator Step()
+    {
+        int i = 0;
+        while(true){
+            if (State.isMoving && State.isGrounded)
+            {
+                sound.clip = footsteps[i];
+                sound.Play();
+                sound.volume = 0.05f + Value.horizontalVelocity.magnitude / 20f;
+
+                yield return new WaitForSeconds(Mathf.Lerp(1f, 0.25f, sound.volume));
+                i = (i + 1) % footsteps.Length;
+            }
+            yield return null;
+        }
     }
 
     void CheckGround()
