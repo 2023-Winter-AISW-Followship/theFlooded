@@ -36,7 +36,7 @@ public class Sparkler : MonoBehaviour, ItemState
 
         for (int i = 0; i < particles.Length; i++)
         {
-            particles[i].Stop();
+            particles[i].Pause();
         }
 
         this.UpdateAsObservable()
@@ -71,6 +71,7 @@ public class Sparkler : MonoBehaviour, ItemState
 
     void Setup()
     {
+        point.SetActive(false);
         picked = false;
         transform.parent = null;
         transform.localScale = new Vector3(0.02f, 0.2f, 0.02f);

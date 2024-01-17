@@ -58,6 +58,8 @@ public class Bottle : MonoBehaviour, ItemState
 
     void Explode()
     {
+        AudioSource.PlayClipAtPoint(Sound.BottleExplosion, transform.position);
+        
         GameObject brokenBottle = Instantiate(brokenBottlePrefab, transform.position, Quaternion.identity);
         brokenBottle.GetComponent<BrokenBottle>().RandomVelocities();
         Destroy(gameObject);

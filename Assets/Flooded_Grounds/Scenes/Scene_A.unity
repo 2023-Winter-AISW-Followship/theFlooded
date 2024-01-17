@@ -1383,6 +1383,7 @@ GameObject:
   - component: {fileID: 487206573}
   - component: {fileID: 487206579}
   - component: {fileID: 487206580}
+  - component: {fileID: 487206581}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1486,6 +1487,19 @@ MonoBehaviour:
   _capsuleRadiusDiff: 0
   moveFB: 0
   moveLR: 0
+--- !u!114 &487206581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487206572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e93512abdf0f114eacf2169a99e762f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottleExplosion: {fileID: 8300000, guid: 36a8b7193377acf44a5c6ba0dbae1779, type: 3}
 --- !u!1001 &499645561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1538,10 +1552,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sparkler
       objectReference: {fileID: 0}
+    - target: {fileID: 8529893574011895896, guid: 9b7de0d70dc01284abbc2e34a19640ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7392081722828725419, guid: 9b7de0d70dc01284abbc2e34a19640ab, type: 3}
     - {fileID: 1932126127801817093, guid: 9b7de0d70dc01284abbc2e34a19640ab, type: 3}
-    m_RemovedGameObjects: []
+    - {fileID: 8182482823056373941, guid: 9b7de0d70dc01284abbc2e34a19640ab, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8501177134795457161, guid: 9b7de0d70dc01284abbc2e34a19640ab, type: 3}
+    - {fileID: 6348805024172089630, guid: 9b7de0d70dc01284abbc2e34a19640ab, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b7de0d70dc01284abbc2e34a19640ab, type: 3}
