@@ -16,7 +16,6 @@ public class CharController_Moter : MonoBehaviour
 
     public Camera playerCamera;
 
-    public float fov = 60f;
     public bool cameraCanMove = true;
     public float mouseSensitivity = 2f;
     public float maxLookAngle = 50f;
@@ -41,8 +40,8 @@ public class CharController_Moter : MonoBehaviour
 
     public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 7f;
-    public float sprintDuration = 5f;
-    public float sprintCooldown = 1.5f;
+    public float sprintDuration = 20f;
+    public float sprintCooldown = 50f;
 
     public bool hideBarWhenFull = true;
     public Image sprintBarBG;
@@ -69,10 +68,10 @@ public class CharController_Moter : MonoBehaviour
 
     #endregion
 
-    #region Crouch
+    #region Sit
 
-    public KeyCode crouchKey = KeyCode.LeftControl;
-    public float crouchHeight = .75f;
+    public KeyCode sitKey = KeyCode.LeftControl;
+    public float sitHeight = .75f;
     public float speedReduction = .5f;
 
     private bool isSitting = false;
@@ -99,7 +98,6 @@ public class CharController_Moter : MonoBehaviour
 
         crosshairObject = GetComponentInChildren<Image>();
 
-        playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
         sprintRemaining = sprintDuration;
@@ -197,9 +195,9 @@ public class CharController_Moter : MonoBehaviour
 
         #endregion
 
-        #region Crouch
+        #region Sit
 
-        if (Input.GetKeyDown(crouchKey))
+        if (Input.GetKeyDown(sitKey))
         {
             Sit();
         }
@@ -416,7 +414,6 @@ public class CharController_MoterEditor : Editor
 
         GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
 
-        fpc.sprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.sprintKey);
         fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
 
         fpc.sprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint"), fpc.sprintDuration, 1f, 20f);
@@ -453,19 +450,17 @@ public class CharController_MoterEditor : Editor
 
         GUILayout.Label("Jump", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
 
-        fpc.jumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), fpc.jumpKey);
         fpc.jumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.jumpPower, .1f, 20f);
 
         EditorGUILayout.Space();
 
         #endregion
 
-        #region Crouch
+        #region Sit
 
-        GUILayout.Label("Crouch", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        GUILayout.Label("Sit", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
 
-        fpc.crouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.crouchKey);
-        fpc.crouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.crouchHeight, .1f, 1);
+        fpc.sitHeight = EditorGUILayout.Slider(new GUIContent("Sit Height", "Determines the y scale of the player object when sitted."), fpc.sitHeight, .1f, 1);
         fpc.speedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.speedReduction, .1f, 1);
 
         #endregion
