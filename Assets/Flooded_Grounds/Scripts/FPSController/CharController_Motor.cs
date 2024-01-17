@@ -1,295 +1,503 @@
 ﻿using System.Collections;
-using UniRx;
-using UniRx.Triggers;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CharController_Motor : PlayerData
+#if UNITY_EDITOR
+using UnityEditor;
+using System.Net;
+#endif
+
+public class CharController_Moter : MonoBehaviour
 {
-    const float waterHeight = 9.5f;
-    CharacterController controller;
-    AudioSource sound;
+    private Rigidbody rb;
 
-    public AudioClip[] footsteps;
-   
-    void Start()
+    #region Camera Movement Variables
+
+    public Camera playerCamera;
+
+    public float fov = 60f;
+    public bool cameraCanMove = true;
+    public float mouseSensitivity = 2f;
+    public float maxLookAngle = 50f;
+
+    public Sprite crosshairImage;
+    public Color crosshairColor = Color.white;
+
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
+    private Image crosshairObject;
+    #endregion
+
+    #region Movement Variables
+
+    public bool playerCanMove = true;
+    public float walkSpeed = 5f;
+    public float maxVelocityChange = 10f;
+
+    private bool isWalking = false;
+
+    #region Sprint
+
+    public KeyCode sprintKey = KeyCode.LeftShift;
+    public float sprintSpeed = 7f;
+    public float sprintDuration = 5f;
+    public float sprintCooldown = 1.5f;
+
+    public bool hideBarWhenFull = true;
+    public Image sprintBarBG;
+    public Image sprintBar;
+    public float sprintBarWidthPercent = .3f;
+    public float sprintBarHeightPercent = .015f;
+
+    private CanvasGroup sprintBarCG;
+    private bool isSprinting = false;
+    private float sprintRemaining;
+    private float sprintBarWidth;
+    private float sprintBarHeight;
+    private bool isSprintCooldown = false;
+    private float sprintCooldownReset;
+
+    #endregion
+
+    #region Jump
+
+    public KeyCode jumpKey = KeyCode.Space;
+    public float jumpPower = 5f;
+
+    private bool isGrounded = false;
+
+    #endregion
+
+    #region Crouch
+
+    public KeyCode crouchKey = KeyCode.LeftControl;
+    public float crouchHeight = .75f;
+    public float speedReduction = .5f;
+
+    private bool isSitting = false;
+    private Vector3 originalScale;
+
+    #endregion
+    #endregion
+
+    #region Head Bob
+
+    public bool enableHeadBob = true;
+    public Transform joint;
+    public float bobSpeed = 10f;
+    public Vector3 bobAmount = new Vector3(.15f, .05f, 0f);
+
+    private Vector3 jointOriginalPos;
+    private float timer = 0;
+
+    #endregion
+
+    private void Awake()
     {
-        controller = GetComponent<CharacterController>();
-        sound = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
 
-        //이동
-        Observable.EveryUpdate()
-            .Where(_ => !Pause.GameIsPaused)
-            .Subscribe(_ =>
-            {
-                CheckGround();
-                CheckForward();
-                Move();
-            })
-            .AddTo(gameObject);
+        crosshairObject = GetComponentInChildren<Image>();
 
-        StartCoroutine(Step());
-
-        // 키보드 입력
-        this.UpdateAsObservable()
-            .Where(_ => !Pause.GameIsPaused 
-                && State.isGrounded)
-            .Subscribe(_ => InputKey());
-
-        this.OnCollisionEnterAsObservable()
-            .Select(x => x.gameObject)
-            .Where(x => x.CompareTag("enemy"))
-            .Subscribe(_ => Debug.Log("game over"));
+        playerCamera.fieldOfView = fov;
+        originalScale = transform.localScale;
+        jointOriginalPos = joint.localPosition;
+        sprintRemaining = sprintDuration;
+        sprintCooldownReset = sprintCooldown;
     }
 
-    void InputKey()
+    void Start()
     {
-        moveFB = 0f;
-        moveLR = 0f;
+        crosshairObject.sprite = crosshairImage;
+        crosshairObject.color = crosshairColor;
 
-        // 점프
-        if (Input.GetKey(KeySetting.key[KeyAction.JUMP]))
+        #region Sprint Bar
+
+        sprintBarCG = GetComponentInChildren<CanvasGroup>();
+
+        sprintBarBG.gameObject.SetActive(true);
+        sprintBar.gameObject.SetActive(true);
+
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        sprintBarWidth = screenWidth * sprintBarWidthPercent;
+        sprintBarHeight = screenHeight * sprintBarHeightPercent;
+
+        sprintBarBG.rectTransform.sizeDelta = new Vector3(sprintBarWidth, sprintBarHeight, 0f);
+        sprintBar.rectTransform.sizeDelta = new Vector3(sprintBarWidth - 2, sprintBarHeight - 2, 0f);
+
+        if (hideBarWhenFull)
+        {
+            sprintBarCG.alpha = 0;
+        }
+
+        #endregion
+    }
+
+    private void Update()
+    {
+        cameraCanMove = !Pause.GameIsPaused;
+        playerCanMove = !Pause.GameIsPaused;
+
+        #region Camera
+
+        if (cameraCanMove)
+        {
+            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
+            pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+
+            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+
+            transform.localEulerAngles = new Vector3(0, yaw, 0);
+            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+        }
+        #endregion
+
+        #region Sprint
+
+        if (isSprinting)
+        {
+            sprintRemaining -= 1 * Time.deltaTime;
+            if (sprintRemaining <= 0)
+            {
+                isSprinting = false;
+                isSprintCooldown = true;
+            }
+        }
+        else
+        {
+            sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
+        }
+
+        if (isSprintCooldown)
+        {
+            sprintCooldown -= 1 * Time.deltaTime;
+            if (sprintCooldown <= 0)
+            {
+                isSprintCooldown = false;
+            }
+        }
+        else
+        {
+            sprintCooldown = sprintCooldownReset;
+        }
+
+        float sprintRemainingPercent = sprintRemaining / sprintDuration;
+        sprintBar.transform.localScale = new Vector3(sprintRemainingPercent, 1f, 1f);
+
+        #endregion
+
+        #region Jump
+
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             Jump();
         }
 
-        State.isRunning = false;
-        // 달리기
-        if (Input.GetKey(KeySetting.key[KeyAction.RUN]))
-        {
-            Run();
-        }
+        #endregion
 
-        // 앉기
-        if (Input.GetKeyDown(KeySetting.key[KeyAction.SIT]))
+        #region Crouch
+
+        if (Input.GetKeyDown(crouchKey))
         {
             Sit();
         }
 
-        // left, right
-        if (Input.GetKey(KeySetting.key[KeyAction.LEFT])) moveLR -= 1f;
-        if (Input.GetKey(KeySetting.key[KeyAction.RIGHT])) moveLR += 1f;
+        #endregion
 
-        // front, back
-        if (Input.GetKey(KeySetting.key[KeyAction.UP])) moveFB += 1f;
-        if (Input.GetKey(KeySetting.key[KeyAction.DOWN])) moveFB -= 1f;
+        CheckGround();
 
-        moveDestination = new Vector3(moveLR, 0, moveFB).normalized;
-        _moveDir = Vector3.Lerp(_moveDir, moveDestination, 4f * Time.deltaTime);
-        Value.worldMoveDir = Com.root.TransformDirection(_moveDir);
-
-        State.isMoving = _moveDir.sqrMagnitude > 0.01f;
-
-        if (!State.isMoving)
+        if (enableHeadBob)
         {
-            Value.worldMoveDir = Vector3.zero;
-            State.isRunning = false;
+            HeadBob();
         }
-
-        CalMove();
     }
 
-    void CalMove()
+    void FixedUpdate()
     {
-        if(State.isForwardBlocked && !State.isGrounded || State.isJumping && State.isGrounded)
-        {
-            Value.horizontalVelocity = Vector3.zero;
-            _moveDir = Vector3.zero;
-        }
-        else
-        {
-            Value.horizontalVelocity = Value.worldMoveDir
-                * (!State.isMoving ? 0 : Movement.speed
-                    * (State.isRunning ? Movement.runningCoef : 1)
-                    * (State.isSitting ? Movement.sittingCoef : 1));
-        }
+        #region Movement
 
-        if (State.isGrounded || Value.groundDistance < Check.groundCheckDistance && !State.isJumping)
+        if (playerCanMove)
         {
-            if (State.isMoving && !State.isForwardBlocked)
+            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+            if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
-                // 경사로 인한 가속/감속
-                if (Movement.slopeAccel > 0f)
-                {
-                    bool isPlus = Value.forwardSlopeAngle >= 0f;
-                    float absFsAngle = isPlus ? Value.forwardSlopeAngle : -Value.forwardSlopeAngle;
-                    float accel = Movement.slopeAccel * absFsAngle * 0.01111f + 1f;
-                    Value.slopeAccel = !isPlus ? accel : 1.0f / accel;
+                isWalking = true;
+            }
+            else
+            {
+                isWalking = false;
+            }
 
-                    Value.horizontalVelocity *= Value.slopeAccel;
+            if (Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
+            {
+                targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
+
+                Vector3 velocity = rb.velocity;
+                Vector3 velocityChange = (targetVelocity - velocity);
+                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+                velocityChange.y = 0;
+
+                if (velocityChange.x != 0 || velocityChange.z != 0)
+                {
+                    isSprinting = true;
+
+                    if (isSitting)
+                    {
+                        Sit();
+                    }
+
+                    if (hideBarWhenFull)
+                    {
+                        sprintBarCG.alpha += 5 * Time.deltaTime;
+                    }
                 }
 
-                // 벡터 회전 (경사로)
-                Value.horizontalVelocity =
-                    Quaternion.AngleAxis(-Value.groundSlopeAngle, Value.groundCross) * Value.horizontalVelocity;
+                rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
-        }
-
-    }
-
-    void Jump()
-    {
-        Value.gravity = Movement.jumpForce;
-        State.isJumping = true;
-    }
-
-    void Sit()
-    {
-        State.isSitting = !State.isSitting;
-
-        if (State.isSitting)
-        {
-            Vector3 sitDownPos = Camera.main.transform.position;
-            sitDownPos.y -= Movement.sittingPos;
-            Camera.main.transform.position = sitDownPos;
-        }
-        else if (!State.isSitting)
-        {
-            Vector3 standUpPos = Camera.main.transform.position;
-            standUpPos.y += Movement.sittingPos;
-            Camera.main.transform.position = standUpPos;
-        }
-    }
-
-    void Run()
-    {
-        State.isRunning = true;
-    }
-
-    float nextStep;
-    int stepRate = 5;
-
-    void Move()
-    {
-        if (State.isGrounded)
-        {
-            Value.gravity = 0f;
-            State.isJumping = false;
-        }
-        else
-        {
-            Value.gravity += Time.deltaTime * Movement.gravity;
-        }
-        
-        controller.Move((Value.horizontalVelocity + Vector3.up * Value.gravity) * Time.deltaTime);
-    }
-
-    IEnumerator Step()
-    {
-        int i = 0;
-        while(true){
-            if (State.isMoving && State.isGrounded)
+            else
             {
-                sound.clip = footsteps[i];
-                sound.Play();
-                sound.volume = 0.05f + Value.horizontalVelocity.magnitude / 20f;
+                isSprinting = false;
 
-                yield return new WaitForSeconds(Mathf.Lerp(1f, 0.25f, sound.volume));
-                i = (i + 1) % footsteps.Length;
+                if (hideBarWhenFull && sprintRemaining == sprintDuration)
+                {
+                    sprintBarCG.alpha -= 3 * Time.deltaTime;
+                }
+
+                targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
+
+                Vector3 velocity = rb.velocity;
+                Vector3 velocityChange = (targetVelocity - velocity);
+                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+                velocityChange.y = 0;
+
+                rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
-            yield return null;
         }
+
+        #endregion
     }
 
-    void CheckGround()
+    private void CheckGround()
     {
-        Value.groundDistance = float.MaxValue;
-        Value.groundNormal = Vector3.up;
-        Value.groundSlopeAngle = 0f;
-        Value.forwardSlopeAngle = 0f;
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
+        Vector3 direction = transform.TransformDirection(Vector3.down);
+        float distance = .75f;
 
-        bool cast = Physics.SphereCast(
-            CapsuleBottomCenterPoint,
-            _castRadius,
-            -transform.up,
-            out var hit,
-            Check.groundCheckDistance,
-            Check.groundLayerMask,
-            QueryTriggerInteraction.Ignore);
-
-        State.isGrounded = false;
-
-        if (cast)
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
-            // 지면 노멀벡터 초기화
-            Value.groundNormal = hit.normal;
-
-            // 현재 위치한 지면의 경사각 구하기(캐릭터 이동방향 고려)
-            Value.groundSlopeAngle = Vector3.Angle(Value.groundNormal, Vector3.up);
-            Value.forwardSlopeAngle = Vector3.Angle(Value.groundNormal, Value.worldMoveDir) - 90f;
-
-            State.isOnSteepSlope = Value.groundSlopeAngle >= Movement.maxSlopeAngle;
-
-            Value.groundDistance = Mathf.Max(hit.distance - _capsuleRadiusDiff - Check.groundCheckThreshold, 0f);
-
-            State.isGrounded =
-                (Value.groundDistance <= 0.1f) && !State.isOnSteepSlope;
-            
-            _gzGroundTouch = hit.point;
+            Debug.DrawRay(origin, direction * distance, Color.red);
+            isGrounded = true;
         }
         else
         {
-            //Value.horizontalVelocity = Vector3.zero;
-            Debug.Log("바운더리");
-        }
-        State.isWater = transform.position.y <= waterHeight;
-        if (State.isWater)
-        {
-            transform.position = new Vector3(transform.position.x, waterHeight, transform.position.z);
-            State.isGrounded = true;
-        }
-
-        // 월드 이동벡터 회전축
-        Value.groundCross = Vector3.Cross(Value.groundNormal, Vector3.up);
-    }
-
-    void CheckForward()
-    {
-        bool cast = Physics.CapsuleCast(
-            CapsuleBottomCenterPoint,
-            CapsuleTopCenterPoint,
-            _castRadius,
-            transform.forward,
-            out var hit,
-            Check.forwardCheckDistance,
-            -1,
-            QueryTriggerInteraction.Ignore);
-
-        State.isForwardBlocked = false;
-        if (cast)
-        {
-            float forwardObstacleAngle = Vector3.Angle(hit.normal, Vector3.up);
-            State.isForwardBlocked = forwardObstacleAngle >= Movement.maxSlopeAngle;
-
-            _gzForwardTouch = hit.point;
+            isGrounded = false;
         }
     }
 
-
-    private Vector3 _gzGroundTouch;
-    private Vector3 _gzForwardTouch;
-
-    void OnDrawGizmos()
+    private void Jump()
     {
-        float _gizmoRadius = 0.05f;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(_gzGroundTouch, _gizmoRadius);
-
-        if (State.isForwardBlocked)
+        if (isGrounded)
         {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(_gzForwardTouch, _gizmoRadius);
+            rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
+            isGrounded = false;
         }
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(CapsuleBottomCenterPoint, -transform.up * Check.groundCheckDistance);
+        if (isSitting)
+        {
+            Sit();
+        }
+    }
 
-        Gizmos.color = Color.black;
-        Gizmos.DrawRay(CapsuleTopCenterPoint, transform.forward * Check.forwardCheckDistance);
+    private void Sit()
+    {
+        isSitting = !isSitting;
+        if (isSitting)
+        {
+            Camera.main.transform.position -= Vector3.up * 0.5f;
+            walkSpeed *= speedReduction;
+        }
+        else
+        {
+            Camera.main.transform.position += Vector3.up * 0.5f;
+            walkSpeed /= speedReduction;
+        }
+    }
 
-        Gizmos.color = new Color(0.5f, 1.0f, 0.8f, 0.8f);
-        Gizmos.DrawWireSphere(CapsuleTopCenterPoint, _castRadius);
-        Gizmos.DrawWireSphere(CapsuleBottomCenterPoint, _castRadius);
+    private void HeadBob()
+    {
+        if (isWalking)
+        {
+            if (isSprinting)
+            {
+                timer += Time.deltaTime * (bobSpeed + sprintSpeed);
+            }
+            else if (isSitting)
+            {
+                timer += Time.deltaTime * (bobSpeed * speedReduction);
+            }
+            else
+            {
+                timer += Time.deltaTime * bobSpeed;
+            }
+            joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);
+        }
+        else
+        {
+            timer = 0;
+            joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
+        }
     }
 }
+
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(CharController_Moter)), InitializeOnLoadAttribute]
+public class CharController_MoterEditor : Editor
+{
+    CharController_Moter fpc;
+    SerializedObject SerFPC;
+
+    private void OnEnable()
+    {
+        fpc = (CharController_Moter)target;
+        SerFPC = new SerializedObject(fpc);
+    }
+
+    public override void OnInspectorGUI()
+    {
+        SerFPC.Update();
+
+        EditorGUILayout.Space();
+        GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
+        GUILayout.Label("By Jess Case", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
+        GUILayout.Label("version 1.0.1", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
+        EditorGUILayout.Space();
+
+        #region Camera Setup
+
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        fpc.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Camera attached to the controller."), fpc.playerCamera, typeof(Camera), true);
+
+        fpc.mouseSensitivity = EditorGUILayout.Slider(new GUIContent("Look Sensitivity", "Determines how sensitive the mouse movement is."), fpc.mouseSensitivity, .1f, 10f);
+        fpc.maxLookAngle = EditorGUILayout.Slider(new GUIContent("Max Look Angle", "Determines the max and min angle the player camera is able to look."), fpc.maxLookAngle, 40, 90);
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(new GUIContent("Crosshair Image", "Sprite to use as the crosshair."));
+        fpc.crosshairImage = (Sprite)EditorGUILayout.ObjectField(fpc.crosshairImage, typeof(Sprite), false);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        fpc.crosshairColor = EditorGUILayout.ColorField(new GUIContent("Crosshair Color", "Determines the color of the crosshair."), fpc.crosshairColor);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space();
+
+        #endregion
+
+        #region Movement Setup
+
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Movement Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        fpc.walkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player will move while walking."), fpc.walkSpeed, .1f, fpc.sprintSpeed);
+
+        EditorGUILayout.Space();
+
+        #region Sprint
+
+        GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+
+        fpc.sprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.sprintKey);
+        fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
+
+        fpc.sprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint"), fpc.sprintDuration, 1f, 20f);
+        fpc.sprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), fpc.sprintCooldown, .1f, fpc.sprintDuration * 3);
+
+        EditorGUILayout.BeginHorizontal();
+        fpc.hideBarWhenFull = EditorGUILayout.ToggleLeft(new GUIContent("Hide Full Bar", "Hides the sprint bar when sprint duration is full, and fades the bar in when sprinting. Disabling this will leave the bar on screen at all times when the sprint bar is enabled."), fpc.hideBarWhenFull);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(new GUIContent("Bar BG", "Object to be used as sprint bar background."));
+        fpc.sprintBarBG = (Image)EditorGUILayout.ObjectField(fpc.sprintBarBG, typeof(Image), true);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(new GUIContent("Bar", "Object to be used as sprint bar foreground."));
+        fpc.sprintBar = (Image)EditorGUILayout.ObjectField(fpc.sprintBar, typeof(Image), true);
+        EditorGUILayout.EndHorizontal();
+
+
+        EditorGUILayout.BeginHorizontal();
+        fpc.sprintBarWidthPercent = EditorGUILayout.Slider(new GUIContent("Bar Width", "Determines the width of the sprint bar."), fpc.sprintBarWidthPercent, .1f, .5f);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        fpc.sprintBarHeightPercent = EditorGUILayout.Slider(new GUIContent("Bar Height", "Determines the height of the sprint bar."), fpc.sprintBarHeightPercent, .001f, .025f);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space();
+
+        #endregion
+
+        #region Jump
+
+        GUILayout.Label("Jump", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+
+        fpc.jumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), fpc.jumpKey);
+        fpc.jumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.jumpPower, .1f, 20f);
+
+        EditorGUILayout.Space();
+
+        #endregion
+
+        #region Crouch
+
+        GUILayout.Label("Crouch", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+
+        fpc.crouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.crouchKey);
+        fpc.crouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.crouchHeight, .1f, 1);
+        fpc.speedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.speedReduction, .1f, 1);
+
+        #endregion
+
+        #endregion
+
+        #region Head Bob
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Head Bob Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        fpc.enableHeadBob = EditorGUILayout.ToggleLeft(new GUIContent("Enable Head Bob", "Determines if the camera will bob while the player is walking."), fpc.enableHeadBob);
+
+
+        GUI.enabled = fpc.enableHeadBob;
+        fpc.joint = (Transform)EditorGUILayout.ObjectField(new GUIContent("Camera Joint", "Joint object position is moved while head bob is active."), fpc.joint, typeof(Transform), true);
+        fpc.bobSpeed = EditorGUILayout.Slider(new GUIContent("Speed", "Determines how often a bob rotation is completed."), fpc.bobSpeed, 1, 20);
+        fpc.bobAmount = EditorGUILayout.Vector3Field(new GUIContent("Bob Amount", "Determines the amount the joint moves in both directions on every axes."), fpc.bobAmount);
+        GUI.enabled = true;
+
+        #endregion
+
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(fpc);
+            Undo.RecordObject(fpc, "FPC Change");
+            SerFPC.ApplyModifiedProperties();
+        }
+    }
+
+}
+
+#endif

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4459864851508666808}
@@ -151,24 +151,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4459864851310106426}
   fov: 60
-  invertCamera: 0
   cameraCanMove: 1
   mouseSensitivity: 2
   maxLookAngle: 50
-  lockCursor: 1
-  crosshair: 1
   crosshairImage: {fileID: 21300000, guid: be4ce60e2c9768c44b9b10b9c5258045, type: 3}
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
-  enableZoom: 1
-  holdToZoom: 1
-  zoomKey: 324
-  zoomFOV: 30
-  zoomStepTime: 5
   playerCanMove: 1
   walkSpeed: 5
   maxVelocityChange: 10
-  enableSprint: 1
-  unlimitedSprint: 1
   sprintKey: 304
   sprintSpeed: 7
   sprintDuration: 5
@@ -181,11 +171,8 @@ MonoBehaviour:
   sprintBar: {fileID: 4459864850888339820}
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
-  enableJump: 1
   jumpKey: 32
   jumpPower: 5
-  enableCrouch: 1
-  holdToCrouch: 1
   crouchKey: 306
   crouchHeight: 0.75
   speedReduction: 0.5
@@ -421,7 +408,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4459864851551516607}
@@ -588,7 +575,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4459864851310106429}
@@ -692,16 +679,12 @@ PrefabInstance:
       value: Hands
       objectReference: {fileID: 0}
     - target: {fileID: 6617812469502024100, guid: d2bcdd9d90f6fd2489300a9ba3008eb7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.6000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617812469502024100, guid: d2bcdd9d90f6fd2489300a9ba3008eb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6617812469502024100, guid: d2bcdd9d90f6fd2489300a9ba3008eb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7620002
+      value: 0.5080004
       objectReference: {fileID: 0}
     - target: {fileID: 6617812469502024100, guid: d2bcdd9d90f6fd2489300a9ba3008eb7, type: 3}
       propertyPath: m_LocalPosition.z
