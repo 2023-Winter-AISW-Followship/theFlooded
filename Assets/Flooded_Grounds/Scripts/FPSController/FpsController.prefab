@@ -101,7 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 8471806059688130618}
-  fov: 60
   cameraCanMove: 1
   mouseSensitivity: 2
   maxLookAngle: 50
@@ -113,7 +112,7 @@ MonoBehaviour:
   sprintKey: 304
   sprintSpeed: 7
   sprintDuration: 20
-  sprintCooldown: 50
+  sprintCooldown: 5
   hideBarWhenFull: 1
   sprintBarBG: {fileID: 198749498282263108}
   sprintBar: {fileID: 1274313540466400946}
@@ -121,8 +120,8 @@ MonoBehaviour:
   sprintBarHeightPercent: 0.015
   jumpKey: 32
   jumpPower: 5
-  crouchKey: 306
-  crouchHeight: 0.75
+  sitKey: 306
+  sitHeight: 0.75
   speedReduction: 0.5
   enableHeadBob: 1
   joint: {fileID: 8441212580233213940}

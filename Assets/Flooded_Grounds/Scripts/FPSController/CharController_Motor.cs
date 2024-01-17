@@ -41,7 +41,8 @@ public class CharController_Moter : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 7f;
     public float sprintDuration = 20f;
-    public float sprintCooldown = 50f;
+    public float sprintRegen = 50f;
+    public float sprintCooldown = 5f;
 
     public bool hideBarWhenFull = true;
     public Image sprintBarBG;
@@ -165,7 +166,7 @@ public class CharController_Moter : MonoBehaviour
         }
         else
         {
-            sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
+            sprintRemaining = Mathf.Clamp(sprintRemaining += (sprintDuration / sprintRegen) * Time.deltaTime, 0, sprintDuration);
         }
 
         if (isSprintCooldown)
@@ -417,7 +418,8 @@ public class CharController_MoterEditor : Editor
         fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
 
         fpc.sprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint"), fpc.sprintDuration, 1f, 20f);
-        fpc.sprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), fpc.sprintCooldown, .1f, fpc.sprintDuration * 3);
+        fpc.sprintRegen = EditorGUILayout.Slider(new GUIContent("Sprint Regen", "Determines how long sprint duration regen"), fpc.sprintRegen, 1f, fpc.sprintDuration * 3f);
+        fpc.sprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), fpc.sprintCooldown, .1f, fpc.sprintDuration);
 
         EditorGUILayout.BeginHorizontal();
         fpc.hideBarWhenFull = EditorGUILayout.ToggleLeft(new GUIContent("Hide Full Bar", "Hides the sprint bar when sprint duration is full, and fades the bar in when sprinting. Disabling this will leave the bar on screen at all times when the sprint bar is enabled."), fpc.hideBarWhenFull);
