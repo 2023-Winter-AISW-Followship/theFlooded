@@ -181,11 +181,6 @@ public class CharController_Moter : MonoBehaviour
 
     private void Update()
     {
-        if (!Pause.GameIsPaused)
-        {
-            targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        }
-
         #region Camera
 
         if (!Pause.GameIsPaused)
@@ -260,9 +255,13 @@ public class CharController_Moter : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         #region Movement
+
+        if (!Pause.GameIsPaused)
+        {
+            targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
@@ -304,10 +303,12 @@ public class CharController_Moter : MonoBehaviour
 
             Vector3 velocity = rb.velocity;
             Vector3 velocityChange = (targetVelocity - velocity);
+            velocityChange.x = Mathf.Clamp(velocityChange.x, -10f, 10f);
+            velocityChange.z = Mathf.Clamp(velocityChange.z, -10f, 10f);
             velocityChange.y = 0;
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
-
+        }
         #endregion
     }
 

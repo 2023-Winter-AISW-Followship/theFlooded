@@ -47,18 +47,18 @@ public class Bottle : MonoBehaviour, ItemState
     {
         transform.position = temp.transform.position;
         transform.rotation = Camera.main.transform.rotation;
-        GetComponent<Rigidbody>().useGravity = true;
-        Vector3 speed = Vector3.forward * 15000f + Vector3.up * 10000f;
-        GetComponent<Rigidbody>().AddForce(Camera.main.transform.TransformDirection(speed));
-        GetComponent<Collider>().enabled = true;
         transform.parent = null;
+        GetComponent<Rigidbody>().useGravity = true;
+        Vector3 speed = Vector3.forward * 20f + Vector3.up * 5f;
+        GetComponent<Rigidbody>().velocity = Camera.main.transform.TransformDirection(speed);
+        GetComponent<Collider>().enabled = true;
         playerThrow = true;
         picked = false;
     }
 
     void Explode()
     {
-        AudioSource.PlayClipAtPoint(Sound.BottleExplosion, transform.position);
+        Sound.BottleExplosion(transform.position);
         
         GameObject brokenBottle = Instantiate(brokenBottlePrefab, transform.position, Quaternion.identity);
         brokenBottle.GetComponent<BrokenBottle>().RandomVelocities();

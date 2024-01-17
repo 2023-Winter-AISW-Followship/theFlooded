@@ -73,14 +73,17 @@ public class Sparkler : MonoBehaviour, ItemState
     {
         point.SetActive(false);
         picked = false;
+
         transform.parent = null;
         transform.localScale = new Vector3(0.02f, 0.2f, 0.02f);
         transform.SetPositionAndRotation(hit.point + Vector3.up * 0.2f, point.transform.rotation);
+
         for (int i = 0; i < particles.Length; i++)
         {
             particles[i].Play();
         }
-        GetComponent<AudioSource>().Play();
         GetComponent<Collider>().enabled = true;
+
+        Sound.SparklerSparkle(transform.position);
     }
 }

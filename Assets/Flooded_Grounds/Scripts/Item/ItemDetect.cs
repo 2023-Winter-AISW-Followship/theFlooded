@@ -32,9 +32,9 @@ public class ItemDetect : MonoBehaviour
             if (hit.collider.gameObject.layer == 6)
             {
                 path.Clear();
-                path.Append(hit.collider.gameObject.tag);
+                path.Append(hit.collider.tag);
                 path.Append("(Clone)/Axis/Pickup");
-                hit.collider.gameObject.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
+                hit.collider.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
                 detected = true;
             }
         }
@@ -42,10 +42,11 @@ public class ItemDetect : MonoBehaviour
 
     void Pickup()
     {
-        GameObject temp = hit.collider.gameObject.transform.GetChild(0).gameObject;
+        GameObject temp = hit.collider.transform.GetChild(0).gameObject;
         temp.transform.parent = Camera.main.transform;
         temp.transform.position = new Vector3(0, -100, 0);
         temp.GetComponent<Collider>().enabled = false;
         temp.GetComponent<ItemState>().picked = true;
+        Destroy(hit.collider);
     }
 }

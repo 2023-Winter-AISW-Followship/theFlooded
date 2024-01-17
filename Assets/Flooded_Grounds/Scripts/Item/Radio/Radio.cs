@@ -51,7 +51,7 @@ public class Radio : MonoBehaviour, ItemState
         {
             if (hit.collider.gameObject.layer == 3)
             {
-                point.transform.position = hit.point;
+                point.transform.SetPositionAndRotation(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
                 point.SetActive(true);
                 isGround = true;
                 return;
@@ -65,11 +65,14 @@ public class Radio : MonoBehaviour, ItemState
     {
         point.SetActive(false);
         picked = false;
+
         transform.parent = null;
         transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-        transform.SetPositionAndRotation(hit.point , point.transform.rotation); ;
-        GetComponent<AudioSource>().Play();
+        transform.SetPositionAndRotation(point.transform.position, point.transform.rotation);
+
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Collider>().enabled = true;
+
+        Sound.RadioNoise(transform.position);
     }
 }
