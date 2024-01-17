@@ -19,7 +19,7 @@ public class ItemDetect : MonoBehaviour
         this.UpdateAsObservable()
             .Where(_ => detected
                 && Input.GetKeyDown(KeySetting.key[KeyAction.INTERACTION])
-                && Camera.main.transform.childCount == 1)
+                && Camera.main.transform.childCount == 2)
             .Subscribe(_ => Pickup());
     }
 

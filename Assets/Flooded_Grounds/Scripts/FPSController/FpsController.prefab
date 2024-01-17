@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3775223421806525672}
   - component: {fileID: 8213762259054879106}
   - component: {fileID: 43790701320865878}
+  - component: {fileID: -6299280756671822180}
   m_Layer: 0
   m_Name: FpsController
   m_TagString: Player
@@ -112,6 +113,7 @@ MonoBehaviour:
   sprintKey: 304
   sprintSpeed: 7
   sprintDuration: 20
+  sprintRegen: 50
   sprintCooldown: 5
   hideBarWhenFull: 1
   sprintBarBG: {fileID: 198749498282263108}
@@ -273,6 +275,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-6299280756671822180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666093525517832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0fa7b3e409fd6469e23cd79ea887bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 7
 --- !u!1 &2586052995043106709
 GameObject:
   m_ObjectHideFlags: 0
