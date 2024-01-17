@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,34 +13,44 @@ public class CharController_Moter : MonoBehaviour
 {
     private Rigidbody rb;
 
+    #region Sound Variables
+
+    public AudioClip[] footsteps;
+    AudioSource sound;
+
+    float step;
+    float pitch;
+    float volume;
+
+    #endregion
+
     #region Camera Movement Variables
 
     public Camera playerCamera;
 
-    public bool cameraCanMove = true;
     public float mouseSensitivity = 2f;
     public float maxLookAngle = 50f;
 
     public Sprite crosshairImage;
     public Color crosshairColor = Color.white;
 
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
+    private float mouseX = 0.0f;
+    private float mouseY = 0.0f;
     private Image crosshairObject;
     #endregion
 
     #region Movement Variables
 
-    public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
 
     private bool isWalking = false;
+    
 
     #region Sprint
 
     public KeyCode sprintKey = KeyCode.LeftShift;
-    public float sprintSpeed = 7f;
+    public float sprintSpeed = 10f;
     public float sprintDuration = 20f;
     public float sprintRegen = 50f;
     public float sprintCooldown = 5f;
@@ -96,6 +107,7 @@ public class CharController_Moter : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        sound = GetComponent<AudioSource>();
 
         crosshairObject = GetComponentInChildren<Image>();
 
@@ -109,6 +121,8 @@ public class CharController_Moter : MonoBehaviour
     {
         crosshairObject.sprite = crosshairImage;
         crosshairObject.color = crosshairColor;
+
+        StartCoroutine(Step());
 
         #region Sprint Bar
 
@@ -134,22 +148,55 @@ public class CharController_Moter : MonoBehaviour
         #endregion
     }
 
+    IEnumerator Step()
+    {
+        int i = 0;
+        while (true)
+        {
+            if (isWalking)
+            {
+                if (isSprinting)
+                {
+                    step = sprintSpeed;
+                }
+                else
+                {
+                    step = walkSpeed;
+                }
+
+                step /= sprintSpeed;
+                volume = step;
+                pitch = Mathf.Lerp(1f, 0.25f, step);
+
+                AudioSource.PlayClipAtPoint(footsteps[i], transform.position, volume);
+
+                yield return new WaitForSeconds(pitch);
+                i = (i + 1) % footsteps.Length;
+            }
+            yield return null;
+        }
+    }
+
+    Vector3 targetVelocity;
+
     private void Update()
     {
-        cameraCanMove = !Pause.GameIsPaused;
-        playerCanMove = !Pause.GameIsPaused;
+        if (!Pause.GameIsPaused)
+        {
+            targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        }
 
         #region Camera
 
-        if (cameraCanMove)
+        if (!Pause.GameIsPaused)
         {
-            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
-            pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+            mouseX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
+            mouseY -= mouseSensitivity * Input.GetAxis("Mouse Y");
 
-            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+            mouseY = Mathf.Clamp(mouseY, -maxLookAngle, maxLookAngle);
 
-            transform.localEulerAngles = new Vector3(0, yaw, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            transform.localEulerAngles = new Vector3(0, mouseX, 0);
+            playerCamera.transform.localEulerAngles = new Vector3(mouseY, 0, 0);
         }
         #endregion
 
@@ -217,10 +264,6 @@ public class CharController_Moter : MonoBehaviour
     {
         #region Movement
 
-        if (playerCanMove)
-        {
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
                 isWalking = true;
@@ -234,28 +277,18 @@ public class CharController_Moter : MonoBehaviour
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 
-                Vector3 velocity = rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-                velocityChange.y = 0;
+                isSprinting = true;
 
-                if (velocityChange.x != 0 || velocityChange.z != 0)
+                if (isSitting)
                 {
-                    isSprinting = true;
-
-                    if (isSitting)
-                    {
-                        Sit();
-                    }
-
-                    if (hideBarWhenFull)
-                    {
-                        sprintBarCG.alpha += 5 * Time.deltaTime;
-                    }
+                    Sit();
                 }
 
-                rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                if (hideBarWhenFull)
+                {
+                    sprintBarCG.alpha += 5 * Time.deltaTime;
+                }
+
             }
             else
             {
@@ -267,16 +300,13 @@ public class CharController_Moter : MonoBehaviour
                 }
 
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
-
-                Vector3 velocity = rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-                velocityChange.y = 0;
-
-                rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
-        }
+
+            Vector3 velocity = rb.velocity;
+            Vector3 velocityChange = (targetVelocity - velocity);
+            velocityChange.y = 0;
+
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
         #endregion
     }
@@ -376,6 +406,21 @@ public class CharController_MoterEditor : Editor
         GUILayout.Label("By Jess Case", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         GUILayout.Label("version 1.0.1", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         EditorGUILayout.Space();
+
+        #region Step Sound Setup
+
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Step Sound Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        GUILayout.Label("Footstep Sounds");
+        SerializedProperty soundsProperty = SerFPC.FindProperty("footsteps");
+        EditorGUILayout.PropertyField(soundsProperty, true);
+        SerFPC.ApplyModifiedProperties();
+
+        EditorGUILayout.Space();
+
+        #endregion
 
         #region Camera Setup
 

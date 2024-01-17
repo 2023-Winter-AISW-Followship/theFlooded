@@ -182,8 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastDistance: 5
-  <ItemArm>k__BackingField: {fileID: 7882579784348464454, guid: 409b66eee9f062843a884ed27e3cb328, type: 3}
-  <DefaultArm>k__BackingField: {fileID: 7882579784348464454, guid: 1a470b73a9afb884daacef7a1a6fee09, type: 3}
 --- !u!82 &3154212947728452802
 AudioSource:
   m_ObjectHideFlags: 0
