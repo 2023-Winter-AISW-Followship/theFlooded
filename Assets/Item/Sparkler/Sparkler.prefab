@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WFX_Explosion (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -485,6 +489,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_Name
       value: WFX_Explosion (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_LocalPosition.x
@@ -648,6 +656,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_Name
       value: WFX_Explosion (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_LocalPosition.x
@@ -999,6 +1011,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WFX_Explosion (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1161,6 +1177,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_Name
       value: WFX_Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b46890100828db6429ff69c322b45893, type: 3}
       propertyPath: m_LocalPosition.x
