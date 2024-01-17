@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 412982557}
   - component: {fileID: 412982558}
   m_Layer: 5
-  m_Name: ButtonOption
+  m_Name: ButtonSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC124\uC815"
+  m_text: "\uAC8C\uC784 \uC124\uC815"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7ef228b4524c9a49af0fd449aa4486c, type: 2}
   m_sharedMaterial: {fileID: 5352179806406152518, guid: e7ef228b4524c9a49af0fd449aa4486c, type: 2}
@@ -413,8 +413,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284637822
-  m_fontColor: {r: 0.49411765, g: 0.38431373, b: 0.38431373, a: 1}
+    rgba: 4288190628
+  m_fontColor: {r: 0.6431373, g: 0.59607846, b: 0.59607846, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -976,8 +976,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284572029
-  m_fontColor: {r: 0.49056602, g: 0.38134566, b: 0.38134566, a: 1}
+    rgba: 4288190628
+  m_fontColor: {r: 0.6415094, g: 0.5955144, b: 0.5955144, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1180,8 +1180,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284637822
-  m_fontColor: {r: 0.49411765, g: 0.38431373, b: 0.38431373, a: 1}
+    rgba: 4280953481
+  m_fontColor: {r: 0.5377358, g: 0.16436453, b: 0.16436453, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1270,8 +1270,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
-    m_PressedColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
+    m_HighlightedColor: {r: 0.4528302, g: 0.24093984, b: 0.24093984, a: 1}
+    m_PressedColor: {r: 0.45490196, g: 0.24313726, b: 0.24313726, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
