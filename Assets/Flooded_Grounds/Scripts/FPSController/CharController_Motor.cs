@@ -42,7 +42,9 @@ public class CharController_Moter : MonoBehaviour
     public float maxVelocityChange = 10f;
 
     private bool isWalking = false;
-    
+    private bool isWater = false;
+
+    private const int waterHeight = 9;
 
     #region Sprint
 
@@ -268,7 +270,7 @@ public class CharController_Moter : MonoBehaviour
                 isWalking = false;
             }
 
-            if (Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
+            if (isWalking && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
                 
@@ -325,6 +327,12 @@ public class CharController_Moter : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+
+        isWater = transform.position.y <= waterHeight;
+        if (isWater)
+        {
+            transform.position = new Vector3(transform.position.x, waterHeight, transform.position.z);
         }
     }
 
@@ -406,21 +414,6 @@ public class CharController_MoterEditor : Editor
         GUILayout.Label("By Jess Case", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         GUILayout.Label("version 1.0.1", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         EditorGUILayout.Space();
-
-        #region Step Sound Setup
-
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        GUILayout.Label("Step Sound Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
-        EditorGUILayout.Space();
-
-        GUILayout.Label("Footstep Sounds");
-        SerializedProperty soundsProperty = SerFPC.FindProperty("footsteps");
-        EditorGUILayout.PropertyField(soundsProperty, true);
-        SerFPC.ApplyModifiedProperties();
-
-        EditorGUILayout.Space();
-
-        #endregion
 
         #region Camera Setup
 
