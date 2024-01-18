@@ -1963,9 +1963,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8544984228907667653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0804b4691ff5f8468aa3ef360b16b34, type: 3}
+  m_Script: {fileID: 11500000, guid: e1b3fb16982585144970edf9f60246bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterData: {fileID: 11400000, guid: f87d0279755832b4aae680c0776c0a5c, type: 2}
 --- !u!1 &8610566978980172109
 GameObject:
   m_ObjectHideFlags: 0

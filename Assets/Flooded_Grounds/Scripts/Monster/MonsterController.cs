@@ -2,14 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dashController : MonoBehaviour
+public class MonsterController : MonoBehaviour
 {
+    [SerializeField]
+    private MonsterData monsterData;
+    public MonsterData MonsterData { set { monsterData = value; } }
+
     private Animator animator;
     private float awakeTime = 10f;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+    private void Update()
+    {
+        bool cast = Physics.SphereCast(
+            transform.position,
+            monsterData.RecognitionDist,
+            transform.up,
+            out var hit,
+            0);
+
+        if (cast)
+        {
+            Debug.Log(hit.collider.gameObject.name);
+        }
     }
 
     void recognize()

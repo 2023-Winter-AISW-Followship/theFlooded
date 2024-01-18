@@ -67,7 +67,7 @@ public class Bottle : MonoBehaviour, ItemState
         if (collision.CompareTag("enemy"))
         {
             Debug.Log(collision.tag);
-            collision.GetComponentInParent<howlController>().bottle();
+            collision.GetComponentInParent<MonsterController>().bottle();
         }
 
         Destroy(gameObject);
