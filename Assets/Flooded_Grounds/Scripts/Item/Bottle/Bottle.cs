@@ -46,6 +46,13 @@ public class Bottle : MonoBehaviour, ItemState
 
     void Throw()
     {
+        ItemArm.GetComponent<Animator>().SetTrigger("throw");
+
+        Invoke("bottleLaunch", .84f);
+    }
+
+    void bottleLaunch()
+    {
         transform.position = temp.transform.position;
         transform.rotation = Camera.main.transform.rotation;
         transform.parent = null;
