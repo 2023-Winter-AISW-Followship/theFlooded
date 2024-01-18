@@ -37,7 +37,8 @@ public class Bottle : MonoBehaviour, ItemState
         
         this.OnCollisionEnterAsObservable()
             .Where(_ => playerThrow)
-            .Subscribe(_ => Explode());
+            .Select(x => x.gameObject)
+            .Subscribe(x => Explode(x));
 
         this.ObserveEveryValueChanged(x => picked)
             .Subscribe(_ => ChangeArm());
@@ -56,12 +57,19 @@ public class Bottle : MonoBehaviour, ItemState
         picked = false;
     }
 
-    void Explode()
+    void Explode(GameObject collision)
     {
         Sound.BottleExplosion(transform.position);
         
         GameObject brokenBottle = Instantiate(brokenBottlePrefab, transform.position, Quaternion.identity);
         brokenBottle.GetComponent<BrokenBottle>().RandomVelocities();
+
+        if (collision.CompareTag("enemy"))
+        {
+            Debug.Log(collision.tag);
+            collision.GetComponentInParent<howlController>().bottle();
+        }
+
         Destroy(gameObject);
     }
 }

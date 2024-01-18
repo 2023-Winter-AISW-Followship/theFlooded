@@ -15,9 +15,6 @@ public class CharController_Moter : MonoBehaviour
 
     #region Sound Variables
 
-    public AudioClip[] footsteps;
-    AudioSource sound;
-
     float step;
     float pitch;
     float volume;
@@ -107,7 +104,6 @@ public class CharController_Moter : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        sound = GetComponent<AudioSource>();
 
         crosshairObject = GetComponentInChildren<Image>();
 
@@ -168,10 +164,10 @@ public class CharController_Moter : MonoBehaviour
                 volume = step;
                 pitch = Mathf.Lerp(1f, 0.25f, step);
 
-                AudioSource.PlayClipAtPoint(footsteps[i], transform.position, volume);
+                Sound.FootStep(i, transform.position, volume);
 
                 yield return new WaitForSeconds(pitch);
-                i = (i + 1) % footsteps.Length;
+                i = (i + 1) % 10;
             }
             yield return null;
         }

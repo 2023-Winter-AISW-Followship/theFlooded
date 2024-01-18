@@ -12,6 +12,37 @@ public class howlController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    float recognitionDist;
+    LayerMask recognitionTarget;
+
+    private void Start()
+    {
+        recognitionDist = 50f;
+        recognitionTarget = (1 << 8);
+    }
+
+    private void Update()
+    {
+        bool cast = Physics.SphereCast(
+            transform.position,
+            recognitionDist,
+            transform.up,
+            out var hit,
+            0);
+
+        if (cast)
+        {
+            Debug.Log(hit.collider.gameObject.name);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, recognitionDist / 2.0f);
+    }
+
     void recognize()
     {
         animator.SetBool("recognize", true);

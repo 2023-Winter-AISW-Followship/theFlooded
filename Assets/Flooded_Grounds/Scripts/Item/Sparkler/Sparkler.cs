@@ -18,6 +18,8 @@ public class Sparkler : MonoBehaviour, ItemState
 
     [SerializeField]
     private ParticleSystem[] particles;
+    [SerializeField]
+    private GameObject sparklePoint;
 
     public void ChangeArm()
     {
@@ -84,6 +86,29 @@ public class Sparkler : MonoBehaviour, ItemState
         }
         GetComponent<Collider>().enabled = true;
 
-        Sound.SparklerSparkle(transform.position);
+        StartCoroutine(duration(Sound.SparklerSparkle(transform.position)));
+    }
+
+    IEnumerator duration(AudioClip clip)
+    {
+        float time = clip.length;
+        float elapsedTime = 0f;
+
+        while (time > elapsedTime)
+        {
+            sparklePoint.transform.localPosition = Vector3.Lerp(
+                new Vector3(0, 1, 0),
+                new Vector3(0, -0.5f, 0),
+                elapsedTime / time);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(sparklePoint);
+
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+
+        yield break;
     }
 }

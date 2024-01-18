@@ -13,6 +13,9 @@ public class Sound : MonoBehaviour
     private AudioClip sparklerSparkle;
 
     [SerializeField]
+    private AudioClip[] footStep;
+
+    [SerializeField]
     private AudioMixer audioMixer;
     private AudioMixerGroup itemMixer;
 
@@ -26,9 +29,15 @@ public class Sound : MonoBehaviour
     {
         Instance.itemSound(Instance.radioNoise, position, 0.5f, 10, 40);
     }
-    public static void SparklerSparkle(Vector3 position)
+    public static AudioClip SparklerSparkle(Vector3 position)
     {
         Instance.itemSound(Instance.sparklerSparkle, position, 1, 3, 15);
+        return Instance.sparklerSparkle;
+    }
+
+    public static void FootStep(int i, Vector3 position, float volume)
+    {
+        Instance.stepSound(Instance.footStep[i], position, volume);
     }
 
     public void itemSound(AudioClip clip, Vector3 position, float volume, float min, float max)
@@ -47,7 +56,22 @@ public class Sound : MonoBehaviour
         audioSource.maxDistance = max;
 
         audioSource.Play();
-        Destroy(gameObject, clip.length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
+        Destroy(gameObject, clip.length);
+    }
+
+    public void stepSound(AudioClip clip, Vector3 position, float volume)
+    {
+        GameObject gameObject = new GameObject("Step Sound");
+        gameObject.transform.position = position;
+        gameObject.layer = LayerMask.NameToLayer("sound");
+
+        AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
+        audioSource.clip = clip;
+        audioSource.spatialBlend = 1f;
+        audioSource.volume = volume;
+
+        audioSource.Play();
+        Destroy(gameObject, clip.length);
     }
 
     private void Awake()
