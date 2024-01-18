@@ -34,7 +34,9 @@ public class ItemDetect : MonoBehaviour
             {
                 path.Clear();
                 path.Append(hit.collider.tag);
-                path.Append("(Clone)/Axis/Pickup");
+                path.Append("(Clone)");
+                //hit.collider.transform.Find(path.ToString()).GetComponent<Outline>().detected();
+                path.Append("/Axis/Pickup");
                 hit.collider.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
                 detected = true;
             }
