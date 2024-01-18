@@ -11,9 +11,9 @@ public class SceneChangeManager : MonoBehaviour
         SceneManager.LoadScene("Scene_InGame");
     }
 
-    public void SceneChange_Option()
+    public void SceneChange_Settings()
     {
-        //SceneManager.LoadScene("Option");
+        SceneManager.LoadScene("Scene_CommandPattern");
     }
 
     public void SceneChange_ExitGame()
@@ -23,5 +23,11 @@ public class SceneChangeManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+
+    public void SceneChange_SettingsBack()
+    {
+        SceneManager.LoadScene("Scene_Start");
     }
 }

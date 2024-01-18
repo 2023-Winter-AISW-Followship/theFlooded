@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Flooded_Grounds/Scenes/Scene_Start.unity
     guid: 8322a0eae591b334b9886b81480e6de3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Flooded_Grounds/Scenes/Scene_InGame.unity
     guid: c0d944ca9defd20449bc336e50d75a08
+  - enabled: 1
+    path: Assets/Flooded_Grounds/Scenes/Scene_CommandPattern.unity
+    guid: 3e70b6967c27bae4aaae7cd50fdbf32c
   m_configObjects: {}
