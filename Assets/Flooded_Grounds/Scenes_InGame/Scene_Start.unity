@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 215480441}
   - component: {fileID: 215480443}
   - component: {fileID: 215480442}
-  - component: {fileID: 215480444}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -199,18 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215480440}
   m_CullTransparentMesh: 1
---- !u!114 &215480444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215480440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780053a1c2cc1a24998da810d6a6a7ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &289356572
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,8 +264,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280360307
-  m_fontColor: {r: 0.4528302, g: 0.11278034, b: 0.1297829, a: 1}
+    rgba: 4279439198
+  m_fontColor: {r: 0.3679245, g: 0.060395136, b: 0.074698836, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -527,7 +514,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 412982558}
         m_TargetAssemblyTypeName: SceneChangeManager, Assembly-CSharp
-        m_MethodName: SceneChange_Option
+        m_MethodName: SceneChange_Settings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -546,7 +533,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 412982553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780053a1c2cc1a24998da810d6a6a7ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 8da9e8391766dd945b316f46b7c373ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &472469676
@@ -1109,7 +1096,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 511363470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780053a1c2cc1a24998da810d6a6a7ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 8da9e8391766dd945b316f46b7c373ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &700102338
@@ -1313,7 +1300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 700102338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780053a1c2cc1a24998da810d6a6a7ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 8da9e8391766dd945b316f46b7c373ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &796181530
