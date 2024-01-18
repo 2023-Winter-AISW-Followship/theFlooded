@@ -8,6 +8,9 @@ public class MonsterController : MonoBehaviour
     private MonsterData monsterData;
     public MonsterData MonsterData { set { monsterData = value; } }
 
+    [SerializeField]
+    private LayerMask soundLayer;
+
     private Animator animator;
     private float awakeTime = 10f;
 
@@ -15,24 +18,43 @@ public class MonsterController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+
+    Collider[] target = new Collider[5];
+    float max;
+    int index;
+    float distWeight;
+    AudioSource targetSound;
+    float volumePerDist;
+
     private void Update()
     {
-        bool cast = Physics.SphereCast(
+        
+        int size = Physics.OverlapSphereNonAlloc(
             transform.position,
-            monsterData.RecognitionDist,
-            transform.up,
-            out var hit,
-            0);
+            monsterData.SoundRecognitionDist,
+            target,
+            soundLayer);
 
-        if (cast)
+        max = -1;
+        index = -1;
+
+        for (int i = 0; i < size; i++)
         {
-            Debug.Log(hit.collider.gameObject.name);
+            distWeight = Mathf.Lerp(1.2f, 0, Vector3.Distance(transform.position, target[i].gameObject.transform.position) / monsterData.SoundRecognitionDist);
+            targetSound = target[i].GetComponent<AudioSource>();
+            //Debug.Log(gameObject.name + " " + Vector3.Distance(transform.position, target[i].gameObject.transform.position) + " " + distWeight);
+            volumePerDist = targetSound.volume * distWeight;
+            if (volumePerDist > 0.25f && volumePerDist > max)
+            {
+                max = volumePerDist;
+                index = i;
+            }    
         }
-    }
-
-    void recognize()
-    {
-        animator.SetBool("recognize", true);
+        if (index != -1)
+        {
+            transform.LookAt(target[index].transform);
+            animator.SetBool("recognize", true);
+        }
     }
 
     public void bottle()

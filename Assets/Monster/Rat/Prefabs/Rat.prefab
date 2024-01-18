@@ -1967,6 +1967,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: f87d0279755832b4aae680c0776c0a5c, type: 2}
+  soundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8610566978980172109
 GameObject:
   m_ObjectHideFlags: 0

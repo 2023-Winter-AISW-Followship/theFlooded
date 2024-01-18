@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: HowlData
   m_EditorClassIdentifier: 
   monsterName: howl
-  recognitionDist: 50
-  recognitionTarget:
-    serializedVersion: 2
-    m_Bits: 256
+  soundRecognitionDist: 50
+  sightRecognitionDist: 0
+  reach: 10

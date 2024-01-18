@@ -271,8 +271,11 @@ public class CharController_Moter : MonoBehaviour
             if (Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
-
-                isSprinting = true;
+                
+                if(targetVelocity.magnitude > 0.01f)
+                {
+                    isSprinting = true;
+                }
 
                 if (isSitting)
                 {

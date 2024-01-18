@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 11049180181161046}
   - component: {fileID: 2233601452982289876}
   - component: {fileID: 5537857711666741926}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Billboard_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 1402300105711192112}
   - component: {fileID: 3245522129111095872}
   - component: {fileID: 7807967517007365541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Billboard_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8310657184859339593}
   - component: {fileID: 1874285803735686587}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_BillBoard_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3334818878046478616}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855696, y: 0.00000035762784, z: 9.684104e-15, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 614.2, y: 16.6, z: 426.6}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 7058081218646494249}
   - component: {fileID: 6369768053090809291}
   - component: {fileID: 4695061361957900262}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Billboard_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

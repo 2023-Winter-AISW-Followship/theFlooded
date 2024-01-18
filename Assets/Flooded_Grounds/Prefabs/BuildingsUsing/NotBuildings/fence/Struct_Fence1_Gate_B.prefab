@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6516147238616951566}
   - component: {fileID: 5564595436037040359}
   - component: {fileID: 2409449896135697745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Gate_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3179730742160572380}
   - component: {fileID: 7198774738664303709}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Gate_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078417821652786057}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 649.88, y: 16.76, z: 399.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 485766793921824922}
   - component: {fileID: 6025530678170249223}
   - component: {fileID: 5695314063182143572}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Gate_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 5426025837613472173}
   - component: {fileID: 2475201553237619386}
   - component: {fileID: 8302832728788299291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Gate_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

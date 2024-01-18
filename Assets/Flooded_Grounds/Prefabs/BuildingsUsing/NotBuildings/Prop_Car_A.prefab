@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3654546041597779048}
   - component: {fileID: 4495482891450293493}
   - component: {fileID: 2915742074764332813}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_Car_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8272501201119990617}
   - component: {fileID: 5587093447590036401}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_Car_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018498923074114352}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000020192035, y: 0.38268316, z: 0.000000008363799, w: -0.9238797}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 409.5, y: 16.714, z: 569.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -139,7 +139,7 @@ Transform:
   - {fileID: 995508597876273691}
   - {fileID: 3875722049823353544}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!205 &5587093447590036401
 LODGroup:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 9182781204408851458}
   - component: {fileID: 2701939840466370933}
   - component: {fileID: 3080857808564204236}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_Car_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 9058072162341326007}
   - component: {fileID: 6476406763707036526}
   - component: {fileID: 267978606730701291}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_Car_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

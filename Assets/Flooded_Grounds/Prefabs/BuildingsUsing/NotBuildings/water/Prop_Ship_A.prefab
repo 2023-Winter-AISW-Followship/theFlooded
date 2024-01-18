@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8952330346985264872}
   - component: {fileID: 9045927587975182293}
   - component: {fileID: 6164068641132597578}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_Ship_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1480855715991343799}
   - component: {fileID: 3256331740436176675}
   - component: {fileID: 7999946929427231461}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_Ship_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4764530971992861497}
   - component: {fileID: 1644770301695435653}
   - component: {fileID: 4292847983176844503}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_Ship_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 4334731688794364676}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261927616060081051}
   - component: {fileID: 5162757476456442922}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_Ship_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6076713731815834302}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10412488, y: -0.6949932, z: 0.10138354, w: 0.704176}
+  m_LocalRotation: {x: 0.10412575, y: -0.69499266, z: 0.10137886, w: 0.70417714}
   m_LocalPosition: {x: 267.33, y: 15.67, z: 704.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -284,7 +284,7 @@ Transform:
   - {fileID: 1480855715991343799}
   - {fileID: 386578831455360690}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.712, y: -89.265, z: -0.117}
 --- !u!205 &5162757476456442922
 LODGroup:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 386578831455360690}
   - component: {fileID: 7509231814224173786}
   - component: {fileID: 5218826683238469646}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_Ship_A_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5070125331894483753}
   - component: {fileID: 1366305093192279335}
   - component: {fileID: 7338092649227441410}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Billboard_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 765937871174345138}
   - component: {fileID: 5819109829501166734}
   - component: {fileID: 1947549269601904478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Billboard_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8656652466570524404}
   - component: {fileID: 1008567011825086764}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Billboard_B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 5638731449098984379}
   - component: {fileID: 8349622043113857011}
   - component: {fileID: 6411263629624572266}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Billboard_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

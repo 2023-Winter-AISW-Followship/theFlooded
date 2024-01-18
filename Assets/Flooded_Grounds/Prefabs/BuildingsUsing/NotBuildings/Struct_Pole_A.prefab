@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 90832387302294333}
   - component: {fileID: 2500381534607966570}
   - component: {fileID: 75424825755587981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Pole_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 1332809846903412409}
   - component: {fileID: 3018731455072541336}
   - component: {fileID: 6470458242340822307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Pole_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5146916424703369383}
   - component: {fileID: 7976106189521457465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Pole_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8618998573301515747}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.99144477, z: 0, w: 0.13052714}
+  m_LocalRotation: {x: 0, y: -0.9914449, z: 0, w: 0.13052626}
   m_LocalPosition: {x: 599.4, y: 16.3, z: 378}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -245,7 +245,7 @@ Transform:
   - {fileID: 4791210896669883587}
   - {fileID: 6577882545178610461}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -165, z: 0}
 --- !u!205 &7976106189521457465
 LODGroup:
   m_ObjectHideFlags: 0

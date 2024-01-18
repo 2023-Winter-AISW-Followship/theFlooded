@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4594188176118067241}
   - component: {fileID: 8883452767869461938}
   - component: {fileID: 9083538501337223603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BLD_Bridge_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 606333488646959454}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2338514610431384815}
   - component: {fileID: 2656974674051459974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BLD_Bridge_B
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7924621824190527159}
   - component: {fileID: 2745327394677749629}
   - component: {fileID: 8502129214857980927}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BLD_Bridge_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 1857692697615474281}
   - component: {fileID: 8454381765296724496}
   - component: {fileID: 4260575340749983209}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BLD_Bridge_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

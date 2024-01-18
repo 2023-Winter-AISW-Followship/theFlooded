@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4521549493872531215}
   - component: {fileID: 5730910580406865006}
   - component: {fileID: 7564052313972817279}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Pavilion_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4614958083015208461}
   - component: {fileID: 4498469136478455397}
   - component: {fileID: 2032070583773513952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Pavilion_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 535544374124239072}
   - component: {fileID: 739736312239951631}
   - component: {fileID: 4940426322157326009}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Pavilion_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 261929806853013578}
   - component: {fileID: 3272173231984914493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Pavilion_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6700958268208470414}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.0000013262033}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 611, y: 17, z: 715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -352,7 +352,7 @@ Transform:
   - {fileID: 926250346654432364}
   - {fileID: 8406093164971697935}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!205 &3272173231984914493
 LODGroup:
   m_ObjectHideFlags: 0

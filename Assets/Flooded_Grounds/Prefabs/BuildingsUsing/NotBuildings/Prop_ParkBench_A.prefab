@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1134550159962223358}
   - component: {fileID: 6853513575153532121}
   - component: {fileID: 309020031365083297}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_ParkBench_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349092213760159891}
   - component: {fileID: 8940872669796627076}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_ParkBench_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4696641070645186861}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.707107, z: 0, w: 0.70710665}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 619.36, y: 16.80001, z: 497.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -139,7 +139,7 @@ Transform:
   - {fileID: 5165340966031188841}
   - {fileID: 2575921211465889645}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!205 &8940872669796627076
 LODGroup:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 3957709876907109491}
   - component: {fileID: 4131208781175371927}
   - component: {fileID: 4949855852439994045}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_ParkBench_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4022368116428242195}
   - component: {fileID: 2888288568981715595}
   - component: {fileID: 3971351422083667846}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_ParkBench_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

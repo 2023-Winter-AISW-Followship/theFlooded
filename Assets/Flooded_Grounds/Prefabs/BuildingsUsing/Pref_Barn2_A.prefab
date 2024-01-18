@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 984691341013808661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pref_Barn2_A
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -46,6 +46,10 @@ PrefabInstance:
     - target: {fileID: 141984, guid: 9503dd374b0a87e4b8739d2906cd3f6f, type: 3}
       propertyPath: m_Name
       value: Barn2_End_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 141984, guid: 9503dd374b0a87e4b8739d2906cd3f6f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 441404, guid: 9503dd374b0a87e4b8739d2906cd3f6f, type: 3}
       propertyPath: m_RootOrder
@@ -101,6 +105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barn2_Mid_A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 109388, guid: bbf238cb04c5df440a0c498ad01f08e2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 473440, guid: bbf238cb04c5df440a0c498ad01f08e2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -155,6 +163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barn2_End_A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 185314, guid: 187cfe41b73208f4ca3c7033eb15603d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 401786, guid: 187cfe41b73208f4ca3c7033eb15603d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -208,6 +220,10 @@ PrefabInstance:
     - target: {fileID: 109388, guid: bbf238cb04c5df440a0c498ad01f08e2, type: 3}
       propertyPath: m_Name
       value: Barn2_Mid_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 109388, guid: bbf238cb04c5df440a0c498ad01f08e2, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 473440, guid: bbf238cb04c5df440a0c498ad01f08e2, type: 3}
       propertyPath: m_RootOrder

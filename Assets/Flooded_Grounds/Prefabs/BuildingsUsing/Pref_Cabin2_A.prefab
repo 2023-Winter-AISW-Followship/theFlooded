@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7126348742755038637}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pref_Cabin2_A
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,6 +44,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7126348742755038637}
     m_Modifications:
+    - target: {fileID: 174254, guid: 3fd2fe4dce6b88f4e9f2fc1dcd085960, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 495872, guid: 3fd2fe4dce6b88f4e9f2fc1dcd085960, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -98,6 +102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabin2_Stairs (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 144994, guid: de27278e60c8d8b42a3ae02c5da3edf8, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 417640, guid: de27278e60c8d8b42a3ae02c5da3edf8, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -148,6 +156,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7126348742755038637}
     m_Modifications:
+    - target: {fileID: 152722, guid: 72d5913900bb94349b98a1b5a5340e17, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 440944, guid: 72d5913900bb94349b98a1b5a5340e17, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -198,6 +210,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7126348742755038637}
     m_Modifications:
+    - target: {fileID: 136630, guid: 964f82ef1f120264f91e97059c36cc64, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 472966, guid: 964f82ef1f120264f91e97059c36cc64, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -248,6 +264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7126348742755038637}
     m_Modifications:
+    - target: {fileID: 141192, guid: 1df136745ae1d834d9df67fa39473042, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 484628, guid: 1df136745ae1d834d9df67fa39473042, type: 3}
       propertyPath: m_RootOrder
       value: 1

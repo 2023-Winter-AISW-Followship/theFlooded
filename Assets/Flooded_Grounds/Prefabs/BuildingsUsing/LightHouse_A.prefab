@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4198003989282752746}
   - component: {fileID: 965929651217641793}
   - component: {fileID: 4774188506299993052}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LightHouse_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 329752262987305909}
   - component: {fileID: 4884818170626779670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LightHouse_A
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4968750633200076399}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.707106, z: 0, w: 0.7071076}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -37.5, y: 43, z: 114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -140,7 +140,7 @@ Transform:
   - {fileID: 4746975544490980142}
   - {fileID: 6581606509325980632}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!205 &4884818170626779670
 LODGroup:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4001909092772090567}
   - component: {fileID: 8239141924999610151}
   - component: {fileID: 8631980763510755537}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LightHouse_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 692368923202391147}
   - component: {fileID: 5544837218013733409}
   - component: {fileID: 4219876582350146697}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LightHouse_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

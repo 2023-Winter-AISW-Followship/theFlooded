@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9073769648185185979}
   - component: {fileID: 8695083755807657548}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,16 +25,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3070312727821206710}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.11540152, y: -0.49554026, z: -0.066626996, w: 0.85830253}
+  m_LocalRotation: {x: -0.115398854, y: -0.49554116, z: -0.066625565, w: 0.8583025}
   m_LocalPosition: {x: 685.64, y: 14.64, z: 338.34}
-  m_LocalScale: {x: 0.66, y: 0.66, z: 0.66}
+  m_LocalScale: {x: 0.66, y: 0.66000015, z: 0.66000015}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3201820720287272980}
   - {fileID: 1416688342799338175}
   - {fileID: 569884967332367698}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -15.315, y: -60, z: 0}
 --- !u!205 &8695083755807657548
 LODGroup:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 5755885183462916866}
   - component: {fileID: 5948490010351852539}
   - component: {fileID: 2829700184695308138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lo_Rock_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4967991069000484288}
   - component: {fileID: 1593125998234152064}
   - component: {fileID: 6726172507181763692}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lo_Rock_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 2744005017070810830}
   - component: {fileID: 802598469785156839}
   - component: {fileID: 6023327424416954267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lo_Rock_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

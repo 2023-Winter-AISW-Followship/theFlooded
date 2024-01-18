@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8908975803097693536}
   - component: {fileID: 8880868865087614612}
   - component: {fileID: 8344333997398028203}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Mid_C_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2685722007655063663}
   - component: {fileID: 3331471986708111573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Mid_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5029265606227794100}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000002185569, y: 1, z: -1.623836e-14, w: 0.0000009089707}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 633, y: 16.5, z: 399.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -139,7 +139,7 @@ Transform:
   - {fileID: 436449506153481357}
   - {fileID: 8773372402028594520}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!205 &3331471986708111573
 LODGroup:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 8351373908815182713}
   - component: {fileID: 6506663841295562423}
   - component: {fileID: 8519648131950201947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Mid_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 594594162197369793}
   - component: {fileID: 942301426393616164}
   - component: {fileID: 1451207379387807154}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Fence1_Mid_C_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

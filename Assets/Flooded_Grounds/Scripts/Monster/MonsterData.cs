@@ -10,11 +10,11 @@ public class MonsterData : ScriptableObject
     private string monsterName;
     public string MonsterName {  get { return monsterName; } }
     [SerializeField]
-    private int recognitionDist;
-    public int RecognitionDist { get {  return recognitionDist; } }
+    private int soundRecognitionDist;
+    public int SoundRecognitionDist { get {  return soundRecognitionDist; } }
     [SerializeField]
-    private LayerMask recognitionTarget;
-    public LayerMask RecognitionTarget { get { return recognitionTarget; } }
+    private int sightRecognitionDist;
+    public int SightRecognitionDist { get { return sightRecognitionDist; } }
     [SerializeField]
     private int reach;
     public int Reach { get {  return reach; } }

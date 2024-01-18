@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5738435764289576516}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pref_GreenHouse1_A
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -70,6 +70,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 139764, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 462444, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -123,6 +127,10 @@ PrefabInstance:
     - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Mid_A 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 485294, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_RootOrder
@@ -182,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -239,6 +251,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
@@ -298,6 +314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_End_A 1
       objectReference: {fileID: 0}
+    - target: {fileID: 142990, guid: d18477f28fb30864d83758989554e271, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 427706, guid: d18477f28fb30864d83758989554e271, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -355,6 +375,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
@@ -414,6 +438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Mid_A 6
       objectReference: {fileID: 0}
+    - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 485294, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -468,6 +496,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5738435764289576516}
     m_Modifications:
+    - target: {fileID: 139764, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 462444, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -521,6 +553,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
@@ -576,6 +612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 139764, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 462444, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -629,6 +669,10 @@ PrefabInstance:
     - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Mid_A 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 485294, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_RootOrder
@@ -688,6 +732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -745,6 +793,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
@@ -804,6 +856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 139764, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 462444, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -857,6 +913,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
@@ -916,6 +976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Mid_A 3
       objectReference: {fileID: 0}
+    - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 485294, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -970,6 +1034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1020,6 +1088,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5738435764289576516}
     m_Modifications:
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -1073,6 +1145,10 @@ PrefabInstance:
     - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Mid_A 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 485294, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_RootOrder
@@ -1132,6 +1208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Mid_A 8
       objectReference: {fileID: 0}
+    - target: {fileID: 160176, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 485294, guid: cbd0b3ad55adbb2449d91dce8172900a, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -1189,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
@@ -1248,6 +1332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -1305,6 +1393,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
@@ -1364,6 +1456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -1414,6 +1510,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5738435764289576516}
     m_Modifications:
+    - target: {fileID: 142990, guid: d18477f28fb30864d83758989554e271, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 427706, guid: d18477f28fb30864d83758989554e271, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -1468,6 +1568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_A (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 139764, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 462444, guid: 8285c49f490dd444382201a065d5f98b, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -1521,6 +1625,10 @@ PrefabInstance:
     - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_Name
       value: GreenHouse1_Deco_RoofPiece_B (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 111862, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 422738, guid: 53e8e843102523b459d75c4b0ca32ad9, type: 3}
       propertyPath: m_RootOrder

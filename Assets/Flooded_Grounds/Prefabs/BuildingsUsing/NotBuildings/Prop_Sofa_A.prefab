@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1104722837088687844}
   - component: {fileID: 4892840345249588157}
   - component: {fileID: 5236626772592990793}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_Sofa_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1505156535333840218}
   - component: {fileID: 7554508538122152546}
   - component: {fileID: 7250400301675636180}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: lo_Prop_Sofa_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7842204285721241131}
   - component: {fileID: 4070781615471938324}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Prop_Sofa_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9068258705750450653}
   serializedVersion: 2
-  m_LocalRotation: {x: 2.4718694e-10, y: -0.9999361, z: 0.000000021854298, w: 0.011309996}
+  m_LocalRotation: {x: 0, y: -0.9999361, z: 0, w: 0.011309683}
   m_LocalPosition: {x: 513.385, y: 20.379, z: 526.747}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -243,7 +243,7 @@ Transform:
   - {fileID: 1685062152391581450}
   - {fileID: 4519723655445276401}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -178.704, z: 0}
 --- !u!205 &4070781615471938324
 LODGroup:
   m_ObjectHideFlags: 0

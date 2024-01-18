@@ -27,6 +27,7 @@ public class ItemDetect : MonoBehaviour
     {
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
+        detected = false;
         if (Physics.Raycast(ray, out hit, raycastDistance)) //인식할 수 있는 범위 안에서 물체 확인
         {
             if (hit.collider.gameObject.layer == 6)

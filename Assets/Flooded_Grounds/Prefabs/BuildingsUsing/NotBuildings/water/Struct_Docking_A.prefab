@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1315170347145498804}
   - component: {fileID: 7487840947494393688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Docking_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36864908868846810}
   serializedVersion: 2
-  m_LocalRotation: {x: -6.123234e-17, y: 1, z: -0.000000021855694, w: 1.3382753e-24}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 605.81, y: 17.11, z: 710.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 4624503223637264634}
   - {fileID: 867232905712446724}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!205 &7487840947494393688
 LODGroup:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4415473821618962860}
   - component: {fileID: 4641524491999009408}
   - component: {fileID: 863844530064699703}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Docking_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 3806503290097628949}
   - component: {fileID: 6840720593471010038}
   - component: {fileID: 8800485734904757288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Docking_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 6041106534578301355}
   - component: {fileID: 7505700445060577284}
   - component: {fileID: 6050490914929429322}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_Docking_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

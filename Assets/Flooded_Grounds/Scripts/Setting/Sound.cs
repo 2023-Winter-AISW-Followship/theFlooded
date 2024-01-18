@@ -27,7 +27,7 @@ public class Sound : MonoBehaviour
     }
     public static void RadioNoise(Vector3 position)
     {
-        Instance.itemSound(Instance.radioNoise, position, 0.5f, 10, 40);
+        Instance.itemSound(Instance.radioNoise, position, 1, 10, 40);
     }
     public static AudioClip SparklerSparkle(Vector3 position)
     {
@@ -45,6 +45,9 @@ public class Sound : MonoBehaviour
         GameObject gameObject = new GameObject("Item Sound");
         gameObject.transform.position = position;
         gameObject.layer = LayerMask.NameToLayer("sound");
+
+        BoxCollider boxCollider = (BoxCollider)gameObject.AddComponent(typeof(BoxCollider));
+        boxCollider.isTrigger = true;
 
         AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
         audioSource.clip = clip;
@@ -64,6 +67,9 @@ public class Sound : MonoBehaviour
         GameObject gameObject = new GameObject("Step Sound");
         gameObject.transform.position = position;
         gameObject.layer = LayerMask.NameToLayer("sound");
+
+        BoxCollider boxCollider = (BoxCollider)gameObject.AddComponent(typeof(BoxCollider));
+        boxCollider.isTrigger = true;
 
         AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
         audioSource.clip = clip;

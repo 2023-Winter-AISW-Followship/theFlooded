@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: DashData
   m_EditorClassIdentifier: 
   monsterName: dash
-  recognitionDist: 30
-  recognitionTarget:
-    serializedVersion: 2
-    m_Bits: 256
+  soundRecognitionDist: 20
+  sightRecognitionDist: 30
+  reach: 5

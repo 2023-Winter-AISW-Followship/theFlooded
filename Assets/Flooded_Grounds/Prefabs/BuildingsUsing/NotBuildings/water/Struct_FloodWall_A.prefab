@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3686508446615425251}
   - component: {fileID: 5361073905411650600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_FloodWall_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3463820800116097670}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.9914451, z: 0, w: -0.13052437}
+  m_LocalRotation: {x: 0, y: 0.9914449, z: 0, w: 0.13052626}
   m_LocalPosition: {x: 318.7, y: 9.33, z: 535.18}
   m_LocalScale: {x: 1, y: 1, z: -1}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 1143545335967977331}
   - {fileID: 626495667910716152}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 165, z: 0}
 --- !u!205 &5361073905411650600
 LODGroup:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 626495667910716152}
   - component: {fileID: 7579600696638836920}
   - component: {fileID: 5787831552970888889}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_FloodWall_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 2007817920446707818}
   - component: {fileID: 74591655101496029}
   - component: {fileID: 7185801127769005304}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_FloodWall_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1143545335967977331}
   - component: {fileID: 7773322043277255671}
   - component: {fileID: 5829552392030826747}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Struct_FloodWall_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
