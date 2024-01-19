@@ -3633,6 +3633,7 @@ GameObject:
   - component: {fileID: 95172607052263456}
   - component: {fileID: 136685980256629510}
   - component: {fileID: 3906464658459353774}
+  - component: {fileID: -3940659573560612136}
   m_Layer: 0
   m_Name: ToxicFrog
   m_TagString: enemy
@@ -3731,6 +3732,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-3940659573560612136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644373995442134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b3fb16982585144970edf9f60246bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterData: {fileID: 11400000, guid: 64c73e16d40a03642912161a5ea12390, type: 2}
+  soundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1651717217587476
 GameObject:
   m_ObjectHideFlags: 0
