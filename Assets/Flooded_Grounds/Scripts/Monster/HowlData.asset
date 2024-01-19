@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: howl
   soundRecognitionDist: 50
-  sightRecognitionDist: 0
-  reach: 10
+  sightRecognitionDist: 10
+  sightRecognitionAngle: 360
+  reach: 5

@@ -30,12 +30,12 @@ public class ItemDetect : MonoBehaviour
         detected = false;
         if (Physics.Raycast(ray, out hit, raycastDistance)) //인식할 수 있는 범위 안에서 물체 확인
         {
-            if (hit.collider.gameObject.layer == 6)
+            if (hit.collider.gameObject.layer == 6) //layer 6: 'item'
             {
                 path.Clear();
                 path.Append(hit.collider.tag);
                 path.Append("(Clone)");
-                //hit.collider.transform.Find(path.ToString()).GetComponent<Outline>().detected();
+                //hit.collider.transform.Find(path.ToString()).GetComponent<Outline>().detected(); //Outline 아이템 윤곽선
                 path.Append("/Axis/Pickup");
                 hit.collider.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
                 detected = true;

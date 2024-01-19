@@ -36,6 +36,9 @@ public class MonsterController : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, monsterData.SightRecognitionDist);
 
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, monsterData.SoundRecognitionDist);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, monsterData.Reach);
 

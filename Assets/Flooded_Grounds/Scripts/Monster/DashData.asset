@@ -15,4 +15,5 @@ MonoBehaviour:
   monsterName: dash
   soundRecognitionDist: 20
   sightRecognitionDist: 30
+  sightRecognitionAngle: 80
   reach: 5

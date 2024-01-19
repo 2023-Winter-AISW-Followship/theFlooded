@@ -15,4 +15,5 @@ MonoBehaviour:
   monsterName: gazer
   soundRecognitionDist: 0
   sightRecognitionDist: 70
+  sightRecognitionAngle: 300
   reach: 30
