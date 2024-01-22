@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class MonsterController : MonoBehaviour
