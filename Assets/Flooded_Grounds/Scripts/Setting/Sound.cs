@@ -23,27 +23,28 @@ public class Sound : MonoBehaviour
 
     public static void BottleExplosion(Vector3 position)
     {
-        Instance.itemSound(Instance.bottleExplosion, position, 1, 3, 50);
+        Instance.ItemSound(Instance.bottleExplosion, position, 3, 50);
     }
     public static void RadioNoise(Vector3 position)
     {
-        Instance.itemSound(Instance.radioNoise, position, 1, 10, 40);
+        Instance.ItemSound(Instance.radioNoise, position, 10, 40);
     }
     public static AudioClip SparklerSparkle(Vector3 position)
     {
-        Instance.itemSound(Instance.sparklerSparkle, position, 1, 3, 15);
+        Instance.ItemSound(Instance.sparklerSparkle, position, "sparkler", 3, 15);
         return Instance.sparklerSparkle;
     }
 
     public static void FootStep(int i, Vector3 position, float volume)
     {
-        Instance.stepSound(Instance.footStep[i], position, volume);
+        Instance.StepSound(Instance.footStep[i], position, volume);
     }
 
-    public void itemSound(AudioClip clip, Vector3 position, float volume, float min, float max)
+    public void ItemSound(AudioClip clip, Vector3 position, string tag, float volume, float pitch, int min, int max)
     {
         GameObject gameObject = new GameObject("Item Sound");
         gameObject.transform.position = position;
+        gameObject.tag = tag;
         gameObject.layer = LayerMask.NameToLayer("sound");
 
         BoxCollider boxCollider = (BoxCollider)gameObject.AddComponent(typeof(BoxCollider));
@@ -51,6 +52,7 @@ public class Sound : MonoBehaviour
 
         AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
         audioSource.clip = clip;
+        audioSource.pitch = pitch;
         audioSource.spatialBlend = 1f;
         audioSource.volume = volume;
         audioSource.outputAudioMixerGroup = Instance.itemMixer;
@@ -61,8 +63,23 @@ public class Sound : MonoBehaviour
         audioSource.Play();
         Destroy(gameObject, clip.length);
     }
+    public void ItemSound(AudioClip clip, Vector3 position, string tag, int min, int max)
+    {
+        ItemSound(clip, position, tag, 1, 1, min, max);
+        return;
+    }
+    public void ItemSound(AudioClip clip, Vector3 position, int min, int max)
+    {
+        ItemSound(clip, position, "Untagged", 1, 1, min, max);
+        return;
+    }
+    public void ItemSound(AudioClip clip, Vector3 position)
+    {
+        ItemSound(clip, position, "Untagged", 1, 1, 10, 100);
+        return;
+    }
 
-    public void stepSound(AudioClip clip, Vector3 position, float volume)
+    public void StepSound(AudioClip clip, Vector3 position, float volume)
     {
         GameObject gameObject = new GameObject("Step Sound");
         gameObject.transform.position = position;
