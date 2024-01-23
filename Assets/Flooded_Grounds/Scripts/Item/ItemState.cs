@@ -9,9 +9,5 @@ public interface ItemState
     GameObject ItemArm { get; set; }
     GameObject DefaultArm { get; set; }
 
-    void ChangeArm()
-    {
-        ItemArm.SetActive(picked);
-        DefaultArm.SetActive(!picked);
-    }
+    void ChangeArm();
 }

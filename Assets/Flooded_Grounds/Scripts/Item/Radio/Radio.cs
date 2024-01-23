@@ -63,6 +63,8 @@ public class Radio : MonoBehaviour, ItemState
 
     void Setup()
     {
+        ItemArm.GetComponent<Animator>().SetTrigger("putDown");
+
         point.SetActive(false);
         picked = false;
 

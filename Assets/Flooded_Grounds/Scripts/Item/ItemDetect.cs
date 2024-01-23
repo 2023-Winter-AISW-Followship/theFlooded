@@ -37,19 +37,30 @@ public class ItemDetect : MonoBehaviour
                 path.Append("(Clone)");
                 //hit.collider.transform.Find(path.ToString()).GetComponent<Outline>().detected(); //Outline æ∆¿Ã≈€ ¿±∞˚º±
                 path.Append("/Axis/Pickup");
-                hit.collider.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
-                detected = true;
+
+                Transform childTransform = hit.collider.transform.Find(path.ToString());
+
+                if (childTransform != null)
+                {
+                    hit.collider.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
+                    detected = true;
+                }
+                
             }
         }
     }
 
     void Pickup()
     {
-        GameObject temp = hit.collider.transform.GetChild(0).gameObject;
-        temp.transform.parent = Camera.main.transform;
-        temp.transform.position = new Vector3(0, -100, 0);
-        temp.GetComponent<Collider>().enabled = false;
-        temp.GetComponent<ItemState>().picked = true;
-        Destroy(hit.collider);
+        if (detected && hit.collider != null)
+        {
+            GameObject temp = hit.collider.transform.GetChild(0).gameObject;
+            temp.transform.parent = Camera.main.transform;
+            temp.transform.position = new Vector3(0, -100, 0);
+            temp.GetComponent<Collider>().enabled = false;
+            temp.GetComponent<ItemState>().picked = true;
+            Debug.Log("PickUp¿€µø");
+            Destroy(hit.collider);
+        }
     }
 }
