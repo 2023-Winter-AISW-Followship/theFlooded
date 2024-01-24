@@ -16,6 +16,6 @@ MonoBehaviour:
   soundRecognitionDist: 20
   sightRecognitionDist: 30
   sightRecognitionAngle: 80
-  reach: 5
+  reach: 3
   speed: 5
   runSpeed: 8
