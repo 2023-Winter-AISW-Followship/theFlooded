@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc668a4375867b1479c2e6c958a777ac, type: 3}
   m_Name: DashData
   m_EditorClassIdentifier: 
-  monsterName: dash
+  monsterName: Dash
   soundRecognitionDist: 20
   sightRecognitionDist: 30
   sightRecognitionAngle: 80
   reach: 5
+  speed: 5
+  runSpeed: 8

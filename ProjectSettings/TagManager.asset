@@ -9,6 +9,8 @@ TagManager:
   - Radio
   - FxTemporaire
   - Sparkler
+  - sparkler
+  - radio
   layers:
   - Default
   - TransparentFX

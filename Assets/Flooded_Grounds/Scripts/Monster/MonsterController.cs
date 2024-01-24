@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
+using TMPro;
 using UniRx;
 using UniRx.Triggers;
+using UnityEditor.Sprites;
 using UnityEngine;
+using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class MonsterController : MonoBehaviour
 {
@@ -16,8 +20,10 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private LayerMask obstacleLayer;
 
-    private Animator animator;
+    Animator animator;
     private float awakeTime = 10f;
+    NavMeshAgent agent;
+    Vector3 destination;
 
     bool faint = false;
 
@@ -37,14 +43,64 @@ public class MonsterController : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = monsterData.Speed;
+        agent.angularSpeed = 360f;
+        destination = agent.destination;
+
         this.UpdateAsObservable()
             .Where(_ => !faint)
-            .Select(x => recognizeRange())
+            .Select(x => RecognizeRange())
             .Where(x => x > 0)
-            .Subscribe(x => recognize(x));
+            .Subscribe(x => Recognize(x));
+
+        this.ObserveEveryValueChanged(_ => destination)
+            .Subscribe(_ => Move());
+
+        this.UpdateAsObservable()
+            .Where(_ => agent.remainingDistance < agent.stoppingDistance)
+            .Subscribe(_ =>
+            {
+                Rotate(destination);
+            });
     }
 
-    int recognizeRange()
+    void Move()
+    {
+        animator.SetBool("stop", false);
+        
+        agent.speed = monsterData.RunSpeed;
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("howl"))
+        {
+            agent.speed = 0;
+        }
+
+        NavMeshPath path = new NavMeshPath();
+        if (agent.CalculatePath(destination, path))
+        {
+            agent.SetDestination(destination);
+        }
+    }
+
+    void Rotate(Vector3 destination)
+    {
+        Vector3 direction = (destination - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+
+        if (agent.velocity.sqrMagnitude >= 0.1f * 0.1f)
+        {
+            animator.SetBool("stop", true);
+        }
+        else
+        {
+            animator.SetBool("recognize", false);
+        }
+    }
+
+    int RecognizeRange()
     {
         return Physics.OverlapSphereNonAlloc(
             transform.position,
@@ -53,7 +109,7 @@ public class MonsterController : MonoBehaviour
             soundLayer | playerLayer);
     }
 
-    void recognize(int size)
+    void Recognize(int size)
     {
         float max = -1;
         Transform target = null;
@@ -96,7 +152,6 @@ public class MonsterController : MonoBehaviour
                 &&
                 targets[i].gameObject.layer == Math.Log(soundLayer.value, 2))
             {
-                Debug.Log(Math.Log(soundLayer.value, 2));
                 float distWeight = Mathf.Lerp(1.2f, 0, targetDist / monsterData.SoundRecognitionDist);
                 float volumePerDist = targets[i].GetComponent<AudioSource>().volume * distWeight;
                 if (volumePerDist > 0.25f && volumePerDist > max)
@@ -106,8 +161,8 @@ public class MonsterController : MonoBehaviour
                 }
             }
         }
-        transform.LookAt(target);
         animator.SetBool("recognize", true);
+        destination = target.transform.position;
     }
 
     public void bottle()
@@ -120,10 +175,10 @@ public class MonsterController : MonoBehaviour
         }
         faint = true;
         animator.SetTrigger("bottle");
-        StartCoroutine(wakeUp());
+        StartCoroutine(WakeUp());
     }
 
-    IEnumerator wakeUp()
+    IEnumerator WakeUp()
     {
         yield return new WaitForSeconds(awakeTime);
         faint = false;

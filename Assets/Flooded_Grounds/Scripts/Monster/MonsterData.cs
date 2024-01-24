@@ -25,4 +25,12 @@ public class MonsterData : ScriptableObject
     [SerializeField, Range(0f, 30f)]
     private int reach;
     public int Reach { get {  return reach; } }
+
+    [SerializeField, Range(0f, 8f)]
+    private int speed;
+    public int Speed { get { return speed; } }
+
+    [SerializeField, Range(0f, 15f)]
+    private int runSpeed;
+    public int RunSpeed { get { return runSpeed; } }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc668a4375867b1479c2e6c958a777ac, type: 3}
   m_Name: HowlData
   m_EditorClassIdentifier: 
-  monsterName: howl
+  monsterName: Howl
   soundRecognitionDist: 50
   sightRecognitionDist: 10
   sightRecognitionAngle: 360
