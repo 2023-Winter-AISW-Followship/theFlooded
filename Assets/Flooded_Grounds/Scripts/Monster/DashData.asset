@@ -19,3 +19,4 @@ MonoBehaviour:
   reach: 3
   speed: 5
   runSpeed: 8
+  hitSize: {x: 1, y: 2, z: 3}

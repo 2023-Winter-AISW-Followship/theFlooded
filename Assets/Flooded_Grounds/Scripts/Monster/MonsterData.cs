@@ -33,4 +33,8 @@ public class MonsterData : ScriptableObject
     [SerializeField, Range(0f, 15f)]
     private int runSpeed;
     public int RunSpeed { get { return runSpeed; } }
+
+    [SerializeField]
+    private Vector3 hitSize;
+    public Vector3 HitSize { get {  return hitSize; } }
 }
