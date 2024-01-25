@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,6 +11,7 @@ using System.Net;
 public class CharController_Moter : MonoBehaviour
 {
     private Rigidbody rb;
+    public static Transform player;
 
     #region Sound Variables
 
@@ -105,6 +105,7 @@ public class CharController_Moter : MonoBehaviour
 
     private void Awake()
     {
+        player = transform;
         rb = GetComponent<Rigidbody>();
 
         crosshairObject = GetComponentInChildren<Image>();

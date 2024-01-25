@@ -28,8 +28,9 @@ public class MonsterController : MonoBehaviour
     Vector3 destination;
     
 
-    bool faint = false;
-    bool recognize = false;
+    bool isFaint = false;
+    bool isRecognize = false;
+    bool isMoving = false;
 
     Vector3 AngleToDir(float angle)
     {
@@ -54,13 +55,13 @@ public class MonsterController : MonoBehaviour
         destination = agent.destination;
 
         this.UpdateAsObservable()
-            .Where(_ => !faint)
+            .Where(_ => !isFaint)
             .Select(x => RecognizeRange())
             .Where(x => x > 0)
             .Subscribe(x => Recognize(x));
 
         this.UpdateAsObservable()
-            .Where(_ => recognize)
+            .Where(_ => isRecognize)
             .Subscribe(_ => Attack());
 
         this.ObserveEveryValueChanged(_ => destination)
@@ -70,7 +71,7 @@ public class MonsterController : MonoBehaviour
             .Where(_ => agent.remainingDistance < agent.stoppingDistance)
             .Subscribe(_ =>
             {
-                Rotate(destination);
+                Rotate();
             });
     }
 
@@ -85,31 +86,38 @@ public class MonsterController : MonoBehaviour
         NavMeshPath path = new NavMeshPath();
         if (agent.CalculatePath(destination, path))
         {
-            animator.SetBool("stop", false);
-            agent.SetDestination(destination);
+            if(agent.speed == 0)
+            {
+                Rotate();
+            }
+            else
+            {
+                animator.SetBool("stop", false);
+                agent.SetDestination(destination);
+            }
         }
     }
 
-    void Rotate(Vector3 destination)
+    void Rotate()
     {
         Vector3 direction = (destination - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
 
-        if (Vector3.Distance(destination, transform.position) > 1f)
+        if (Vector3.Distance(destination, CharController_Moter.player.position) < 0.1f)
         {
             animator.SetBool("stop", true);
         }
         else
         {
-            recognize = false;
+            isRecognize = false;
         }
     }
 
     int RecognizeRange()
     {
-        animator.SetBool("recognize", recognize);
+        animator.SetBool("recognize", isRecognize);
 
         return Physics.OverlapSphereNonAlloc(
             transform.position,
@@ -153,7 +161,6 @@ public class MonsterController : MonoBehaviour
                     {
                         Debug.DrawLine(transform.position, targets[i].transform.position, Color.red);
                         target = targets[i].transform;
-                        break;
                     }
                 }
             }
@@ -172,7 +179,7 @@ public class MonsterController : MonoBehaviour
         }
         if(target != null)
         {
-            recognize = true;
+            isRecognize = true;
             destination = target.transform.position;
         }
     }
@@ -181,7 +188,7 @@ public class MonsterController : MonoBehaviour
     {
         bool inRange = Physics.CheckSphere(
             transform.position,
-            monsterData.Reach * 2,
+            monsterData.Reach,
             playerLayer);
 
         if (inRange)
@@ -194,7 +201,7 @@ public class MonsterController : MonoBehaviour
     {
         bool hit = Physics.CheckBox(
             transform.position,
-            monsterData.HitSize,
+            monsterData.HitSize / 2,
             transform.rotation,
             playerLayer);
 
@@ -213,7 +220,7 @@ public class MonsterController : MonoBehaviour
         {
             return;
         }
-        faint = true;
+        isFaint = true;
         animator.SetTrigger("bottle");
         StartCoroutine(WakeUp());
     }
@@ -221,13 +228,14 @@ public class MonsterController : MonoBehaviour
     IEnumerator WakeUp()
     {
         yield return new WaitForSeconds(awakeTime);
-        faint = false;
+        isFaint = false;
         animator.SetTrigger("wakeUp");
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.matrix = transform.localToWorldMatrix;
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+        Gizmos.matrix = rotationMatrix;
 
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(Vector3.zero, monsterData.SightRecognitionDist);
@@ -237,7 +245,7 @@ public class MonsterController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(Vector3.zero, monsterData.Reach);
-        Gizmos.DrawWireCube(Vector3.zero, monsterData.HitSize);
+        
 
         Vector3 rightDir = AngleToDir(Vector3.forward.y + monsterData.SightRecognitionAngle * 0.5f);
         Vector3 leftDir = AngleToDir(Vector3.forward.y - monsterData.SightRecognitionAngle * 0.5f);
@@ -247,5 +255,8 @@ public class MonsterController : MonoBehaviour
         Gizmos.DrawRay(Vector3.zero, leftDir * monsterData.SightRecognitionDist);
         Gizmos.color = Color.cyan;
         Gizmos.DrawRay(Vector3.zero, Vector3.forward * monsterData.SightRecognitionDist);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(Vector3.zero, monsterData.HitSize);
     }
 }

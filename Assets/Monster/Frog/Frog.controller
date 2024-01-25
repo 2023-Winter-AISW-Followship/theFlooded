@@ -44,7 +44,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 89709d635456b1242ab79a25b48ee2d8, type: 3}
+  m_Motion: {fileID: 7400002, guid: 75116d3ad847f4b308aea41d92d1efb8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -124,7 +124,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: be94a17bec2ac37449fba15758706d3a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 678061c4b4aa4c04e9c354a7d3bcd4b6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -152,7 +152,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1021c3a1a114cd149aa3d292fe946e87, type: 3}
+  m_Motion: {fileID: 7400002, guid: 75116d3ad847f4b308aea41d92d1efb8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -189,7 +189,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wolf_animation
+  m_Name: Frog
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: recognize
@@ -518,7 +518,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 996d5d2cd219c7e42abdb6c02409548c, type: 3}
+  m_Motion: {fileID: 7400016, guid: 75116d3ad847f4b308aea41d92d1efb8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -615,7 +615,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d1b2a85e71b56e548bda97f53cb9ff45, type: 3}
+  m_Motion: {fileID: 7400002, guid: 75116d3ad847f4b308aea41d92d1efb8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
