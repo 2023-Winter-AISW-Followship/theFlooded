@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
+using UnityEngine.Audio;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -178,6 +180,20 @@ public class CharController_Moter : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (sprintSpeed == 10)
+            {
+                sprintSpeed = 20;
+                sprintRegen = 1;
+            }
+            else
+            {
+                sprintSpeed = 10;
+                sprintRegen = 50;
+            }
+        }
+
         #region Camera
 
         if (!Pause.GameIsPaused)
