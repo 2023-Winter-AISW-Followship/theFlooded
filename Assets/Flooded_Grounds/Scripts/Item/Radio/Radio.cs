@@ -37,7 +37,7 @@ public class Radio : MonoBehaviour, ItemState
 
         this.UpdateAsObservable()
             .Where(_ => picked && isGround && Input.GetMouseButtonDown(0))
-            .Subscribe(_ => Setup());
+            .Subscribe(_ => PutDown());
 
         this.ObserveEveryValueChanged(x => picked)
             .Subscribe(_ => ChangeArm());
@@ -61,13 +61,17 @@ public class Radio : MonoBehaviour, ItemState
         isGround = false;
     }
 
-    void Setup()
+    void PutDown()
     {
         ItemArm.GetComponent<Animator>().SetTrigger("putDown");
+       Invoke("Setup", 0.8f);
+    }
 
+    public void Setup()
+    {
         point.SetActive(false);
         picked = false;
-
+        
         transform.parent = null;
         transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         transform.SetPositionAndRotation(point.transform.position, point.transform.rotation);

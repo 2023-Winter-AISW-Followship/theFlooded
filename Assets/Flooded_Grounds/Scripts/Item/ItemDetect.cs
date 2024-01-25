@@ -52,15 +52,11 @@ public class ItemDetect : MonoBehaviour
 
     void Pickup()
     {
-        if (detected && hit.collider != null)
-        {
             GameObject temp = hit.collider.transform.GetChild(0).gameObject;
             temp.transform.parent = Camera.main.transform;
             temp.transform.position = new Vector3(0, -100, 0);
             temp.GetComponent<Collider>().enabled = false;
             temp.GetComponent<ItemState>().picked = true;
-            Debug.Log("PickUp¿€µø");
             Destroy(hit.collider);
-        }
     }
 }

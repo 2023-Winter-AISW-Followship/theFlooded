@@ -47,7 +47,7 @@ public class Sparkler : MonoBehaviour, ItemState
 
         this.UpdateAsObservable()
             .Where(_ => picked && isGround && Input.GetMouseButtonDown(0))
-            .Subscribe(_ => Setup());
+            .Subscribe(_ => PutDown());
 
         this.ObserveEveryValueChanged(x => picked)
             .Subscribe(_ => ChangeArm());
@@ -69,6 +69,13 @@ public class Sparkler : MonoBehaviour, ItemState
         }
         point.SetActive(false);
         isGround = false;
+    }
+
+    void PutDown()
+    {
+        ItemArm.GetComponent<Animator>().SetTrigger("putDown");
+
+        Invoke("Setup", .81f);
     }
 
     void Setup()

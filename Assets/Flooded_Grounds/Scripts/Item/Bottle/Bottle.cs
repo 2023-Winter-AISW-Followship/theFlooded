@@ -6,13 +6,62 @@ using UniRx.Triggers;
 using Unity.Linq;
 using UnityEngine;
 
-public class Bottle : MonoBehaviour
+public class Bottle : MonoBehaviour, ItemState
 {
     [SerializeField] GameObject brokenBottlePrefab;
+    bool playerThrow = false;
+    GameObject bottle;
+    public bool picked { get; set; }
+    public GameObject ItemArm { get; set; }
+    public GameObject DefaultArm { get; set; }
+
+    public void ChangeArm()
+    {
+        Debug.Log("ChangeArm작동");
+
+        ItemArm.SetActive(picked);
+        DefaultArm.SetActive(!picked);
+    }
 
     private void Start()
     {
+        DefaultArm = Camera.main.transform.Find("Hands/hand_right/HandWithNone").gameObject;
+        ItemArm = Camera.main.transform.Find("Hands/hand_right/HandWithBottle").gameObject;
+        bottle = Camera.main.transform.Find("Hands/hand_right/HandWithBottle/Bottle").gameObject;
 
+        this.UpdateAsObservable()
+            .Where(_ => picked
+                && Input.GetMouseButtonDown(0))
+            .Subscribe(_ => Throw());
+
+        this.ObserveEveryValueChanged(x => picked)
+            .Subscribe(_ => ChangeArm());
+
+        this.OnCollisionEnterAsObservable()
+            .Where(_ => playerThrow)
+            .Select(x => x.gameObject)
+            .Subscribe(x => Explode(x));
+
+    }
+
+    public void Throw()
+    {
+        ItemArm.GetComponent<Animator>().SetTrigger("throw");
+
+        Invoke("bottleLaunch", .54f);
+    }
+
+    public void bottleLaunch()
+    {
+        transform.position = bottle.transform.position;
+        transform.rotation = Camera.main.transform.rotation;
+        transform.parent = null;
+        GetComponent<Rigidbody>().useGravity = true;
+        Vector3 speed = Vector3.forward * 20f + Vector3.up * 5f;
+        GetComponent<Rigidbody>().velocity = Camera.main.transform.TransformDirection(speed);
+        GetComponent<Collider>().enabled = true;
+        playerThrow = true;
+        picked = false;
     }
 
     public void Explode(GameObject collision)
@@ -27,7 +76,6 @@ public class Bottle : MonoBehaviour
             Debug.Log(collision.tag);
             collision.GetComponentInParent<MonsterController>().bottle();
         }
-        Debug.Log("Explode작동");
 
         Destroy(gameObject);
     }
