@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static System.Net.WebRequestMethods;
 
 [CreateAssetMenu(fileName ="Monster Data", menuName = "Scriptable Object/Monster Data", order = int.MaxValue)]
 public class MonsterData : ScriptableObject
