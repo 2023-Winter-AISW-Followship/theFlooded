@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using TMPro;
 using UniRx;
 using UniRx.Triggers;
-using UnityEditor.Sprites;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
 public class MonsterController : MonoBehaviour
 {
