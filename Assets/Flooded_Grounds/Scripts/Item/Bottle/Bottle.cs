@@ -17,8 +17,6 @@ public class Bottle : MonoBehaviour, ItemState
 
     public void ChangeArm()
     {
-        Debug.Log("ChangeArmÀÛµ¿");
-
         ItemArm.SetActive(picked);
         DefaultArm.SetActive(!picked);
     }
@@ -27,7 +25,7 @@ public class Bottle : MonoBehaviour, ItemState
     {
         DefaultArm = Camera.main.transform.Find("Hands/hand_right/HandWithNone").gameObject;
         ItemArm = Camera.main.transform.Find("Hands/hand_right/HandWithBottle").gameObject;
-        bottle = Camera.main.transform.Find("Hands/hand_right/HandWithBottle/Bottle").gameObject;
+        bottle = Camera.main.gameObject.Descendants().Where(x => x.name.Equals("Bottle")).FirstOrDefault().gameObject;
 
         this.UpdateAsObservable()
             .Where(_ => picked
