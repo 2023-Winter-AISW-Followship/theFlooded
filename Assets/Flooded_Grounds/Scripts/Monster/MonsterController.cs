@@ -17,6 +17,8 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private LayerMask soundLayer;
     [SerializeField]
+    private LayerMask sparklerLayer;
+    [SerializeField]
     private LayerMask playerLayer;
     [SerializeField]
     private LayerMask obstacleLayer;
@@ -56,19 +58,33 @@ public class MonsterController : MonoBehaviour
 
         this.UpdateAsObservable()
             .Where(_ => !isFaint)
-            .Select(x => RecognizeRange())
-            .Where(x => x > 0)
-            .Subscribe(x => Recognize(x));
+            .Subscribe(_ =>
+            {
+                animator.SetBool("recognize", isRecognize);
+                
+                Transform target = SoundRecognize();
+                Transform temp = SightRecognize();
+                if(temp != null)
+                {
+                    target = temp;
+                }
+                if(target != null)
+                {
+                    isRecognize = true;
+                    destination = target.position;
+                }
+            });
 
         this.UpdateAsObservable()
             .Where(_ => isRecognize)
             .Subscribe(_ => Attack());
 
-        this.ObserveEveryValueChanged(_ => destination)
+        this.UpdateAsObservable()
+            .Where(_ => isRecognize)
             .Subscribe(_ => Move());
 
         this.UpdateAsObservable()
-            .Where(_ => agent.remainingDistance < agent.stoppingDistance)
+            .Where(_ => agent.remainingDistance <= agent.stoppingDistance)
             .Subscribe(_ =>
             {
                 Rotate();
@@ -80,7 +96,7 @@ public class MonsterController : MonoBehaviour
         agent.speed = monsterData.RunSpeed;
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("howl"))
         {
-            agent.speed = 0;
+            agent.speed = 1;
         }
 
         NavMeshPath path = new NavMeshPath();
@@ -105,7 +121,9 @@ public class MonsterController : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
 
-        if (Vector3.Distance(destination, CharController_Moter.player.position) < 0.1f)
+        if (Vector3.Distance(destination, CharController_Moter.player.position) < 0.1f
+            ||
+            Vector3.Distance(destination, transform.position) < monsterData.Reach)
         {
             animator.SetBool("stop", true);
         }
@@ -115,73 +133,75 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    int RecognizeRange()
-    {
-        animator.SetBool("recognize", isRecognize);
-
-        return Physics.OverlapSphereNonAlloc(
-            transform.position,
-            Mathf.Max(monsterData.SoundRecognitionDist, monsterData.SightRecognitionDist),
-            targets,
-            soundLayer | playerLayer);
-    }
-
-    void Recognize(int size)
+    Transform SoundRecognize()
     {
         float max = -1;
         Transform target = null;
 
-        for (int i = 0; i < size; i++)
+        int size = Physics.OverlapSphereNonAlloc(
+            transform.position,
+            monsterData.SoundRecognitionDist,
+            targets,
+            soundLayer);
+
+        for(int i = 0; i < size; i++)
         {
             float targetDist = Vector3.Distance(transform.position, targets[i].transform.position);
+            float distWeight = Mathf.Lerp(1.2f, 0, targetDist / monsterData.SoundRecognitionDist);
+            float volumePerDist = targets[i].GetComponent<AudioSource>().volume * distWeight;
+            if (volumePerDist > 0.25f && volumePerDist > max)
+            {
+                max = volumePerDist;
+                target = targets[i].transform;
+            }
+        }
+        return target;
+    }
+
+    Transform SightRecognize()
+    {
+        Transform target = null;
+
+        int size = Physics.OverlapSphereNonAlloc(
+            transform.position,
+            monsterData.SightRecognitionDist,
+            targets,
+            playerLayer | sparklerLayer);
+
+        for (int i = 0; i < size; i++)
+        {
+            
             bool isObstacle = Physics.Linecast(transform.position, targets[i].transform.position, obstacleLayer);
 
-            if (targetDist < monsterData.SightRecognitionDist)
+            if (monsterData.MonsterName.Equals("Gazer") && targets[i].gameObject.layer == Math.Log(sparklerLayer.value, 2))
             {
-                if(monsterData.name.Equals("Gazer") && targets[i].gameObject.CompareTag("sparkler"))
+                Debug.Log(targets[i].name);
+                Vector3 targetDir = (targets[i].transform.position - transform.position).normalized;
+                float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
+                if (targetAngle <= monsterData.SightRecognitionAngle * 0.5f
+                    &&
+                    !isObstacle)
                 {
-                    Vector3 targetDir = (targets[i].transform.position - transform.position).normalized;
-                    float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
-                    if (targetAngle <= monsterData.SightRecognitionAngle * 0.5f
-                        &&
-                        !isObstacle)
-                    {
-                        Debug.DrawLine(transform.position, targets[i].transform.position, Color.red);
-                        target = targets[i].transform;
-                        break;
-                    }
-                }
-                else if(targets[i].gameObject.layer == Math.Log(playerLayer.value, 2))
-                {
-                    Vector3 targetDir = (targets[i].transform.position - transform.position).normalized;
-                    float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
-                    if (targetAngle <= monsterData.SightRecognitionAngle * 0.5f
-                        &&
-                        !isObstacle)
-                    {
-                        Debug.DrawLine(transform.position, targets[i].transform.position, Color.red);
-                        target = targets[i].transform;
-                    }
+                    Debug.DrawLine(transform.position, targets[i].transform.position, Color.red);
+                    target = targets[i].transform;
+                    break;
                 }
             }
-            if(targetDist < monsterData.SoundRecognitionDist
-                &&
-                targets[i].gameObject.layer == Math.Log(soundLayer.value, 2))
+            else if (targets[i].gameObject.layer == Math.Log(playerLayer.value, 2))
             {
-                float distWeight = Mathf.Lerp(1.2f, 0, targetDist / monsterData.SoundRecognitionDist);
-                float volumePerDist = targets[i].GetComponent<AudioSource>().volume * distWeight;
-                if (volumePerDist > 0.25f && volumePerDist > max)
+                Vector3 targetDir = (targets[i].transform.position - transform.position).normalized;
+                float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
+                if (targetAngle <= monsterData.SightRecognitionAngle * 0.5f
+                    &&
+                    !isObstacle)
                 {
-                    max = volumePerDist;
+                    Debug.DrawLine(transform.position, targets[i].transform.position, Color.red);
                     target = targets[i].transform;
                 }
             }
         }
-        if(target != null)
-        {
-            isRecognize = true;
-            destination = target.transform.position;
-        }
+
+        return target;
     }
 
     void Attack()

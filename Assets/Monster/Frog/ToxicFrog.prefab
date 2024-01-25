@@ -3749,6 +3749,9 @@ MonoBehaviour:
   soundLayer:
     serializedVersion: 2
     m_Bits: 256
+  sparklerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
