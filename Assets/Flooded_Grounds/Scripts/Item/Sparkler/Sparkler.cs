@@ -75,7 +75,7 @@ public class Sparkler : MonoBehaviour, ItemState
     {
         ItemArm.GetComponent<Animator>().SetTrigger("putDown");
 
-        Invoke("Setup", 1.2f);
+        Invoke("Setup", .62f);
     }
 
     void Setup()

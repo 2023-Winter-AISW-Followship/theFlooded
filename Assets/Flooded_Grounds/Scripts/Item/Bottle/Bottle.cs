@@ -46,7 +46,7 @@ public class Bottle : MonoBehaviour, ItemState
     {
         ItemArm.GetComponent<Animator>().SetTrigger("throw");
 
-        Invoke("bottleLaunch", .54f);
+        Invoke("bottleLaunch", .55f);
     }
 
     public void bottleLaunch()
@@ -58,6 +58,12 @@ public class Bottle : MonoBehaviour, ItemState
         Vector3 speed = Vector3.forward * 20f + Vector3.up * 5f;
         GetComponent<Rigidbody>().velocity = Camera.main.transform.TransformDirection(speed);
         GetComponent<Collider>().enabled = true;
+
+        Invoke("isAnimEnded", .33f);
+    }
+
+    void isAnimEnded()
+    {
         playerThrow = true;
         picked = false;
     }
