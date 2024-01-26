@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Flooded_Grounds/Scenes/Scene_CommandPattern.unity
     guid: 3e70b6967c27bae4aaae7cd50fdbf32c
+  - enabled: 1
+    path: Assets/Flooded_Grounds/Scenes/Scene_StartStorytelling.unity
+    guid: 8184338425b7c8545ae97e935ea699fd
   m_configObjects: {}

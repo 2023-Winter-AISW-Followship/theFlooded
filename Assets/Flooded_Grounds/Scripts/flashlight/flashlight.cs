@@ -9,6 +9,7 @@ public class light : MonoBehaviour
     private void Start()
     {
         flash = GetComponent<Light>();
+        flash.enabled = false;
     }
     void Update()
     {

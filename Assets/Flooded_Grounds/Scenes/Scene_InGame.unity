@@ -20789,6 +20789,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 956048823318962642, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1274313540466400946, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
       propertyPath: m_Color.a
       value: 0.27450982
@@ -57523,7 +57527,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5025555394260401869, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767114783693244157, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767114783693244157, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767114783693244157, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767114783693244157, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_Intensity
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767114783693244157, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
+      propertyPath: m_SpotAngle
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7220811150885996343, guid: 84e1fb248c9ee584a85470162c251253, type: 3}
       propertyPath: m_IsActive

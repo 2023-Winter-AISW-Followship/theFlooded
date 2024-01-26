@@ -46,7 +46,7 @@ public class Bottle : MonoBehaviour, ItemState
     {
         ItemArm.GetComponent<Animator>().SetTrigger("throw");
 
-        Invoke("bottleLaunch", .55f);
+        Invoke("bottleLaunch", .6f);
     }
 
     public void bottleLaunch()

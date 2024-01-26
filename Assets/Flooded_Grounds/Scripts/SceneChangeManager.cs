@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeManager : MonoBehaviour
 {
+    //Scene_Start
     public void SceneChange_StartGame()
     {
-        SceneManager.LoadScene("Scene_InGame");
+        SceneManager.LoadScene("Scene_StartStorytelling");
     }
 
     public void SceneChange_Settings()
@@ -26,6 +27,14 @@ public class SceneChangeManager : MonoBehaviour
     }
 
 
+    //Scene_StartStorytelling
+    public void SceneChange_Ingame()
+    {
+        SceneManager.LoadScene("Scene_InGame");
+    }
+
+
+    //Scene_CommandPattern
     public void SceneChange_SettingsBack()
     {
         SceneManager.LoadScene("Scene_Start");
