@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
+using Unity.Linq;
 using UnityEngine;
 
 public enum KeyAction
 {
-    UP,
-    DOWN,
+    FORWARD,
+    BACK,
     LEFT,
     RIGHT,
     JUMP,
@@ -34,12 +34,21 @@ public class CharController_Command : MonoBehaviour
         KeyCode.E,
     };
 
-    private void Start()
+    private static CharController_Command instance = null;
+
+    private void Awake()
     {
-        for (int i = 0; i < defaultKey.Length; i++)
+        if (instance == null)
         {
-            KeySetting.key.Add((KeyAction)i, defaultKey[i]);
+            for (int i = 0; i < defaultKey.Length; i++)
+            {
+                KeySetting.key.Add((KeyAction)i, defaultKey[i]);
+            }
+
+            instance = this;
+            DontDestroyOnLoad(instance);
         }
+        else Destroy(gameObject);
     }
 
     int keyNum = -1;
@@ -50,7 +59,7 @@ public class CharController_Command : MonoBehaviour
         {
             if(keyNum != -1)
             {
-                for(int i = 0; i < (int) KeyAction.COUNT; i++)
+                for (int i = 0; i < (int)KeyAction.COUNT; i++)
                 {
                     if(KeySetting.key[(KeyAction)i] == keyEvent.keyCode)
                     {
@@ -66,5 +75,10 @@ public class CharController_Command : MonoBehaviour
     public void ChangeKey(int num)
     {
         keyNum = num;
+    }
+
+    public void CompleteSetting()
+    {
+        gameObject.Child("setting").SetActive(false);
     }
 }

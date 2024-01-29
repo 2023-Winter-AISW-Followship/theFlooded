@@ -45,10 +45,10 @@ public class CharController_Moter : MonoBehaviour
     private bool isWater = false;
 
     private const int waterHeight = 9;
+    int moveLR, moveFB;
 
     #region Sprint
 
-    public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 10f;
     public float sprintDuration = 20f;
     public float sprintRegen = 50f;
@@ -72,7 +72,6 @@ public class CharController_Moter : MonoBehaviour
 
     #region Jump
 
-    public KeyCode jumpKey = KeyCode.Space;
     public float jumpPower = 5f;
 
     private bool isGrounded = false;
@@ -81,7 +80,6 @@ public class CharController_Moter : MonoBehaviour
 
     #region Sit
 
-    public KeyCode sitKey = KeyCode.LeftControl;
     public float sitHeight = .75f;
     public float speedReduction = .5f;
 
@@ -244,7 +242,7 @@ public class CharController_Moter : MonoBehaviour
 
         #region Jump
 
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
+        if (Input.GetKeyDown(KeySetting.key[KeyAction.JUMP]) && isGrounded)
         {
             Jump();
         }
@@ -253,7 +251,7 @@ public class CharController_Moter : MonoBehaviour
 
         #region Sit
 
-        if (Input.GetKeyDown(sitKey))
+        if (Input.GetKeyDown(KeySetting.key[KeyAction.SIT]))
         {
             Sit();
         }
@@ -274,7 +272,16 @@ public class CharController_Moter : MonoBehaviour
 
         if (!Pause.GameIsPaused)
         {
-            targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveLR = 0;
+            moveFB = 0;
+
+            if (Input.GetKey(KeySetting.key[KeyAction.LEFT])) moveLR -= 1;
+            if (Input.GetKey(KeySetting.key[KeyAction.RIGHT])) moveLR += 1;
+
+            if (Input.GetKey(KeySetting.key[KeyAction.FORWARD])) moveFB += 1;
+            if (Input.GetKey(KeySetting.key[KeyAction.BACK])) moveFB -= 1;
+
+            targetVelocity = new Vector3(moveLR, 0, moveFB).normalized;
 
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
@@ -285,7 +292,7 @@ public class CharController_Moter : MonoBehaviour
                 isWalking = false;
             }
 
-            if (isWalking && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
+            if (isWalking && Input.GetKey(KeySetting.key[KeyAction.RUN]) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
                 

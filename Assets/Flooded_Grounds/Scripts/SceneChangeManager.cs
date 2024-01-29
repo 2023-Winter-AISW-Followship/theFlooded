@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Runtime.InteropServices;
+using Unity.Linq;
 using UnityEngine.SceneManagement;
 
 public class SceneChangeManager : MonoBehaviour
 {
+    private GameObject settingCanvas;
+    private void Start()
+    {
+        settingCanvas = GameObject.Find("KeySetting");
+    }
+
     //Scene_Start
     public void SceneChange_StartGame()
     {
         SceneManager.LoadScene("Scene_StartStorytelling");
-    }
-
-    public void SceneChange_Settings()
-    {
-        SceneManager.LoadScene("Scene_CommandPattern");
     }
 
     public void SceneChange_ExitGame()
@@ -33,10 +34,8 @@ public class SceneChangeManager : MonoBehaviour
         SceneManager.LoadScene("Scene_InGame");
     }
 
-
-    //Scene_CommandPattern
-    public void SceneChange_SettingsBack()
+    public void SceneChange_Settings()
     {
-        SceneManager.LoadScene("Scene_Start");
+        settingCanvas.Child("setting").SetActive(true);
     }
 }

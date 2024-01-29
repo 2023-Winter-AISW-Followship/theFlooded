@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UniRx;
 using UniRx.Triggers;
+using Unity.Linq;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
@@ -12,6 +13,8 @@ public class Pause : MonoBehaviour
 
     private void Start()
     {
+        settingCanvas = GameObject.Find("KeySetting");
+
         this.UpdateAsObservable()
             .Where(_ => Input.GetKeyDown(KeyCode.Escape))
             .Subscribe(_ => GameState());
@@ -27,9 +30,10 @@ public class Pause : MonoBehaviour
         PauseMenu.SetActive(GameIsPaused);
     }
 
+    private GameObject settingCanvas;
     public void Setting()
     {
-
+        settingCanvas.Child("setting").SetActive(true);
     }
 
     public void Exit()
