@@ -25,17 +25,27 @@ public class TutorialTextScript : MonoBehaviour
             if (tutorialObjScript != null && tutorialObjScript.isOnCollision)
             {
                 StartCoroutine(Show(contextArray[i]));
-                tutorialObjScript.isOnCollision = false;
+                //StartCoroutine(DestroyTutorial(contextArray[i]));
+                Destroy(tutorialObjScript);
             }
         }
     }
 
     IEnumerator Show(string dialog)
     {
+        Text.text = string.Empty;
+
         for (int i = 0; i < dialog.Length; i++)
         {
             Text.text += dialog[i];
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
+
     }
+
+    //IEnumerator DestroyTutorial(string context)
+    //{
+    //    yield return new WaitForSeconds(4);
+    //    context = string.Empty;
+    //}
 }
