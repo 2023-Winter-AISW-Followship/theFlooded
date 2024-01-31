@@ -8,9 +8,9 @@ public class TutorialObj : MonoBehaviour
     public GameObject obj;
     public bool isOnCollision = false;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             isOnCollision = true;
         }
