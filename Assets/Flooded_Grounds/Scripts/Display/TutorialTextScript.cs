@@ -25,7 +25,6 @@ public class TutorialTextScript : MonoBehaviour
             if (tutorialObjScript != null && tutorialObjScript.isOnCollision)
             {
                 StartCoroutine(Show(contextArray[i]));
-                //StartCoroutine(DestroyTutorial(contextArray[i]));
                 Destroy(tutorialObjScript);
             }
         }
@@ -42,10 +41,4 @@ public class TutorialTextScript : MonoBehaviour
         }
 
     }
-
-    //IEnumerator DestroyTutorial(string context)
-    //{
-    //    yield return new WaitForSeconds(4);
-    //    context = string.Empty;
-    //}
 }
