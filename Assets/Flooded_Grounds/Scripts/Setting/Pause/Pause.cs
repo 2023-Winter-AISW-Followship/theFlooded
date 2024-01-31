@@ -15,6 +15,9 @@ public class Pause : MonoBehaviour
     {
         settingCanvas = GameObject.Find("KeySetting");
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         this.UpdateAsObservable()
             .Where(_ => Input.GetKeyDown(KeyCode.Escape))
             .Subscribe(_ => GameState());
@@ -22,7 +25,7 @@ public class Pause : MonoBehaviour
 
     public void GameState()
     {
-
+        Debug.Log(GameIsPaused);
         GameIsPaused = !GameIsPaused;
         Time.timeScale = (Time.timeScale + 1) % 2;
         Cursor.visible = GameIsPaused;
