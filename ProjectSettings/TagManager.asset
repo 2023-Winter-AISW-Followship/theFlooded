@@ -11,6 +11,8 @@ TagManager:
   - Sparkler
   - sparkler
   - radio
+  - ClueNormal
+  - ClueMain
   layers:
   - Default
   - TransparentFX
