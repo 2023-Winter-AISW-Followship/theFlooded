@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 1505156535333840218}
   - component: {fileID: 7554508538122152546}
   - component: {fileID: 7250400301675636180}
+  - component: {fileID: 5799188334136451113}
   m_Layer: 7
   m_Name: lo_Prop_Sofa_A_LOD0
   m_TagString: Untagged
@@ -210,6 +211,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8099403, y: 1.2802668, z: 1.1681442}
   m_Center: {x: -0.012945056, y: 0.64067817, z: 0.39737546}
+--- !u!208 &5799188334136451113
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083312915039672020}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.4050001, y: 0.64000005, z: 0.58400005}
+  m_MoveThreshold: 1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.013, y: 0.64100003, z: 0.397}
+  m_TimeToStationary: 1
 --- !u!1 &9068258705750450653
 GameObject:
   m_ObjectHideFlags: 0

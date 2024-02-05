@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8656652466570524404}
   - component: {fileID: 1008567011825086764}
+  - component: {fileID: 4473003431964358089}
   m_Layer: 7
   m_Name: Struct_Billboard_B (1)
   m_TagString: Untagged
@@ -274,6 +275,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5819109829501166734}
   m_Enabled: 1
+--- !u!208 &4473003431964358089
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004239581606282999}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 1
 --- !u!1 &7210523941045334386
 GameObject:
   m_ObjectHideFlags: 0

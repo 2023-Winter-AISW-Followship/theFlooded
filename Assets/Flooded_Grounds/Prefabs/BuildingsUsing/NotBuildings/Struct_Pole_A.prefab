@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1332809846903412409}
   - component: {fileID: 3018731455072541336}
   - component: {fileID: 6470458242340822307}
+  - component: {fileID: 7937467050605870705}
   m_Layer: 7
   m_Name: Struct_Pole_A_LOD0
   m_TagString: Untagged
@@ -212,6 +213,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: f5592db6982749f4e8ed03db7ebc685a, type: 3}
+--- !u!208 &7937467050605870705
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834202075790291377}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1.2900001, y: 6.53, z: 1.2900001}
+  m_MoveThreshold: 1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.25, y: 6.53, z: -0.07300001}
+  m_TimeToStationary: 1
 --- !u!1 &8618998573301515747
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private LayerMask playerLayer;
     [SerializeField]
-    private LayerMask obstacleLayer;
+    private LayerMask obstacleLayer = 1 << 0;
 
     Animator animator;
     NavMeshAgent agent;
@@ -25,10 +25,9 @@ public class MonsterController : MonoBehaviour
     private float awakeTime = 10f;
     Vector3 destination;
     
-
     bool isFaint = false;
     bool isRecognize = false;
-    bool isMoving = false;
+    bool isTarget = false;
 
     Vector3 AngleToDir(float angle)
     {
@@ -38,11 +37,6 @@ public class MonsterController : MonoBehaviour
 
     Vector3 lookDir => AngleToDir(transform.eulerAngles.y);
     Collider[] targets = new Collider[5];
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     private void Start()
     {
@@ -56,8 +50,6 @@ public class MonsterController : MonoBehaviour
             .Where(_ => !isFaint)
             .Subscribe(_ =>
             {
-                animator.SetBool("recognize", isRecognize);
-                
                 Transform target = SoundRecognize();
                 Transform temp = SightRecognize();
                 if(temp != null)
@@ -67,8 +59,10 @@ public class MonsterController : MonoBehaviour
                 if(target != null)
                 {
                     isRecognize = true;
+                    isTarget = true;
                     destination = target.position;
                 }
+                animator.SetBool("recognize", isRecognize);
             });
 
         this.UpdateAsObservable()
@@ -76,24 +70,48 @@ public class MonsterController : MonoBehaviour
             .Subscribe(_ => Attack());
 
         this.UpdateAsObservable()
-            .Where(_ => isRecognize)
+            .Where(_ => isTarget)
             .Subscribe(_ => Move());
 
-        this.UpdateAsObservable()
-            .Where(_ => agent.remainingDistance <= agent.stoppingDistance)
-            .Subscribe(_ =>
+        //this.UpdateAsObservable()
+        //    .Where(_ => agent.velocity.magnitude > 0.2f && agent.remainingDistance < agent.stoppingDistance)
+        //    .Subscribe(_ =>
+        //    {
+        //        if (isRecognize) Rotate();
+        //        else
+        //        {
+        //            isTarget = false;
+        //            animator.SetTrigger("breath");
+        //        }
+        //    });
+    }
+
+    void RandomTarget()
+    {
+        Vector3 randomTarget = (UnityEngine.Random.insideUnitSphere * 20f) + transform.position;
+        if (NavMesh.SamplePosition(randomTarget, out NavMeshHit hit, 20f, NavMesh.AllAreas))
+        {
+            randomTarget = hit.position;
+
+            NavMeshPath path = new NavMeshPath();
+            if (agent.CalculatePath(randomTarget, path))
             {
-                Rotate();
-            });
+                destination = randomTarget;
+                isTarget = true;
+                return;
+            }
+            else RandomTarget();
+        }
+        else RandomTarget();
+
+        return;
     }
 
     void Move()
     {
+        if(destination == null) return;
+
         agent.speed = monsterData.RunSpeed;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("howl"))
-        {
-            agent.speed = 1;
-        }
 
         NavMeshPath path = new NavMeshPath();
         if (agent.CalculatePath(destination, path))
@@ -106,6 +124,16 @@ public class MonsterController : MonoBehaviour
             {
                 animator.SetBool("stop", false);
                 agent.SetDestination(destination);
+            }
+        }
+
+        if(agent.velocity.magnitude > 0.2f && agent.remainingDistance < agent.stoppingDistance)
+        {
+            if (isRecognize) Rotate();
+            else
+            {
+                isTarget = false;
+                animator.SetTrigger("breath");
             }
         }
     }
@@ -221,7 +249,6 @@ public class MonsterController : MonoBehaviour
             transform.rotation,
             playerLayer);
 
-        Debug.Log(hit);
         if (hit)
         {
             

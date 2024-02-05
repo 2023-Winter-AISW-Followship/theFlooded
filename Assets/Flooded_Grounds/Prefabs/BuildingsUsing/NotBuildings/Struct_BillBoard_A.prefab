@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 7058081218646494249}
   - component: {fileID: 6369768053090809291}
   - component: {fileID: 4695061361957900262}
+  - component: {fileID: 1435357469998763937}
   m_Layer: 7
   m_Name: Struct_Billboard_A_LOD0
   m_TagString: Untagged
@@ -380,3 +381,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 057c7f5d969c2b0499264ed710fed4b2, type: 3}
+--- !u!208 &1435357469998763937
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5413702215847240613}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 8.1, y: 8.397, z: 2.1450002}
+  m_MoveThreshold: 1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.0050000004, y: 8.221001, z: 0.367}
+  m_TimeToStationary: 1

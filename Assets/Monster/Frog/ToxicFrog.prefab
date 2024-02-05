@@ -3757,7 +3757,7 @@ MonoBehaviour:
     m_Bits: 512
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
 --- !u!195 &2784046146099209176
 NavMeshAgent:
   m_ObjectHideFlags: 0

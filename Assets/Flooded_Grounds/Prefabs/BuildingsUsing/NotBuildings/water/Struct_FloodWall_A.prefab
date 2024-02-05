@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 2007817920446707818}
   - component: {fileID: 74591655101496029}
   - component: {fileID: 7185801127769005304}
+  - component: {fileID: 8608455549300782974}
   m_Layer: 7
   m_Name: Struct_FloodWall_A_LOD0
   m_TagString: Untagged
@@ -251,6 +252,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9b8fc7a98811fbb42af918ad62747767, type: 3}
+--- !u!208 &8608455549300782974
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611272144642999343}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.8500004, y: 3.9070003, z: 2.3360002}
+  m_MoveThreshold: 1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -5.8500004, y: 3.6450002, z: -1.6}
+  m_TimeToStationary: 1
 --- !u!1 &8502935870348504464
 GameObject:
   m_ObjectHideFlags: 0
