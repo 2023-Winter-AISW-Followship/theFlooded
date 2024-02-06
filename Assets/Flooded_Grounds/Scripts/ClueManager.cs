@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class ClueManager : MonoBehaviour
 {
-    Text Clue_Num;
-    Text Clue_Percentage;
+    static Text Clue_Num;
+    static Text Clue_Percentage;
 
     GameObject[] Clue;  //단서 전체
     GameObject[] ClueNormal; //일반 단서
     GameObject[] ClueMain;  //핵심 단서(실험 보고서, 연구 보고서)
 
-    int ClueFoundNum = 0;
+    int ClueFoundNum;
 
 
     private void Start()
@@ -25,17 +25,24 @@ public class ClueManager : MonoBehaviour
         Clue_Percentage.text = string.Empty;
 
 
-        GameObject clueParent = GameObject.Find("Clues");
-        //이거말구 Clue 해야함
+        Clue = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
+            .Where(t => t.gameObject.layer == LayerMask.NameToLayer("clue"))  //layer: clue 탐색
+            .Select(t => t.gameObject)
+            .ToArray();
 
-        ClueNormal = clueParent.GetComponentsInChildren<Transform>(true)
-            .Where(t => t.gameObject.CompareTag("ClueNormal")).Select(t => t.gameObject).ToArray();
+        ClueNormal = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
+            .Where(t => t.gameObject.CompareTag("ClueNormal")).Select(t => t.gameObject).ToArray();  //tag: ClueNormal 탐색
 
-        ClueMain = clueParent.GetComponentsInChildren<Transform>(true)
-            .Where(t => t.gameObject.CompareTag("ClueMain")).Select(t => t.gameObject).ToArray();
+        ClueMain = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
+            .Where(t => t.gameObject.CompareTag("ClueMain")).Select(t => t.gameObject).ToArray();  //tag: ClueMain 탐색
 
-        Clue_Num.text = ClueFoundNum + "  /  " + ClueNormal.Length + " 개";
-        Clue_Percentage.text = (ClueFoundNum / ClueNormal.Length * 100 ) + "  /  100 %";
+
+        ClueFoundNum = 0;
+
+
+
+        Clue_Num.text = ClueFoundNum + "  /  " + Clue.Length + " 개";
+        Clue_Percentage.text = (ClueFoundNum * 100 / Clue.Length) + "  /  100 %";
     }
 
 }

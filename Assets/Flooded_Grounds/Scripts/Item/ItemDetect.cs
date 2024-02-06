@@ -47,6 +47,24 @@ public class ItemDetect : MonoBehaviour
                 }
                 
             }
+
+            if (hit.collider.gameObject.layer == 11) //layer 11: 'clue'
+            {
+                path.Clear();
+                path.Append(hit.collider.tag);
+                path.Append("(Clone)");
+                //hit.collider.transform.Find(path.ToString()).GetComponent<Outline>().detected(); //Outline æ∆¿Ã≈€ ¿±∞˚º±
+                path.Append("/Axis/Pickup");
+
+                Transform childTransform = hit.collider.transform.Find(path.ToString());
+
+                if (childTransform != null)
+                {
+                    hit.collider.transform.Find(path.ToString()).GetComponent<PickupMessage>().detected();
+                    detected = true;
+                }
+
+            }
         }
     }
 
