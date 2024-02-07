@@ -25,7 +25,6 @@ public class Pause : MonoBehaviour
 
     public void GameState()
     {
-        Debug.Log(GameIsPaused);
         GameIsPaused = !GameIsPaused;
         Time.timeScale = (Time.timeScale + 1) % 2;
         Cursor.visible = GameIsPaused;

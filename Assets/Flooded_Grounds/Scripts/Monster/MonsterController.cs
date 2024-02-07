@@ -88,7 +88,11 @@ public class MonsterController : MonoBehaviour
 
     void RandomTarget()
     {
-        Vector3 randomTarget = (UnityEngine.Random.insideUnitSphere * 20f) + transform.position;
+        Vector3 randomTarget;
+        do
+        {
+            randomTarget = UnityEngine.Random.insideUnitSphere * 20f + transform.position;
+        } while (Vector3.Distance(randomTarget, transform.position) < 10f);
         if (NavMesh.SamplePosition(randomTarget, out NavMeshHit hit, 20f, NavMesh.AllAreas))
         {
             randomTarget = hit.position;
@@ -98,7 +102,6 @@ public class MonsterController : MonoBehaviour
             {
                 destination = randomTarget;
                 isTarget = true;
-                return;
             }
             else RandomTarget();
         }
@@ -111,23 +114,26 @@ public class MonsterController : MonoBehaviour
     {
         if(destination == null) return;
 
-        agent.speed = monsterData.RunSpeed;
+        if(isRecognize) agent.speed = monsterData.RunSpeed;
+        else agent.speed = monsterData.Speed;
 
         NavMeshPath path = new NavMeshPath();
         if (agent.CalculatePath(destination, path))
         {
-            if(agent.speed == 0)
-            {
-                Rotate();
-            }
+            if(agent.speed == 0) Rotate();
             else
             {
+                agent.isStopped = false;
                 animator.SetBool("stop", false);
                 agent.SetDestination(destination);
             }
         }
 
-        if(agent.velocity.magnitude > 0.2f && agent.remainingDistance < agent.stoppingDistance)
+        if(!agent.pathPending
+            &&
+            agent.velocity.magnitude > 0.2f
+            &&
+            agent.remainingDistance < agent.stoppingDistance)
         {
             if (isRecognize) Rotate();
             else
@@ -230,6 +236,8 @@ public class MonsterController : MonoBehaviour
 
     void Attack()
     {
+        agent.isStopped = true;
+
         bool inRange = Physics.CheckSphere(
             transform.position,
             monsterData.Reach,
