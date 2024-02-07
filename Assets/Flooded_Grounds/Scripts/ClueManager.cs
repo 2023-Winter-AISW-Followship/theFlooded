@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ClueManager : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class ClueManager : MonoBehaviour
     GameObject[] ClueNormal; //일반 단서
     GameObject[] ClueMain;  //핵심 단서(실험 보고서, 연구 보고서)
 
-    int ClueFoundNum;
+    int ClueCount;  //단서 총 개수
+    int ClueCountNow;  //발견하지 않은 단서 개수
+    int ClueFoundNum;  //발견한 단서 개수
 
 
     private void Start()
@@ -38,11 +41,27 @@ public class ClueManager : MonoBehaviour
 
 
         ClueFoundNum = 0;
+        ClueCount = Clue.Length;
+        ClueCountNow = Clue.Length;
+    }
 
+    private void Update()
+    {
+        Clue = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
+            .Where(t => t.gameObject.layer == LayerMask.NameToLayer("clue"))  //layer: clue 탐색
+            .Select(t => t.gameObject)
+            .ToArray();
 
+        if (Clue.Length != ClueCountNow)
+        {
+            ClueFoundNum++;
+            ClueCountNow--;
+        }
 
-        Clue_Num.text = ClueFoundNum + "  /  " + Clue.Length + " 개";
-        Clue_Percentage.text = (ClueFoundNum * 100 / Clue.Length) + "  /  100 %";
+        if (ClueFoundNum == ClueCount) SceneManager.LoadScene("Scene_GameClear");
+
+        Clue_Num.text = ClueFoundNum + " 개";
+        Clue_Percentage.text = (ClueFoundNum * 100 / ClueCount) + " %";
     }
 
 }

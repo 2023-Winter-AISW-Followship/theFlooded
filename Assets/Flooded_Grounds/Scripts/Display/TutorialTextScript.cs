@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class TutorialTextScript : MonoBehaviour
 {
+    private GameObject TutorialText_interactions;
+
     public TMP_Text Text;
 
     public GameObject[] tutorialTriggersArray;
@@ -13,6 +15,7 @@ public class TutorialTextScript : MonoBehaviour
 
     private void Start()
     {
+        TutorialText_interactions = gameObject;
         Text.text = string.Empty;
     }
 
@@ -26,7 +29,14 @@ public class TutorialTextScript : MonoBehaviour
             {
                 StartCoroutine(Show(contextArray[i]));
                 Destroy(tutorialObjScript);
+
+
+                if (i == tutorialTriggersArray.Length - 1)
+                {
+                    Invoke("ShowEnd", 10);
+                }
             }
+
         }
     }
 
@@ -37,8 +47,13 @@ public class TutorialTextScript : MonoBehaviour
         for (int i = 0; i < dialog.Length; i++)
         {
             Text.text += dialog[i];
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.05f);
         }
 
+    }
+
+    private void ShowEnd()
+    {
+        TutorialText_interactions.SetActive(false);
     }
 }

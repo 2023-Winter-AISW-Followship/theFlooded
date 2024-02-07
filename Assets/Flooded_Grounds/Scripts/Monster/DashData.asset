@@ -17,6 +17,6 @@ MonoBehaviour:
   sightRecognitionDist: 30
   sightRecognitionAngle: 80
   reach: 3
-  speed: 5
+  speed: 4
   runSpeed: 7
   hitSize: {x: 1, y: 3, z: 5}
