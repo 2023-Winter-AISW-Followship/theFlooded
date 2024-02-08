@@ -165,7 +165,7 @@ public class CharController_Moter : MonoBehaviour
                 volume = step;
                 pitch = Mathf.Lerp(1f, 0.25f, step);
 
-                Sound.FootStep(i, transform.position, volume);
+                Sound.FootStep(i, transform.position, volume, Sound.Type.Player);
 
                 yield return new WaitForSeconds(pitch);
                 i = (i + 1) % 10;

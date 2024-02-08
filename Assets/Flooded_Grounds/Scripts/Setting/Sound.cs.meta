@@ -3,7 +3,11 @@ guid: 8e93512abdf0f114eacf2169a99e762f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bottleExplosion: {fileID: 8300000, guid: 36a8b7193377acf44a5c6ba0dbae1779, type: 3}
+  - radioNoise: {fileID: 8300000, guid: de370209bc9b0a2459347f6c61d4fae0, type: 3}
+  - sparklerSparkle: {fileID: 8300000, guid: bfa30b6bf0b712d4293803034f01dd8e, type: 3}
+  - audioMixer: {fileID: 24100000, guid: 08d4676c8e9f5224186df90f8d19352c, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

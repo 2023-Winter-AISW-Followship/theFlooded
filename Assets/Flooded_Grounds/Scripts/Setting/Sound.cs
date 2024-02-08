@@ -5,22 +5,32 @@ using UnityEngine.Audio;
 
 public class Sound : MonoBehaviour
 {
+    #region Sound Variable
+    #region Item Sound Variable
     [SerializeField]
     private AudioClip bottleExplosion;
     [SerializeField]
     private AudioClip radioNoise;
     [SerializeField]
     private AudioClip sparklerSparkle;
+    #endregion
 
     [SerializeField]
     private AudioClip[] footStep;
 
+    public enum Type
+    {
+        Player,
+        Monster,
+        Item
+    }
+
     [SerializeField]
     private AudioMixer audioMixer;
     private AudioMixerGroup itemMixer;
+    #endregion
 
-    public static Sound Instance { get; private set; }
-
+    #region Item Sound
     public static void BottleExplosion(Vector3 position)
     {
         Instance.ItemSound(Instance.bottleExplosion, position, 3, 50);
@@ -33,11 +43,6 @@ public class Sound : MonoBehaviour
     {
         Instance.ItemSound(Instance.sparklerSparkle, position, "sparkler", 3, 15);
         return Instance.sparklerSparkle;
-    }
-
-    public static void FootStep(int i, Vector3 position, float volume)
-    {
-        Instance.StepSound(Instance.footStep[i], position, volume);
     }
 
     public void ItemSound(AudioClip clip, Vector3 position, string tag, float volume, float pitch, int min, int max)
@@ -78,24 +83,42 @@ public class Sound : MonoBehaviour
         ItemSound(clip, position, "Untagged", 1, 1, 10, 100);
         return;
     }
+    #endregion
 
-    public void StepSound(AudioClip clip, Vector3 position, float volume)
+    #region Step Sound
+    public static void FootStep(int i, Vector3 position, float volume, Type type)
+    {
+        Instance.StepSound(Instance.footStep[i], position, volume, type);
+    }
+
+    public void StepSound(AudioClip clip, Vector3 position, float volume, Type type)
     {
         GameObject gameObject = new GameObject("Step Sound");
         gameObject.transform.position = position;
-        gameObject.layer = LayerMask.NameToLayer("sound");
 
-        BoxCollider boxCollider = (BoxCollider)gameObject.AddComponent(typeof(BoxCollider));
-        boxCollider.isTrigger = true;
+        if (type == Type.Player)
+        {
+            gameObject.layer = LayerMask.NameToLayer("sound");
+
+            BoxCollider boxCollider = (BoxCollider)gameObject.AddComponent(typeof(BoxCollider));
+            boxCollider.isTrigger = true;
+        }
 
         AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
         audioSource.clip = clip;
         audioSource.spatialBlend = 1f;
         audioSource.volume = volume;
 
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.minDistance = 10f;
+        audioSource.maxDistance = 100f;
+
         audioSource.Play();
         Destroy(gameObject, clip.length);
     }
+    #endregion
+
+    public static Sound Instance { get; private set; }
 
     private void Awake()
     {
@@ -110,15 +133,3 @@ public class Sound : MonoBehaviour
         }
     }
 }
-
-//public static void PlayClipAtPoint(AudioClip clip, Vector3 position, [UnityEngine.Internal.DefaultValue("1.0F")] float volume)
-//{
-//    GameObject gameObject = new GameObject("One shot audio");
-//    gameObject.transform.position = position;
-//    AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
-//    audioSource.clip = clip;
-//    audioSource.spatialBlend = 1f;
-//    audioSource.volume = volume;
-//    audioSource.Play();
-//    Object.Destroy(gameObject, clip.length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
-//}

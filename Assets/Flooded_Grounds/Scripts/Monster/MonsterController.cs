@@ -73,17 +73,34 @@ public class MonsterController : MonoBehaviour
             .Where(_ => isTarget)
             .Subscribe(_ => Move());
 
-        //this.UpdateAsObservable()
-        //    .Where(_ => agent.velocity.magnitude > 0.2f && agent.remainingDistance < agent.stoppingDistance)
-        //    .Subscribe(_ =>
-        //    {
-        //        if (isRecognize) Rotate();
-        //        else
-        //        {
-        //            isTarget = false;
-        //            animator.SetTrigger("breath");
-        //        }
-        //    });
+        StartCoroutine(Step());
+    }
+
+    float step;
+    float pitch;
+    float volume;
+
+    IEnumerator Step()
+    {
+        int i = 0;
+        while (true)
+        {
+            if (isTarget)
+            {
+                if (isRecognize) step = monsterData.RunSpeed;
+                else step = monsterData.Speed;
+
+                step /= monsterData.RunSpeed;
+                volume = step;
+                pitch = Mathf.Lerp(1f, 0.25f, step);
+
+                Sound.FootStep(i, transform.position, volume, Sound.Type.Monster);
+
+                yield return new WaitForSeconds(pitch);
+                i = (i + 1) % 10;
+            }
+            yield return null;
+        }
     }
 
     void RandomTarget()
@@ -123,7 +140,6 @@ public class MonsterController : MonoBehaviour
             if(agent.speed == 0) Rotate();
             else
             {
-                agent.isStopped = false;
                 animator.SetBool("stop", false);
                 agent.SetDestination(destination);
             }
@@ -236,7 +252,6 @@ public class MonsterController : MonoBehaviour
 
     void Attack()
     {
-        agent.isStopped = true;
 
         bool inRange = Physics.CheckSphere(
             transform.position,
