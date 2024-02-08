@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,11 +56,19 @@ public class ClueManager : MonoBehaviour
             ClueCountNow--;
         }
 
-        if (ClueFoundNum == ClueCount) SceneManager.LoadScene("Scene_GameClear");
-
         Clue_Num.text = ClueFoundNum + " 개";
         Clue_Percentage.text = (ClueFoundNum * 100 / ClueCount) + " %";
+
+        //튜토리얼 완료 시, GameEndingBlock 활성화
+        //GameEndingBlock 충돌 시, % 표시와 함께 마을로 돌아갈 것이냐는 UI 활성화
+        //%에 따라 엔딩 분기 다르게 설정, 해당 씬 전환
+        if (ClueFoundNum == ClueCount) SceneManager.LoadScene("Scene_GameClear");
     }
 
+    private void GameClear()
+    {
+        if (ClueFoundNum == ClueCount) SceneManager.LoadScene("Scene_GameClear");
+
+    }
 }
 

@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using System.Runtime.CompilerServices;
-using Unity.Linq;
 
 public class StorytellingContext : MonoBehaviour
 {
