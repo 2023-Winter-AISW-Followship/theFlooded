@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ClueManager : MonoBehaviour
 {
     static Text Clue_Num;
-    static Text Clue_Percentage;
+    public static Text Clue_Percentage;
 
     GameObject[] Clue;  //단서 전체
     GameObject[] ClueNormal; //일반 단서

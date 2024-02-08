@@ -40,6 +40,15 @@ public class SceneChangeManager : MonoBehaviour
     }
 
 
+    //Scene_InGame
+    public void SceneChange_GameClear()
+    {
+        //발견한 단서 % 비율에 따라 엔딩 분기 설정됨
+        //마을을 떠난다는 버튼 클릭 시, 게임 클리어 페이지로
+        SceneManager.LoadScene("Scene_GameClear");
+    }
+
+
     //Scene_GameClear & Scene_GameOver
     public void SceneChange_BackToMain()
     {

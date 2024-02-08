@@ -37,13 +37,4 @@ public class Pause : MonoBehaviour
     {
         settingCanvas.Child("setting").SetActive(true);
     }
-
-    public void Exit()
-    {
-    #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-    #else
-            Application.Quit(); // 어플리케이션 종료
-    #endif
-    }
 }
