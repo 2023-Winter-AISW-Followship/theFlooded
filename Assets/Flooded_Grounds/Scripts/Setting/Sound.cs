@@ -15,6 +15,7 @@ public class Sound : MonoBehaviour
     private AudioClip sparklerSparkle;
     #endregion
 
+    #region Step Sound Variable
     [SerializeField]
     private AudioClip[] footStep;
 
@@ -24,6 +25,11 @@ public class Sound : MonoBehaviour
         Monster,
         Item
     }
+    #endregion
+
+    #region Monster Sound Variable
+
+    #endregion
 
     [SerializeField]
     private AudioMixer audioMixer;
@@ -111,6 +117,27 @@ public class Sound : MonoBehaviour
 
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         audioSource.minDistance = 10f;
+        audioSource.maxDistance = 100f;
+
+        audioSource.Play();
+        Destroy(gameObject, clip.length);
+    }
+    #endregion
+
+    #region Monster Sound
+    public static void HowlingSound(AudioClip clip, GameObject parent)
+    {
+        GameObject gameObject = new GameObject("Howling Sound");
+        gameObject.transform.parent = parent.transform;
+        gameObject.transform.localPosition = Vector3.zero;
+
+        AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
+        audioSource.clip = clip;
+        audioSource.spatialBlend = 1f;
+        audioSource.volume = 1f;
+
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.minDistance = 50f;
         audioSource.maxDistance = 100f;
 
         audioSource.Play();

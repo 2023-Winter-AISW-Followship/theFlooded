@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class MonsterController : MonoBehaviour
 {
+    #region Variable
     [SerializeField]
     private MonsterData monsterData;
 
@@ -21,6 +22,7 @@ public class MonsterController : MonoBehaviour
 
     Animator animator;
     NavMeshAgent agent;
+    AudioSource audio;
 
     private float awakeTime = 10f;
     Vector3 destination;
@@ -28,6 +30,10 @@ public class MonsterController : MonoBehaviour
     bool isFaint = false;
     bool isRecognize = false;
     bool isTarget = false;
+
+    float step;
+    float pitch;
+    float volume;
 
     Vector3 AngleToDir(float angle)
     {
@@ -37,14 +43,19 @@ public class MonsterController : MonoBehaviour
 
     Vector3 lookDir => AngleToDir(transform.eulerAngles.y);
     Collider[] targets = new Collider[5];
+    #endregion
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        audio = GetComponent<AudioSource>();
+
         agent.speed = monsterData.Speed;
         agent.angularSpeed = 360f;
         destination = agent.destination;
+
+        audio.Stop();
 
         this.UpdateAsObservable()
             .Where(_ => !isFaint)
@@ -63,6 +74,9 @@ public class MonsterController : MonoBehaviour
                     destination = target.position;
                 }
                 animator.SetBool("recognize", isRecognize);
+
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("stare")) audio.Play();
+                else audio.Stop();
             });
 
         this.UpdateAsObservable()
@@ -76,10 +90,7 @@ public class MonsterController : MonoBehaviour
         StartCoroutine(Step());
     }
 
-    float step;
-    float pitch;
-    float volume;
-
+    #region Sound
     IEnumerator Step()
     {
         int i = 0;
@@ -103,6 +114,13 @@ public class MonsterController : MonoBehaviour
         }
     }
 
+    void Howling()
+    {
+        Sound.HowlingSound(monsterData.HowlingSound, gameObject);
+    }
+    #endregion
+
+    #region Movement
     void RandomTarget()
     {
         Vector3 randomTarget;
@@ -178,7 +196,9 @@ public class MonsterController : MonoBehaviour
             isRecognize = false;
         }
     }
+    #endregion
 
+    #region Recognize
     Transform SoundRecognize()
     {
         float max = -1;
@@ -249,7 +269,9 @@ public class MonsterController : MonoBehaviour
 
         return target;
     }
+    #endregion
 
+    #region Event
     void Attack()
     {
 
@@ -297,6 +319,7 @@ public class MonsterController : MonoBehaviour
         isFaint = false;
         animator.SetTrigger("wakeUp");
     }
+    #endregion
 
     private void OnDrawGizmos()
     {

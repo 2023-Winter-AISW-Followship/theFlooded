@@ -34,4 +34,8 @@ public class MonsterData : ScriptableObject
     [SerializeField]
     private Vector3 hitSize;
     public Vector3 HitSize { get {  return hitSize; } }
+
+    [SerializeField]
+    private AudioClip howlingSound;
+    public AudioClip HowlingSound { get { return howlingSound; } }
 }
