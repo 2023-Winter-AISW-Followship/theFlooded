@@ -14,11 +14,12 @@ public class StorytellingContext : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Show(contextArray[currentIndex]));
-        currentIndex++;
         ButtonNext = GameObject.Find("Canvas/Background/ButtonNext").gameObject;
         ButtonMove = GameObject.Find("Canvas/Background/ButtonMove").gameObject;
         ButtonMove.SetActive(false);
+
+        StartCoroutine(Show(contextArray[currentIndex]));
+        currentIndex++;
     }
 
     public void ButtonNext_clicked()

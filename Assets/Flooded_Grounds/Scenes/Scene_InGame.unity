@@ -8163,7 +8163,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1759552051}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: GameState
+        m_MethodName: IsButtonNoPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24255,12 +24255,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 878892880}
   - {fileID: 2015007563}
   - {fileID: 120172534}
   - {fileID: 1523120779}
   - {fileID: 1364445506}
   - {fileID: 1285558291}
-  - {fileID: 878892880}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -24281,6 +24281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 2015007562}
+  Resume: {fileID: 120172533}
 --- !u!114 &1759552052
 MonoBehaviour:
   m_ObjectHideFlags: 0

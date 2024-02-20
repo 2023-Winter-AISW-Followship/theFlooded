@@ -1604,11 +1604,9 @@ MonoBehaviour:
   Text: {fileID: 570255952}
   TextShadow: {fileID: 47728309}
   contextArray:
-  - "\uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00"
-  - "\uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00 2"
-  - "\uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00 3"
-  - "\uCC3E\uC740 \uB2E8\uC11C : __ %"
-  - "\uAC8C\uC784 \uD074\uB9AC\uC5B4.  . ."
+  - "1 \uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00"
+  - "2 \uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00"
+  - "3 \uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00"
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

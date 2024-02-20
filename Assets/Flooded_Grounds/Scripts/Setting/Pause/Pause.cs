@@ -9,6 +9,7 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
     public GameObject PauseMenu;
+    public GameObject Resume;
     public static bool GameIsPaused = false;
 
     private void Start()
@@ -30,6 +31,17 @@ public class Pause : MonoBehaviour
         Cursor.visible = GameIsPaused;
         Cursor.lockState = (CursorLockMode)(((int)Cursor.lockState + 1) % 2);
         PauseMenu.SetActive(GameIsPaused);
+    }
+
+    public void IsButtonNoPressed()
+    {
+        GameIsPaused = !GameIsPaused;
+        Time.timeScale = (Time.timeScale + 1) % 2;
+        Cursor.visible = GameIsPaused;
+        Cursor.lockState = (CursorLockMode)(((int)Cursor.lockState + 1) % 2);
+        Resume.SetActive(GameIsPaused);
+
+        Input.GetKeyDown(KeyCode.Escape);
     }
 
     private GameObject settingCanvas;
