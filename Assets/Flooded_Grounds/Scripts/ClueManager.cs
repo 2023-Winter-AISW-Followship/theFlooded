@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class ClueManager : MonoBehaviour
 {
     static Text Clue_Num;
-    public static Text Clue_Percentage;
+    public static float Clue_Percentage = 0; //전역변수
+    static Text Clue_Percentage_Text;
 
     GameObject[] Clue;  //단서 전체
     GameObject[] ClueNormal; //일반 단서
@@ -20,10 +21,10 @@ public class ClueManager : MonoBehaviour
     private void Start()
     {
         Clue_Num = GameObject.Find("Canvas/ClueUI/Clue_Num").GetComponent<Text>();
-        Clue_Percentage = GameObject.Find("Canvas/ClueUI/Clue_Percentage").GetComponent<Text>();
+        Clue_Percentage_Text = GameObject.Find("Canvas/ClueUI/Clue_Percentage").GetComponent<Text>();
 
         Clue_Num.text = string.Empty;
-        Clue_Percentage.text = string.Empty;
+        Clue_Percentage_Text.text = string.Empty;
 
 
         Clue = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
@@ -38,9 +39,9 @@ public class ClueManager : MonoBehaviour
             .Where(t => t.gameObject.CompareTag("ClueMain")).Select(t => t.gameObject).ToArray();  //tag: ClueMain 탐색
 
 
-        ClueFoundNum = 0;
         ClueCount = Clue.Length;
         ClueCountNow = Clue.Length;
+        ClueFoundNum = 0;
     }
 
     private void Update()
@@ -57,18 +58,8 @@ public class ClueManager : MonoBehaviour
         }
 
         Clue_Num.text = ClueFoundNum + " 개";
-        Clue_Percentage.text = (ClueFoundNum * 100 / ClueCount) + " %";
-
-        //튜토리얼 완료 시, GameEndingBlock 활성화
-        //GameEndingBlock 충돌 시, % 표시와 함께 마을로 돌아갈 것이냐는 UI 활성화
-        //%에 따라 엔딩 분기 다르게 설정, 해당 씬 전환
-        if (ClueFoundNum == ClueCount) SceneManager.LoadScene("Scene_GameClear");
-    }
-
-    private void GameClear()
-    {
-        if (ClueFoundNum == ClueCount) SceneManager.LoadScene("Scene_GameClear");
-
+        Clue_Percentage = (ClueFoundNum * 100 / ClueCount);
+        Clue_Percentage_Text.text = Clue_Percentage + " %";
     }
 }
 

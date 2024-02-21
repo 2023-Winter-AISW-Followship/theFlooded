@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Flooded_Grounds/Scenes/Scene_GameOver.unity
     guid: 5ea5e324fd102184cb1f25e051ebf788
   - enabled: 1
-    path: Assets/Flooded_Grounds/Scenes/Scene_GameClear.unity
+    path: Assets/Flooded_Grounds/Scenes/Scene_GameClear_0-30.unity
     guid: 04f3c0279e8ea8445a912e5097968d1a
+  - enabled: 1
+    path: Assets/Flooded_Grounds/Scenes/Scene_GameClear_30-60.unity
+    guid: 5c57fdca22015a74e91477d8a99d75a3
+  - enabled: 1
+    path: Assets/Flooded_Grounds/Scenes/Scene_GameClear_60-100.unity
+    guid: 8ebd7f4e284773844aae16a6590b6125
   m_configObjects: {}

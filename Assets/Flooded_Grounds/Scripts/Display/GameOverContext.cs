@@ -6,12 +6,15 @@ public class GameOverContext : MonoBehaviour
 {
     public TMP_Text Text;
     public TMP_Text TextShadow;
+    GameObject ButtonMove;
 
     public string[] contextArray;
     private int currentIndex = 0;
 
     private void Start()
     {
+        ButtonMove = GameObject.Find("Canvas/Background/ButtonMove").gameObject;
+
         StartCoroutine(Show(contextArray[currentIndex]));
     }
 
