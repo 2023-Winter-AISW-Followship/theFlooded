@@ -14,6 +14,8 @@ public class Pause : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        settingCanvas = GameObject.Find("KeySetting");
+
         this.UpdateAsObservable()
             .Where(_ => Input.GetKeyDown(KeyCode.Escape))
             .Subscribe(_ => GameState());

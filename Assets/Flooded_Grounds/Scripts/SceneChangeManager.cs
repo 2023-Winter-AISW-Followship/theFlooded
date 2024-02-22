@@ -45,6 +45,8 @@ public class SceneChangeManager : MonoBehaviour
     {
         //발견한 단서 % 비율에 따라 엔딩 분기 설정됨. 현재는 여러 개의 씬 중 조건문에 따라 전환됨.
         //마을을 떠난다는 버튼 클릭 시, 게임 클리어 페이지로
+        Pause.GameIsPaused = !Pause.GameIsPaused;
+        Time.timeScale = (Time.timeScale + 1) % 2;
 
         if (ClueManager.Clue_Percentage < 30.0f) SceneManager.LoadScene("Scene_GameClear_0-30");
         else if (30.0f <= ClueManager.Clue_Percentage && ClueManager.Clue_Percentage < 60.0f) SceneManager.LoadScene("Scene_GameClear_30-60");

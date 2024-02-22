@@ -11,11 +11,13 @@ public class GameOverContext : MonoBehaviour
     public string[] contextArray;
     private int currentIndex = 0;
 
+    IEnumerator current;
+
     private void Start()
     {
         ButtonMove = GameObject.Find("Canvas/Background/ButtonMove").gameObject;
-
-        StartCoroutine(Show(contextArray[currentIndex]));
+        current = Show(contextArray[currentIndex]);
+        StartCoroutine(current);
     }
 
     IEnumerator Show(string context)

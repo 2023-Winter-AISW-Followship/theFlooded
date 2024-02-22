@@ -14,10 +14,13 @@ public class StorytellingContext : MonoBehaviour
 
     string[] contextVar;
 
+    IEnumerator current;
+
     void StartTalk(string[] var)
     {
         contextVar = var;
-        StartCoroutine(Show(contextVar[currentIndex]));
+        current = Show(contextVar[currentIndex]);
+        StartCoroutine(current);
         currentIndex++;
     }
 
@@ -35,7 +38,10 @@ public class StorytellingContext : MonoBehaviour
     {
         if (currentIndex < contextArray.Length)
         {
-            StartCoroutine(Show(contextArray[currentIndex]));
+            StopCoroutine(current);
+
+            current = Show(contextArray[currentIndex]);
+            StartCoroutine(current);
             currentIndex++;
         }
         else if (currentIndex == contextArray.Length)

@@ -11,6 +11,8 @@ public class TutorialTextScript : MonoBehaviour
     public GameObject[] tutorialTriggersArray;
     public string[] contextArray;
 
+    IEnumerator current;
+
     private void Start()
     {
         TutorialText_interactions = gameObject;
@@ -25,9 +27,10 @@ public class TutorialTextScript : MonoBehaviour
 
             if (tutorialObjScript != null && tutorialObjScript.isOnCollision)
             {
-                StartCoroutine(Show(contextArray[i]));
+                if(current != null) StopCoroutine(current);
+                current = Show(contextArray[i]);
+                StartCoroutine(current);
                 Destroy(tutorialObjScript);
-
 
                 if (i == tutorialTriggersArray.Length - 1)
                 {
