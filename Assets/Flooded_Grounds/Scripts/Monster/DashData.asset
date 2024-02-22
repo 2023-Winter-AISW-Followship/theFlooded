@@ -21,3 +21,4 @@ MonoBehaviour:
   runSpeed: 7
   hitSize: {x: 1, y: 3, z: 5}
   howlingSound: {fileID: 8300000, guid: de4b2a687990b0243b308639677b77f0, type: 3}
+  damage: 10

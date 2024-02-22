@@ -20,3 +20,5 @@ MonoBehaviour:
   speed: 0
   runSpeed: 0
   hitSize: {x: 15, y: 20, z: 56}
+  howlingSound: {fileID: 0}
+  damage: 25
