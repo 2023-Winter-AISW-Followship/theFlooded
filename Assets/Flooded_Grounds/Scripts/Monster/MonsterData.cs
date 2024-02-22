@@ -38,4 +38,9 @@ public class MonsterData : ScriptableObject
     [SerializeField]
     private AudioClip howlingSound;
     public AudioClip HowlingSound { get { return howlingSound; } }
+
+    [SerializeField, Range(0f, 100f)]
+    private float damage;
+    public float Damage { get { return damage; } }
+
 }
