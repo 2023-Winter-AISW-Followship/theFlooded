@@ -55,8 +55,6 @@ public class MonsterController : MonoBehaviour
         agent.angularSpeed = 360f;
         destination = agent.destination;
 
-        audio.Stop();
-
         this.UpdateAsObservable()
             .Where(_ => !isFaint)
             .Subscribe(_ =>
@@ -75,8 +73,8 @@ public class MonsterController : MonoBehaviour
                 }
                 animator.SetBool("recognize", isRecognize);
 
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("stare")) audio.Play();
-                else audio.Stop();
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("howl")) audio.Stop();
+                else if (!audio.isPlaying) audio.Play();
             });
 
         this.UpdateAsObservable()
@@ -190,6 +188,7 @@ public class MonsterController : MonoBehaviour
             Vector3.Distance(destination, transform.position) < monsterData.Reach)
         {
             animator.SetBool("stop", true);
+            agent.speed = 0;
         }
         else
         {
