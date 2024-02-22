@@ -295,7 +295,8 @@ public class MonsterController : MonoBehaviour
 
         if (hit)
         {
-            
+            PlayerHPController.TakeDamage(10.0f);
+            Debug.Log("Attacked!!");
         }
     }
 
