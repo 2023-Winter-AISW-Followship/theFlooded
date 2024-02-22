@@ -45,7 +45,7 @@ public class TutorialTextScript : MonoBehaviour
         for (int i = 0; i < dialog.Length; i++)
         {
             Text.text += dialog[i];
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.07f);
         }
 
     }

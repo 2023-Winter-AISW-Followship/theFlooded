@@ -12,14 +12,23 @@ public class StorytellingContext : MonoBehaviour
     public string[] contextArray;
     private int currentIndex = 0;
 
+    string[] contextVar;
+
+    void StartTalk(string[] var)
+    {
+        contextVar = var;
+        StartCoroutine(Show(contextVar[currentIndex]));
+        currentIndex++;
+    }
+
     private void Start()
     {
         ButtonNext = GameObject.Find("Canvas/Background/ButtonNext").gameObject;
         ButtonMove = GameObject.Find("Canvas/Background/ButtonMove").gameObject;
         ButtonMove.SetActive(false);
 
-        StartCoroutine(Show(contextArray[currentIndex]));
-        currentIndex++;
+        StartTalk(contextArray);
+        //StartCoroutine(Show(contextArray[currentIndex]));
     }
 
     public void ButtonNext_clicked()
@@ -37,14 +46,14 @@ public class StorytellingContext : MonoBehaviour
 
     IEnumerator Show(string context)
     {
-        Text.text = string.Empty;
         TextShadow.text = string.Empty;
+        Text.text = string.Empty;
 
         for (int i = 0; i < context.Length; i++)
         {
             Text.text += context[i];
             TextShadow.text += context[i];
-            yield return new WaitForSeconds(0.06f);
+            yield return new WaitForSeconds(0.07f);
         }
     }
 
