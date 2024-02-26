@@ -183,8 +183,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
-  m_sharedMaterial: {fileID: 1115341598226985984, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e199f467a58784b4c8717d2290776c25, type: 2}
+  m_sharedMaterial: {fileID: 4794880520509680895, guid: e199f467a58784b4c8717d2290776c25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -409,8 +409,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
-  m_sharedMaterial: {fileID: 1115341598226985984, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e199f467a58784b4c8717d2290776c25, type: 2}
+  m_sharedMaterial: {fileID: 4794880520509680895, guid: e199f467a58784b4c8717d2290776c25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   Text: {fileID: 570255952}
   TextShadow: {fileID: 47728309}
   contextArray:
-  - "\uAC8C\uC784 \uC624  \uBC84   .."
+  - GAME OVER
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

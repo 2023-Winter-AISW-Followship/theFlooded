@@ -183,8 +183,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
-  m_sharedMaterial: {fileID: 1115341598226985984, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e199f467a58784b4c8717d2290776c25, type: 2}
+  m_sharedMaterial: {fileID: 4794880520509680895, guid: e199f467a58784b4c8717d2290776c25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -600,8 +600,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
-  m_sharedMaterial: {fileID: 1115341598226985984, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e199f467a58784b4c8717d2290776c25, type: 2}
+  m_sharedMaterial: {fileID: 4794880520509680895, guid: e199f467a58784b4c8717d2290776c25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1604,8 +1604,18 @@ MonoBehaviour:
   Text: {fileID: 570255952}
   TextShadow: {fileID: 47728309}
   contextArray:
-  - Scene_GameClear_60-100
-  - "2 \uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00"
+  - "\uB098\uB294 \uBB34\uC0AC\uD788 \uB9C8\uC744\uC5D0 \uB3C4\uCC29\uD574, \uCC3E\uC740
+    \uB2E8\uC11C\uB97C \uBAA8\uC544 \uC5B8\uB860\uC5D0 \uC54C\uB838\uB2E4."
+  - ... ... ...
+  - "\uC5B8\uB860\uC5D0 \uC54C\uB9AC\uB824\uB358 \uB098\uC758 \uB178\uB825 \uB05D\uC5D0,
+    \uCE68\uC218\uB41C \uB9C8\uC744\uC758 \uC9C4\uC2E4\uC774 \uC138\uACC4\uC5D0 \uC54C\uB824\uC84C\uB2E4. "
+  - "\uAD6D\uAC00\uB294 \uB9C8\uC744\uC5D0 \uB300\uD55C \uB300\uC751\uC5D0 \uB098\uC130\uACE0, "
+  - "\uBAAC\uC2A4\uD130\uB4E4\uC740 \uCE68\uC218\uB41C \uB9C8\uC744\uACFC \uD568\uAED8
+    \uBAA8\uB450 \uD30C\uAD34\uB418\uC5B4 \uC0AC\uB77C\uC84C\uB2E4."
+  - "\uC2DC\uAC04\uC774 \uD750\uB978 \uD604\uC7AC \uC6B0\uB9AC\uB294 \uD3C9\uD654\uB85C\uC6B4
+    \uB0A0\uB4E4\uC744 \uBCF4\uB0B4\uACE0 \uC788\uB2E4."
+  - "\uB098\uB294 \uC0AC\uB78C\uB4E4\uC5D0\uAC8C \uAD6D\uAC00\uB97C \uC704\uD574
+    \uD5CC\uC2E0\uD55C \uD55C \uBA85\uC758 \uC601\uC6C5\uC73C\uB85C \uAE30\uC5B5\uB418\uC5C8\uB2E4."
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

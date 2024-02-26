@@ -8,11 +8,11 @@ public class ClueManager : MonoBehaviour
     public static float Clue_Percentage = 0; //전역변수
     static Text Clue_Percentage_Text;
 
-    GameObject[] Clue;  //단서 전체
+    //GameObject[] Clue;  //단서 전체
     GameObject[] ClueNormal; //일반 단서
     GameObject[] ClueMain;  //핵심 단서(실험 보고서, 연구 보고서)
 
-    int ClueCount;  //단서 총 개수
+    //int ClueCount;  //단서 총 개수
     int ClueCountAppliedWeight; //단서 총 개수(핵심 단서 가중치 적용)
 
     int ClueNormalCountNow;  //발견하지 않은 일반 단서 개수
@@ -27,10 +27,10 @@ public class ClueManager : MonoBehaviour
         Clue_Percentage_Text.text = string.Empty;
 
 
-        Clue = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
-            .Where(t => t.gameObject.layer == LayerMask.NameToLayer("clue"))  //layer: clue 탐색
-            .Select(t => t.gameObject)
-            .ToArray();
+        //Clue = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
+        //    .Where(t => t.gameObject.layer == LayerMask.NameToLayer("clue"))  //layer: clue 탐색
+        //    .Select(t => t.gameObject)
+        //    .ToArray();
 
         ClueNormal = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
             .Where(t => t.gameObject.CompareTag("ClueNormal")).Select(t => t.gameObject).ToArray();  //tag: ClueNormal 탐색
@@ -40,7 +40,6 @@ public class ClueManager : MonoBehaviour
 
 
         //ClueCount = Clue.Length;
-
         ClueCountAppliedWeight = ClueNormal.Length + ( ClueMain.Length * 3 );
 
         ClueNormalCountNow = ClueNormal.Length;
@@ -52,10 +51,10 @@ public class ClueManager : MonoBehaviour
 
     private void Update()
     {
-        Clue = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
-            .Where(t => t.gameObject.layer == LayerMask.NameToLayer("clue"))  //layer: clue 탐색
-            .Select(t => t.gameObject)
-            .ToArray();
+        //Clue = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
+        //    .Where(t => t.gameObject.layer == LayerMask.NameToLayer("clue"))  //layer: clue 탐색
+        //    .Select(t => t.gameObject)
+        //    .ToArray();
 
         ClueNormal = GameObject.Find("Clues").GetComponentsInChildren<Transform>(true)
             .Where(t => t.gameObject.CompareTag("ClueNormal")).Select(t => t.gameObject).ToArray();  //tag: ClueNormal 탐색

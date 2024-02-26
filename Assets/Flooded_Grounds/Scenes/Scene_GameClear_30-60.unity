@@ -183,8 +183,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
-  m_sharedMaterial: {fileID: 1115341598226985984, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e199f467a58784b4c8717d2290776c25, type: 2}
+  m_sharedMaterial: {fileID: 4794880520509680895, guid: e199f467a58784b4c8717d2290776c25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -600,8 +600,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
-  m_sharedMaterial: {fileID: 1115341598226985984, guid: 3f81659ce4e93254b9296be5eaaa60ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e199f467a58784b4c8717d2290776c25, type: 2}
+  m_sharedMaterial: {fileID: 4794880520509680895, guid: e199f467a58784b4c8717d2290776c25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1604,8 +1604,20 @@ MonoBehaviour:
   Text: {fileID: 570255952}
   TextShadow: {fileID: 47728309}
   contextArray:
-  - Scene_GameClear_30-60
-  - "2 \uAC8C\uC784 \uD074\uB9AC\uC5B4 \uC2DC \uB098\uC624\uB294 \uAE00"
+  - "\uB098\uB294 \uBB34\uC0AC\uD788 \uB9C8\uC744\uC5D0 \uB3C4\uCC29\uD574, \uCC3E\uC740
+    \uB2E8\uC11C\uB97C \uBAA8\uC544 \uC5B8\uB860\uC5D0 \uC54C\uB838\uB2E4."
+  - ... ... ...
+  - "\uC5B8\uB860\uC740 \uD55C\uB3D9\uC548 \uCE68\uC218\uB41C \uB9C8\uC744 \uC774\uC57C\uAE30\uC5D0
+    \uAD00\uC2EC\uC744 \uAC00\uC9C0\uB294 \uB4EF \uD588\uB2E4."
+  - "\uD558\uC9C0\uB9CC \uADF8\uAC83\uB3C4 \uC7A0\uC2DC, \uC0AC\uB78C\uB4E4\uC740
+    \uB354 \uC774\uC0C1 \uC2EC\uAC01\uD558\uAC8C \uC5EC\uAE30\uC9C0 \uC54A\uC558\uB2E4."
+  - "\uC774\uB0B4 \uADF8\uB4E4\uC740 \uB9C8\uC744\uC758 \uBE44\uADF9\uACFC \uB098\uC758
+    \uACBD\uACE0\uB97C \uBB34\uC2DC\uD558\uAE30 \uC2DC\uC791\uD588\uB2E4. "
+  - "\uADF8\uB807\uAC8C \uC2DC\uAC04\uC774 \uD758\uB7EC, \uBA87\uBA87 \uC0AC\uB78C\uB4E4\uC740"
+  - "\uC870\uAE08\uC529 \uC9C4\uC2E4\uC744 \uD30C\uD5E4\uCE58\uB824 \uD558\uACE0
+    \uB300\uCC98 \uBC29\uC548\uC744 \uBAA8\uC0C9\uD558\uACE0 \uC788\uB2E4."
+  - "\uADF8 \uB9C8\uC744\uC740 \uC5EC\uC804\uD788 \uC5B4\uB450\uC6B4 \uBE44\uBC00\uC744
+    \uD488\uC740 \uCC44\uB85C \uB0A8\uC544\uC788\uB2E4."
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

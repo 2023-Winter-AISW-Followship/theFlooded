@@ -27,7 +27,7 @@ public class GameEnding : MonoBehaviour
     private void UpdateClueFoundPercentageText()
     {
         text = GameObject.Find("Canvas/GameEnding/EndingClueFound_Percentage").GetComponent<Text>();
-        text.text = "Clue Found: " + ClueManager.Clue_Percentage + "%";
+        text.text = "발견한 단서:  " + ClueManager.Clue_Percentage + "%";
     }
 
     public void IsButtonNoPressed()
