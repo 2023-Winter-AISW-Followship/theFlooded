@@ -5,10 +5,14 @@ using System.Collections;
 
 public class PlayerHPController : MonoBehaviour
 {
-    [SerializeField] private static Slider hpBarSlider;
+    [SerializeField] 
+    private static Slider hpBarSlider;
     private static float curHP;
     private static float maxHP;
     private static float minHP;
+
+    [SerializeField]
+    public static bool isGameOver;
 
     int HpRecoverAmount = 5;
 
@@ -19,6 +23,7 @@ public class PlayerHPController : MonoBehaviour
         curHP = hpBarSlider.value;
         maxHP = hpBarSlider.maxValue;
         minHP = hpBarSlider.minValue;
+        isGameOver = false;
 
         StartCoroutine(HpRecover());
     }
@@ -32,16 +37,10 @@ public class PlayerHPController : MonoBehaviour
  
     public static void TakeDamage(float damage)
     {
-        if (maxHP == 0 || curHP <= 0) return;
-
         curHP -= damage;
+        if (curHP <= 0) isGameOver = true;
 
         UpdateHpBar();
-
-        if (curHP <= 0)
-        {
-            SceneManager.LoadScene("Scene_GameOver");
-        }
     }
 
     private static void UpdateHpBar()
