@@ -85,6 +85,19 @@ public class MonsterController : MonoBehaviour
             .Where(_ => isTarget)
             .Subscribe(_ => Move());
 
+
+        this.UpdateAsObservable()
+            .Where(_ => agent.velocity.magnitude < 0.2f && agent.remainingDistance < agent.stoppingDistance)
+            .Subscribe(_ =>
+            {
+                if (isRecognize) Rotate();
+                else
+                {
+                    isTarget = false;
+                    animator.SetTrigger("breath");
+                }
+            });
+
         StartCoroutine(Step());
     }
 
@@ -147,32 +160,13 @@ public class MonsterController : MonoBehaviour
     {
         if(destination == null) return;
 
-        if(isRecognize) agent.speed = monsterData.RunSpeed;
-        else agent.speed = monsterData.Speed;
+        agent.speed = (isRecognize) ? monsterData.RunSpeed : monsterData.Speed;
 
-        NavMeshPath path = new NavMeshPath();
-        if (agent.CalculatePath(destination, path))
+        if(agent.speed == 0) Rotate();
+        else
         {
-            if(agent.speed == 0) Rotate();
-            else
-            {
-                animator.SetBool("stop", false);
-                agent.SetDestination(destination);
-            }
-        }
-
-        if(!agent.pathPending
-            &&
-            agent.velocity.magnitude > 0.2f
-            &&
-            agent.remainingDistance < agent.stoppingDistance)
-        {
-            if (isRecognize) Rotate();
-            else
-            {
-                isTarget = false;
-                animator.SetTrigger("breath");
-            }
+            animator.SetBool("stop", false);
+            agent.SetDestination(destination);
         }
     }
 

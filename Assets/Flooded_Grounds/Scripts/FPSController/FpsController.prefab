@@ -107,7 +107,6 @@ MonoBehaviour:
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
   walkSpeed: 5
   maxVelocityChange: 10
-  sprintKey: 304
   sprintSpeed: 10
   sprintDuration: 20
   sprintRegen: 50
@@ -117,9 +116,7 @@ MonoBehaviour:
   sprintBar: {fileID: 1274313540466400946}
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.015
-  jumpKey: 32
-  jumpPower: 5
-  sitKey: 306
+  jumpPower: 8
   sitHeight: 0.75
   speedReduction: 0.5
   enableHeadBob: 1

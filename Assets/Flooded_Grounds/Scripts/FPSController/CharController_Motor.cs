@@ -341,21 +341,12 @@ public class CharController_Moter : MonoBehaviour
         Vector3 direction = transform.TransformDirection(Vector3.down);
         float distance = .75f;
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
-        {
-            Debug.DrawRay(origin, direction * distance, Color.red);
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance)) isGrounded = true;
+        else isGrounded = false;
 
         isWater = transform.position.y <= waterHeight;
-        if (isWater)
-        {
-            transform.position = new Vector3(transform.position.x, waterHeight, transform.position.z);
-        }
+        if (isWater) transform.position = new Vector3(transform.position.x, waterHeight, transform.position.z);
+
     }
 
     private void Jump()
