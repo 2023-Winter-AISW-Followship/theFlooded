@@ -58,7 +58,7 @@ public class PlayerHPController : MonoBehaviour
             curHP += HpRecoverAmount;
             UpdateHpBar();
         }
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3f);
         StartCoroutine(HpRecover());
     }
 }
