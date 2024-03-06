@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UniRx;
 using UniRx.Triggers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,7 +23,9 @@ public class MonsterController : MonoBehaviour
 
     Animator animator;
     NavMeshAgent agent;
+#pragma warning disable CS0108 // ¸â¹ö°¡ »ó¼ÓµÈ ¸â¹ö¸¦ ¼û±é´Ï´Ù. new Å°¿öµå°¡ ¾ø½À´Ï´Ù.
     AudioSource audio;
+#pragma warning restore CS0108 // ¸â¹ö°¡ »ó¼ÓµÈ ¸â¹ö¸¦ ¼û±é´Ï´Ù. new Å°¿öµå°¡ ¾ø½À´Ï´Ù.
 
     private float awakeTime = 10f;
     Vector3 destination;
@@ -85,18 +88,9 @@ public class MonsterController : MonoBehaviour
             .Where(_ => isTarget)
             .Subscribe(_ => Move());
 
-
         this.UpdateAsObservable()
-            .Where(_ => agent.velocity.magnitude < 0.2f && agent.remainingDistance < agent.stoppingDistance)
-            .Subscribe(_ =>
-            {
-                if (isRecognize) Rotate();
-                else
-                {
-                    isTarget = false;
-                    animator.SetTrigger("breath");
-                }
-            });
+            .Where(_ => animator.GetCurrentAnimatorStateInfo(0).IsName("breathes"))
+            .Subscribe(_ => animator.SetBool("breath", false));
 
         StartCoroutine(Step());
     }
@@ -104,6 +98,7 @@ public class MonsterController : MonoBehaviour
     #region Sound
     IEnumerator Step()
     {
+        if (monsterData.MonsterName.Equals("Gazer")) yield break;
         int i = 0;
         while (true)
         {
@@ -168,6 +163,21 @@ public class MonsterController : MonoBehaviour
             animator.SetBool("stop", false);
             agent.SetDestination(destination);
         }
+
+        if(!agent.pathPending
+            &&
+            agent.velocity.magnitude < 0.2f
+            &&
+            agent.remainingDistance < agent.stoppingDistance)
+        {
+            if (isRecognize) Rotate();
+            else
+            {
+                isTarget = false;
+                agent.speed = 0f;
+                animator.SetBool("breath", true);
+            }
+        }
     }
 
     void Rotate()
@@ -196,7 +206,7 @@ public class MonsterController : MonoBehaviour
     {
         float max = -1;
         Transform target = null;
-
+        
         int size = Physics.OverlapSphereNonAlloc(
             transform.position,
             monsterData.SoundRecognitionDist,
@@ -230,16 +240,14 @@ public class MonsterController : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             
-            bool isObstacle = Physics.Linecast(transform.position, targets[i].transform.position, obstacleLayer);
+            bool isObstacle = Physics.Linecast(transform.position + Vector3.up * 5f, targets[i].transform.position, obstacleLayer);
+            if (isObstacle) continue;
 
             if (monsterData.MonsterName.Equals("Gazer") && targets[i].gameObject.layer == Math.Log(sparklerLayer.value, 2))
             {
-                Debug.Log(targets[i].name);
                 Vector3 targetDir = (targets[i].transform.position - transform.position).normalized;
                 float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
-                if (targetAngle <= monsterData.SightRecognitionAngle * 0.5f
-                    &&
-                    !isObstacle)
+                if (targetAngle <= monsterData.SightRecognitionAngle * 0.5f)
                 {
                     Debug.DrawLine(transform.position, targets[i].transform.position, Color.red);
                     target = targets[i].transform;
@@ -250,9 +258,10 @@ public class MonsterController : MonoBehaviour
             {
                 Vector3 targetDir = (targets[i].transform.position - transform.position).normalized;
                 float targetAngle = Mathf.Acos(Vector3.Dot(lookDir, targetDir)) * Mathf.Rad2Deg;
+
                 if (targetAngle <= monsterData.SightRecognitionAngle * 0.5f
-                    &&
-                    !isObstacle)
+                    ||
+                    Vector3.Distance(transform.position, targets[i].transform.position) <= 8f)
                 {
                     Debug.DrawLine(transform.position, targets[i].transform.position, Color.red);
                     target = targets[i].transform;
@@ -328,7 +337,6 @@ public class MonsterController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(Vector3.zero, monsterData.Reach);
-        
 
         Vector3 rightDir = AngleToDir(Vector3.forward.y + monsterData.SightRecognitionAngle * 0.5f);
         Vector3 leftDir = AngleToDir(Vector3.forward.y - monsterData.SightRecognitionAngle * 0.5f);
@@ -336,6 +344,8 @@ public class MonsterController : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(Vector3.zero, rightDir * monsterData.SightRecognitionDist);
         Gizmos.DrawRay(Vector3.zero, leftDir * monsterData.SightRecognitionDist);
+        Gizmos.DrawWireSphere(Vector3.zero, 8f);
+
         Gizmos.color = Color.cyan;
         Gizmos.DrawRay(Vector3.zero, Vector3.forward * monsterData.SightRecognitionDist);
 

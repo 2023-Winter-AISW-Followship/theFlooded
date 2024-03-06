@@ -283,14 +283,7 @@ public class CharController_Moter : MonoBehaviour
 
             targetVelocity = new Vector3(moveLR, 0, moveFB).normalized;
 
-            if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
-            {
-                isWalking = true;
-            }
-            else
-            {
-                isWalking = false;
-            }
+            isWalking = (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded) ? true : false;
 
             if (isWalking && Input.GetKey(KeySetting.key[KeyAction.RUN]) && sprintRemaining > 0f && !isSprintCooldown)
             {

@@ -55,7 +55,7 @@ public class Bottle : MonoBehaviour, ItemState
         transform.rotation = Camera.main.transform.rotation;
         transform.parent = null;
         GetComponent<Rigidbody>().useGravity = true;
-        Vector3 speed = Vector3.forward * 20f + Vector3.up * 2.5f;
+        Vector3 speed = Vector3.forward * 20f + Vector3.left * 2f;
         GetComponent<Rigidbody>().velocity = Camera.main.transform.TransformDirection(speed);
         GetComponent<Collider>().enabled = true;
 
