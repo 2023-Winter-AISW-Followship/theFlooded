@@ -49,7 +49,9 @@ public class Radio : MonoBehaviour, ItemState
 
         if (Physics.Raycast(ray, out hit, raycastDistance)) //인식할 수 있는 범위 안에서 물체 확인
         {
-            if (hit.collider.gameObject.layer == 3)
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("ground")
+                ||
+                hit.collider.gameObject.layer == LayerMask.NameToLayer("building"))
             {
                 point.transform.SetPositionAndRotation(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
                 point.SetActive(true);

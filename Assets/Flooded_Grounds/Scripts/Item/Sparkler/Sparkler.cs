@@ -59,7 +59,9 @@ public class Sparkler : MonoBehaviour, ItemState
 
         if (Physics.Raycast(ray, out hit, raycastDistance)) //인식할 수 있는 범위 안에서 물체 확인
         {
-            if (hit.collider.gameObject.layer == 3)
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("ground")
+                ||
+                hit.collider.gameObject.layer == LayerMask.NameToLayer("building"))
             {
                 point.transform.position = hit.point + Vector3.up * 0.2f;
                 point.SetActive(true);
