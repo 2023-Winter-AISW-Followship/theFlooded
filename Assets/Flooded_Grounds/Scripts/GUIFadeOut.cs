@@ -22,6 +22,11 @@ public class GUIFadeOut : MonoBehaviour
             .Where(_ => PlayerHPController.isGameOver == true && isFading == false)
             .Subscribe(_ =>
             {
+                Pause.GameIsPaused = false;
+                Time.timeScale = 1;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+
                 isFading = true;
                 Panel.SetActive(true);
                 StartCoroutine(FadeOutCoroutine());
