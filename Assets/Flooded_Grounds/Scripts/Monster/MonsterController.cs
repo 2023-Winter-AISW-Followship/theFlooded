@@ -104,7 +104,8 @@ public class MonsterController : MonoBehaviour
         {
             if (isTarget)
             {
-                if (isRecognize) step = monsterData.RunSpeed;
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("stare")) yield return null;
+                else if (isRecognize) step = monsterData.RunSpeed;
                 else step = monsterData.Speed;
 
                 step /= monsterData.RunSpeed;
@@ -174,7 +175,6 @@ public class MonsterController : MonoBehaviour
             else
             {
                 isTarget = false;
-                agent.speed = 0f;
                 animator.SetBool("breath", true);
             }
         }
